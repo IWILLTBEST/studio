@@ -1,0 +1,8 @@
+{
+    "name": "eez-studio-instrument-extension",
+    "version": "1.0.0",
+    "author": "Envox",
+    "eez-studio": {
+        "main": "instrument-extension.js"
+    }
+}

@@ -1,0 +1,1484 @@
+{
+    "server": {
+        "address": "https://www.envox.eu/wp-json"
+    },
+    "filePathBase": "../../../docs/components/html/en-US/",
+    "toc": {
+        "action": [
+            {
+                "category": {
+                    "name": "Basic",
+                    "id": 198
+                },
+                "articles": [
+                    {
+                        "content": "Start.html",
+                        "status": "publish",
+                        "id": 10057,
+                        "sha256": "eb80623a6235b32ece9fff9f51cf4ce56e921df9092fa0ac35bd7969fb37c6e2"
+                    },
+                    {
+                        "content": "End.html",
+                        "status": "publish",
+                        "id": 10058,
+                        "sha256": "28c662c8b24278466b42dcff45187804b36eefb09a38d5afd9dcb457f16b055f"
+                    },
+                    {
+                        "content": "Input.html",
+                        "status": "publish",
+                        "id": 10059,
+                        "sha256": "dab315e6ff23491c5dc3491b53be804cdb13e4a9ce7061230620a5bd34bc3489"
+                    },
+                    {
+                        "content": "Output.html",
+                        "status": "publish",
+                        "id": 10060,
+                        "sha256": "dbbaefb41fca4f7fed86ed85d96e3d4e59ae8b986884e4e438d8416f184debec"
+                    },
+                    {
+                        "content": "Evaluate.html",
+                        "status": "publish",
+                        "id": 10061,
+                        "sha256": "80e1e04b621008409f997b60ca213bd529d2e9710c1e7f4fc38a820cfa9e2adc"
+                    },
+                    {
+                        "content": "Watch.html",
+                        "status": "publish",
+                        "id": 10062,
+                        "sha256": "ab75cd77aa8a86d082999ebe5c1e2e9e5aa03affab6c89d8239c8a41385ed1dc"
+                    },
+                    {
+                        "content": "SetVariable.html",
+                        "status": "publish",
+                        "id": 10063,
+                        "sha256": "7eee1e838e290315adbe9af29b769a466692bee627eeda37ece139951d53d989"
+                    },
+                    {
+                        "content": "SwitchCase.html",
+                        "status": "publish",
+                        "id": 10064,
+                        "sha256": "d7e300e85d32c92254ffb4ddae553356171d94db7c64be1f58d5bdd6b8e7bae1"
+                    },
+                    {
+                        "content": "Compare.html",
+                        "status": "publish",
+                        "id": 10065,
+                        "sha256": "2c9ce24b5a6320fccb1f27df8bcf0e671b24acde5bcb6a5232e03e042768a7ff"
+                    },
+                    {
+                        "content": "IsTrue.html",
+                        "status": "publish",
+                        "id": 10066,
+                        "sha256": "b1bf72339b643834f47959c807c291c21c854b9aca4f3d1e47c7c1fbd99a13c1"
+                    },
+                    {
+                        "content": "TestAndSet.html",
+                        "status": "publish",
+                        "id": 10067,
+                        "sha256": "e0ef1435ad0fe0943f865e0d14ff948d4968752338ab30d0ea1f7b281bf0dafd"
+                    },
+                    {
+                        "content": "Delay.html",
+                        "status": "publish",
+                        "id": 10068,
+                        "sha256": "b7a7ca9bf5e4bc13c71fa14ade1e3fd71bc740bf2a495e505beac5087b9a03f1"
+                    },
+                    {
+                        "content": "Label IN.html",
+                        "status": "publish",
+                        "id": 12585,
+                        "sha256": "901eb2b918cbeaaf4aac9fff710b7615662ba64eb552e20ee35d233d48b70d51"
+                    },
+                    {
+                        "content": "Label OUT.html",
+                        "status": "publish",
+                        "id": 12586,
+                        "sha256": "f3abb292e1d03a98163331596e1161b1affd52724e38f685284525759e4d5927"
+                    },
+                    {
+                        "content": "Loop.html",
+                        "status": "publish",
+                        "id": 10069,
+                        "sha256": "9089c23c7d817ce7e4657a344a4b4293add45ab894fc47b5da9a63980967f02a"
+                    },
+                    {
+                        "content": "Counter.html",
+                        "status": "publish",
+                        "id": 10070,
+                        "sha256": "d445f7e81b2d89f9d3dd3588db9e327eeaa61ccebfda1ecb34f2d81801f12308"
+                    },
+                    {
+                        "content": "Constant.html",
+                        "status": "publish",
+                        "id": 10071,
+                        "sha256": "30c4a45e7605838d3853a65d334affe86442f35b82dbedbdd4177e6db7aced08"
+                    },
+                    {
+                        "content": "DateNow.html",
+                        "status": "publish",
+                        "id": 10072,
+                        "sha256": "062bdd54bbf02f445b5407c0b4bf787b7cc0bb94b7a3d75443e78a5926ac0a66"
+                    },
+                    {
+                        "content": "SortArray.html",
+                        "status": "publish",
+                        "id": 10073,
+                        "sha256": "479e6ffafdc72f730e3b82aa3a56f2d85c96c6fee210c15a114c82017bab5823"
+                    },
+                    {
+                        "content": "Log.html",
+                        "status": "publish",
+                        "id": 10074,
+                        "sha256": "3804456b6a81afb72074a246ce4623a117b95315d8095da1e9ec58e35e30150c"
+                    },
+                    {
+                        "content": "PlayAudio.html",
+                        "status": "publish",
+                        "id": 13942,
+                        "sha256": "0112ccacb1b82a5249d548933bbd234e6e86ed0c24a7467f0f6d0488aa0219ce"
+                    },
+                    {
+                        "content": "Error.html",
+                        "status": "publish",
+                        "id": 10075,
+                        "sha256": "9499e4203bc8789e6573f241c7b001a1e9eed04a947fb4ddbeb9c045df5a5c37"
+                    },
+                    {
+                        "content": "CatchError.html",
+                        "status": "publish",
+                        "id": 10076,
+                        "sha256": "1fd9881edabf7a98c24a270cae2112eda779781cd9b6b4e9eb175f2c1e6471e3"
+                    },
+                    {
+                        "content": "NoOp.html",
+                        "status": "publish",
+                        "id": 10077,
+                        "sha256": "44f7060b6a8cbdf1565a91637d56644da83a14a7469e8a380ed9e3603b317db1"
+                    },
+                    {
+                        "content": "Comment.html",
+                        "status": "publish",
+                        "id": 10078,
+                        "sha256": "812ac266d0e770851704eea8ecb0827bf80d0875bae359cf1ef8b2ba843e77a6"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "GUI",
+                    "id": 200
+                },
+                "articles": [
+                    {
+                        "content": "Animate.html",
+                        "status": "publish",
+                        "id": 10079,
+                        "sha256": "97c891cb66d6007e3c2238f46de8852dae77990fa78dce1b246d83a8b381b601"
+                    },
+                    {
+                        "content": "ClipboardWrite.html",
+                        "status": "publish",
+                        "id": 12587,
+                        "sha256": "f87ab18dc1bbb483e86600ae1d1c08f002e3869440496b68657eccff77552209"
+                    },
+                    {
+                        "content": "OnEvent.html",
+                        "status": "publish",
+                        "id": 10080,
+                        "sha256": "b6b93c2f72f35254764951bdc0174764b49c93874b657f69d3005a482e646077"
+                    },
+                    {
+                        "content": "OverrideStyle.html",
+                        "status": "publish",
+                        "id": 10081,
+                        "sha256": "501022fa7c491461654a2fafdd670ceb4e60d38ea35826da42c99b31fa03e712"
+                    },
+                    {
+                        "content": "PrintToPDF.html",
+                        "status": "publish",
+                        "id": 12948,
+                        "sha256": "9cff22ef2348474ff78db706a44569eb0543c72868c9317b0970e670fd87e013"
+                    },
+                    {
+                        "content": "SelectLanguage.html",
+                        "status": "publish",
+                        "id": 10082,
+                        "sha256": "83d09b835013b369fbfcd2cff17a13e5e6e7028ec05e3c7a0f5abde48366c9ec"
+                    },
+                    {
+                        "content": "SetColorTheme.html",
+                        "status": "publish",
+                        "id": 13883,
+                        "sha256": "b9445e4f1ba2f0604a30df0c101b60396ec4c8943517dc373d91c35ac5c4ddbb"
+                    },
+                    {
+                        "content": "SetPageDirection.html",
+                        "status": "publish",
+                        "id": 10083,
+                        "sha256": "eb4dfd484d7ea3d6b2fa8eae5b055d69bf7da5020b46cef092915b39806cb002"
+                    },
+                    {
+                        "content": "ShowKeyboard.html",
+                        "status": "publish",
+                        "id": 10084,
+                        "sha256": "0a305384a0a0dc69ab605c70b20aa2a5bdf44584722dd0eafc16c1406351a35b"
+                    },
+                    {
+                        "content": "ShowKeypad.html",
+                        "status": "publish",
+                        "id": 10085,
+                        "sha256": "8df6576322563ba95d57ae73bfd3f2ea34f5ca785b7880609fd4fa8c0624c62d"
+                    },
+                    {
+                        "content": "ShowMessageBox.html",
+                        "status": "publish",
+                        "id": 10086,
+                        "sha256": "d144c864767352b9b6279a453ae6787d1eec39b86117aa9f0d09b8acaa0a0b61"
+                    },
+                    {
+                        "content": "ShowPage.html",
+                        "status": "publish",
+                        "id": 10087,
+                        "sha256": "5a947aab0561639b6eeaf76e715bcdb7fa9b40fe96409e6762c155f879b66119"
+                    },
+                    {
+                        "content": "FocusWidget.html",
+                        "status": "publish",
+                        "id": 13959,
+                        "sha256": "3fa6021f3f44df5dd73b949c1f343ec3035b3bc62dbbd57c5d1cf1961585a7e4"
+                    },
+                    {
+                        "content": "TabulatorAction.html",
+                        "status": "publish",
+                        "id": 12949,
+                        "sha256": "648eba541dcfa064795e355346a817f0826a7cc1ada79a76bfc6963da7f608e8"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "MQTT",
+                    "id": 201
+                },
+                "articles": [
+                    {
+                        "content": "MQTTConnect.html",
+                        "status": "publish",
+                        "id": 10088,
+                        "sha256": "b4625b7d6f998cf0c2332b613f37a195085807403d659a3adea60882ccc7139a"
+                    },
+                    {
+                        "content": "MQTTDisconnect.html",
+                        "status": "publish",
+                        "id": 10089,
+                        "sha256": "3ec28b607e0dc99b2d04fda5b5ea48c394a8cb9b9805787d80e7470a07bdb260"
+                    },
+                    {
+                        "content": "MQTTEvent.html",
+                        "status": "publish",
+                        "id": 10090,
+                        "sha256": "e8f5ed478c062a2101fc237a31ece2fa983606efeba86a57109f1d6c6c47ce28"
+                    },
+                    {
+                        "content": "MQTTInit.html",
+                        "status": "publish",
+                        "id": 10091,
+                        "sha256": "91b6c06eaa2a4f7c93a57a4969acee1f54d3ab3ffad5624d7eeb992446e3c072"
+                    },
+                    {
+                        "content": "MQTTPublish.html",
+                        "status": "publish",
+                        "id": 10092,
+                        "sha256": "48d45ce46173115e30c45430b76f8c4b444045eea0969b0deaa90697699513b5"
+                    },
+                    {
+                        "content": "MQTTSubscribe.html",
+                        "status": "publish",
+                        "id": 10093,
+                        "sha256": "d7386a9c11aa1f983faf2c5cdcd8d9db5fbba1ddf95ff397c5030124135d262d"
+                    },
+                    {
+                        "content": "MQTTUnsubscribe.html",
+                        "status": "publish",
+                        "id": 10094,
+                        "sha256": "629fa8e93d8250dc554fcc4e778884d5595875b86b732f16711a612f369150ac"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "LVGL",
+                    "id": 199
+                },
+                "articles": [
+                    {
+                        "content": "LVGL.html",
+                        "status": "publish",
+                        "id": 10095,
+                        "sha256": "c666079ee6cfc7072ea4a9f8a0c0254c0f7ff8daf5e85652c27baf2eef1dba50"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Dashboard Specific",
+                    "id": 193
+                },
+                "articles": [
+                    {
+                        "content": "CollectStream.html",
+                        "status": "publish",
+                        "id": 10096,
+                        "sha256": "24ca8e5234c8a0a9193a21376e0128ad184913a7887f599a9b36957fbccf7a48"
+                    },
+                    {
+                        "content": "CloseStream.html",
+                        "status": "publish",
+                        "id": 12907,
+                        "sha256": "6b6444a04de58a7fb7dda506c1fb0b0a6c5ac3fccd899f73330269d821a1128d"
+                    },
+                    {
+                        "content": "CSVParse.html",
+                        "status": "publish",
+                        "id": 10097,
+                        "sha256": "0a83de7014f47698c4a5b71a805ec9f7ca2a36b32365e226444893e1fced5f4e"
+                    },
+                    {
+                        "content": "CSVStringify.html",
+                        "status": "publish",
+                        "id": 10098,
+                        "sha256": "9ff8dc7b76f6a1a60aec1baa176b6e130195dd657760c9be74ea89750eb7a772"
+                    },
+                    {
+                        "content": "DynamicCallAction.html",
+                        "status": "publish",
+                        "id": 10099,
+                        "sha256": "15a01385e34fd59fcce644ec8a17155b41034f9d45475cabee10a9af58e49226"
+                    },
+                    {
+                        "content": "Eval JS.html",
+                        "status": "publish",
+                        "id": 10100,
+                        "sha256": "a444e402b1742f910fd9106410054eec5193747e7e3d5346de81b04049c95fe7"
+                    },
+                    {
+                        "content": "ExecuteCommand.html",
+                        "status": "publish",
+                        "id": 10101,
+                        "sha256": "9e190ce97c8ac0fd19751f0ce482f8057456dfa0b7c25321a18dab78ac33d0df"
+                    },
+                    {
+                        "content": "HTTP.html",
+                        "status": "publish",
+                        "id": 10102,
+                        "sha256": "2ca0ebdacb7e9652fe7e6aa284ac40a01667590b65553e7c7d025a4bbc3308b7"
+                    },
+                    {
+                        "content": "JSONParse.html",
+                        "status": "publish",
+                        "id": 10103,
+                        "sha256": "83187b5fcfb24746919d7b0d035e64b8a761d3db6d94ae38607a41d2475ff029"
+                    },
+                    {
+                        "content": "JSONStringify.html",
+                        "status": "publish",
+                        "id": 10104,
+                        "sha256": "6f2f1bdb651751f3103a1ab6aa72784675503d69e03db6130cc91e8a13ffb4d4"
+                    },
+                    {
+                        "content": "ReadSetting.html",
+                        "status": "publish",
+                        "id": 10105,
+                        "sha256": "ab0625ec4b8c60326fbf092254c7c97fc5fdf239ef6f7f801da11e60b5eac4bf"
+                    },
+                    {
+                        "content": "Regexp.html",
+                        "status": "publish",
+                        "id": 10106,
+                        "sha256": "57bcd1e9aefb7b043281b52eab6fbc9204d93baaf7e0c92b800f1d84b9ae2e89"
+                    },
+                    {
+                        "content": "WriteSetting.html",
+                        "status": "publish",
+                        "id": 10107,
+                        "sha256": "afa580f728a8c72dda3ba4a1565f700e7df22882dedef2e63e3af53df770974d"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "File",
+                    "id": 194
+                },
+                "articles": [
+                    {
+                        "content": "FileAppend.html",
+                        "status": "publish",
+                        "id": 10108,
+                        "sha256": "778e35ba00c8ed8d5d63fdd228ed86cf3ec0588a14f76e4e82d90e95bbcbb56a"
+                    },
+                    {
+                        "content": "FileOpenDialog.html",
+                        "status": "publish",
+                        "id": 10109,
+                        "sha256": "5264a1b739f028faca0c0d7b76b4bd75fa466e5a9cc1b34b79d9d08825a10e70"
+                    },
+                    {
+                        "content": "FileRead.html",
+                        "status": "publish",
+                        "id": 10110,
+                        "sha256": "53d0a50fb17cb53f9a61412aa3077f966d40d8d6eb1a8c62afef671b20b2c46b"
+                    },
+                    {
+                        "content": "FileSaveDialog.html",
+                        "status": "publish",
+                        "id": 10111,
+                        "sha256": "e15d91b4f16ef5e57ee71f5d632f087ff9895afcf4badf86c3d364c8535833f2"
+                    },
+                    {
+                        "content": "FileWrite.html",
+                        "status": "publish",
+                        "id": 10112,
+                        "sha256": "f7c356f905556e65e92626670a218a89cbe89e68ff52d6bb50787ef57f4be940"
+                    },
+                    {
+                        "content": "ShowFileInFolder.html",
+                        "status": "publish",
+                        "id": 10113,
+                        "sha256": "be907ce6a3fde3c387c9bacc143a2c6e1ee91fdb77b729604c61902d6f2e10bc"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Instrument",
+                    "id": 195
+                },
+                "articles": [
+                    {
+                        "content": "AddToInstrumentHistory.html",
+                        "status": "publish",
+                        "id": 10114,
+                        "sha256": "3fd14917bc7aba98900739c478a5037027aeedc90b0f345645498003ac508dd0"
+                    },
+                    {
+                        "content": "ConnectInstrument.html",
+                        "status": "publish",
+                        "id": 10115,
+                        "sha256": "f9b29e04edde58806dc104c8e9069f84bb02dce4e87637bb71f05d9cb08059e1"
+                    },
+                    {
+                        "content": "DisconnectInstrument.html",
+                        "status": "publish",
+                        "id": 10116,
+                        "sha256": "eca88c622612e54d3d59a204ddf0991a3adbae5a0bb92f8d951323298a5aa482"
+                    },
+                    {
+                        "content": "GetInstrument.html",
+                        "status": "publish",
+                        "id": 10117,
+                        "sha256": "09d275359ebf53d738dcdc8af756de24352da77c6ae19a121cd8f4366840d61a"
+                    },
+                    {
+                        "content": "GetInstrumentProperties.html",
+                        "status": "publish",
+                        "id": 10118,
+                        "sha256": "cd60e47f632f5931e77b4cb37820b8954c8510eedb4e5727e8265fbeab851c84"
+                    },
+                    {
+                        "content": "Modbus.html",
+                        "status": "publish",
+                        "id": 12590,
+                        "sha256": "b2c5e3ecb8a68f1cf748b973ddd5182da668c0593c22996b0891f3c430416582"
+                    },
+                    {
+                        "content": "SCPI.html",
+                        "status": "publish",
+                        "id": 10119,
+                        "sha256": "9efe18db61f9f5bd02da3c57f7c9ba6a8556dcc7feb69228759a59a05b0ff650"
+                    },
+                    {
+                        "content": "SelectInstrument.html",
+                        "status": "publish",
+                        "id": 10120,
+                        "sha256": "fd513414a55bd5d4d0be723d2de1aae60a3d5f4c2db3c42b40903ee621faf36b"
+                    },
+                    {
+                        "content": "InstrumentRead.html",
+                        "status": "publish",
+                        "id": 12908,
+                        "sha256": "c6ed30f650149f7dd52ee23ce226e4a5b1027b06767c413232fbf7675e4b93c4"
+                    },
+                    {
+                        "content": "InstrumentWrite.html",
+                        "status": "publish",
+                        "id": 12909,
+                        "sha256": "92bb3f5784e5b6b023806ea50a95e6b48dc8bd993108b73f9ae3552efdae1639"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Python",
+                    "id": 196
+                },
+                "articles": [
+                    {
+                        "content": "PythonEnd.html",
+                        "status": "publish",
+                        "id": 10121,
+                        "sha256": "59b021ba53236a69da68e9b44a7be33073c5afe681e7d926770877476b5cd2d9"
+                    },
+                    {
+                        "content": "PythonRun.html",
+                        "status": "publish",
+                        "id": 10122,
+                        "sha256": "fadaed1647ffcbef2c0362cbf68a6a6b0f5079b53c66dde0ff0209254518b04d"
+                    },
+                    {
+                        "content": "PythonSendMessage.html",
+                        "status": "publish",
+                        "id": 10123,
+                        "sha256": "b853279229d9deed52788a77cec11734b76ea8d3f0b5292fe7d8d95557a91a5b"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Serial Port",
+                    "id": 197
+                },
+                "articles": [
+                    {
+                        "content": "SerialConnect.html",
+                        "status": "publish",
+                        "id": 10124,
+                        "sha256": "c6defe06bbb54c6fcbe3f0c59daa50cad6b128bd93d82b8fb4ee35fa3af0540e"
+                    },
+                    {
+                        "content": "SerialDisconnect.html",
+                        "status": "publish",
+                        "id": 10125,
+                        "sha256": "2f426ac2b3354af4a2432fd5eed4d408e5c1d0f6a8f86614002749f14c58a717"
+                    },
+                    {
+                        "content": "SerialInit.html",
+                        "status": "publish",
+                        "id": 10126,
+                        "sha256": "88fb4e422936367870dbcdd4ffab82f9036547e6ee4430b17ce9e612e5aad47b"
+                    },
+                    {
+                        "content": "SerialListPorts.html",
+                        "status": "publish",
+                        "id": 10127,
+                        "sha256": "13fb806abaf8326c26a7736d7289b4564d310cf06b78fe0602641dfffaf05b9e"
+                    },
+                    {
+                        "content": "SerialRead.html",
+                        "status": "publish",
+                        "id": 10128,
+                        "sha256": "9f7cabd7c17ce38e69f17d8d83d6f51484c2d1539b4bcbbe4c655c31371f4cb0"
+                    },
+                    {
+                        "content": "SerialWrite.html",
+                        "status": "publish",
+                        "id": 10129,
+                        "sha256": "327ad535e1ea4e8ab44a1a41ad50446d3d81b8d9a3b250c5eb0146383b212f8a"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Network",
+                    "id": 225
+                },
+                "articles": [
+                    {
+                        "content": "TCPConnect.html",
+                        "status": "publish",
+                        "id": 12624,
+                        "sha256": "64be4fb0aba7cdc95e4563c51a9c9d7082995ae26e7859f4ccb5b265b9864a7f"
+                    },
+                    {
+                        "content": "TCPDisconnect.html",
+                        "status": "publish",
+                        "id": 12625,
+                        "sha256": "e4fd75105ec7c1606ba5abdd4156b3153eb061676258912c43263a6f6d357771"
+                    },
+                    {
+                        "content": "TCPListen.html",
+                        "status": "publish",
+                        "id": 13509,
+                        "sha256": "83776dc73558de2c894528d36736544b5d7e2e3472b06508cd4c76b38f9ea7c9"
+                    },
+                    {
+                        "content": "TCPEvent.html",
+                        "status": "publish",
+                        "id": 13510,
+                        "sha256": "e52c1151f4b2be7c21a62dfadf7a2173aba3fc4a55b9a706e3eb3139ac4ca257"
+                    },
+                    {
+                        "content": "TCPWrite.html",
+                        "status": "publish",
+                        "id": 13511,
+                        "sha256": "12bba94973420f712f0c00b515a861f6f526808e9c3e7e37b4c7820332fef3b0"
+                    },
+                    {
+                        "content": "UDP In.html",
+                        "status": "publish",
+                        "id": 13512,
+                        "sha256": "6eefdf89fbf9880341d1091b01ce421249b8e9fa523dfa7bd5510c1f550e696a"
+                    },
+                    {
+                        "content": "UDP Out.html",
+                        "status": "publish",
+                        "id": 13513,
+                        "sha256": "cbea7bb94639a07ad23e9eb057cb7524e76766107c2c02405bb04574747758e3"
+                    }
+                ]
+            }
+        ],
+        "widget": [
+            {
+                "category": {
+                    "name": "Basic",
+                    "id": 203
+                },
+                "articles": [
+                    {
+                        "content": "Arc.html",
+                        "status": "publish",
+                        "id": 12211,
+                        "sha256": "1f5e2826762d9962a0b8e97d3fec6ce3e3a7d425606d20bf5cf7e5419ec6c705"
+                    },
+                    {
+                        "content": "Bitmap (Dashboard).html",
+                        "status": "publish",
+                        "id": 12212,
+                        "sha256": "76c030b1aacf4cb28a8336a77c5a2af0f119c15a241739b5c4f4ddf3a4c68b6f"
+                    },
+                    {
+                        "content": "Bitmap (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12213,
+                        "sha256": "b7756ac0a7a7119cb74a220a5b331ce48147766664cf0b23a3cc53586aa1301b"
+                    },
+                    {
+                        "content": "Button (Dashboard).html",
+                        "status": "publish",
+                        "id": 12214,
+                        "sha256": "58152315a5d0a78e1700f669161e2d5b8f3f60390873ca0f58b82873cecbc818"
+                    },
+                    {
+                        "content": "Button (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12215,
+                        "sha256": "b3a283f3d083a9440a144faae89046a4d3c1097d5d4ba28c9ff89d26bd2b51c1"
+                    },
+                    {
+                        "content": "Button (LVGL).html",
+                        "status": "publish",
+                        "id": 12216,
+                        "sha256": "ca59a9adef5eae80cb4cc21273e8bc3375d7d8d39c05ac3b7c9e16353a2ebd8b"
+                    },
+                    {
+                        "content": "ButtonMatrix.html",
+                        "status": "publish",
+                        "id": 13354,
+                        "sha256": "99d32a2d720d3ca94a2829875570522ecd4da05d4466efb272e7bbd70dac074d"
+                    },
+                    {
+                        "content": "ButtonGroup.html",
+                        "status": "publish",
+                        "id": 12217,
+                        "sha256": "662a9731538d01c70e1a6801a7877561b0bd25fbcc18e01462f399937b11abd6"
+                    },
+                    {
+                        "content": "DisplayData.html",
+                        "status": "publish",
+                        "id": 12218,
+                        "sha256": "1d74ebb070813d6535c2eaade9c7e6e6774289469df76fd0a13669f105896594"
+                    },
+                    {
+                        "content": "Image.html",
+                        "status": "publish",
+                        "id": 12219,
+                        "sha256": "5f7036f7e3ee0c49b63a9f91a6792fe9e8e59ac43fae9522cc589b009da288c4"
+                    },
+                    {
+                        "content": "Label.html",
+                        "status": "publish",
+                        "id": 12220,
+                        "sha256": "110b7e9a826ee82da30bebdb3534995b0f1ba38c12c736501e6a372204028c52"
+                    },
+                    {
+                        "content": "List (LVGL).html",
+                        "status": "publish",
+                        "id": 13355,
+                        "sha256": "a3e873e863c04b635a8df5ded912e4681380a6c943ea85fa226775ace4a400b0"
+                    },
+                    {
+                        "content": "Markdown.html",
+                        "status": "publish",
+                        "id": 12221,
+                        "sha256": "d3da17fb494b127611e76f1fc5f901af352d16883eb06286851abba65d189638"
+                    },
+                    {
+                        "content": "Menu.html",
+                        "status": "publish",
+                        "id": 13356,
+                        "sha256": "1809a2768b1c9c3f128aaf1060c6e8e46f31cde04b9d99bd3123f47682cb501a"
+                    },
+                    {
+                        "content": "MessageBox.html",
+                        "status": "publish",
+                        "id": 13357,
+                        "sha256": "bb2ecf45c629b3c1f74f2b2577174d998cdeeaf7e3536de5349a3ca0e65ee34e"
+                    },
+                    {
+                        "content": "MultilineText.html",
+                        "status": "publish",
+                        "id": 12222,
+                        "sha256": "0099f2404a666863c36e3f6e5e74a7712c815e6a251fe90cd9fa03d920fa8ffc"
+                    },
+                    {
+                        "content": "Panel.html",
+                        "status": "publish",
+                        "id": 12223,
+                        "sha256": "0874f43ea20ec1a7e293e25500aa5972fdddc84d5ebb443a0e46cc2624f4a397"
+                    },
+                    {
+                        "content": "QRCode.html",
+                        "status": "publish",
+                        "id": 14887,
+                        "sha256": "2416bb2a1234a3f9779bc0c70d9b16f0f693dd70752c4cd368c183376cdcd9f6"
+                    },
+                    {
+                        "content": "Rectangle (Dashboard).html",
+                        "status": "publish",
+                        "id": 12224,
+                        "sha256": "15afaa65772938f4848513bfd286ecb4c9ba11d2b4500c33d0a84671992e3248"
+                    },
+                    {
+                        "content": "Rectangle (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12225,
+                        "sha256": "934299f29c418e75e3d09d8c233d4d47bc437050d0ac715057f616d9a0bab976"
+                    },
+                    {
+                        "content": "ScrollBar.html",
+                        "status": "publish",
+                        "id": 12226,
+                        "sha256": "9e2214f36be161aa873ca2242a07f5ad6f559cdf7973998f420efc9f4ad0e305"
+                    },
+                    {
+                        "content": "Span.html",
+                        "status": "publish",
+                        "id": 13358,
+                        "sha256": "be90ba0d27d6813809ffad9c355314a698896da676367b64bab10b7c636ddfe8"
+                    },
+                    {
+                        "content": "Spangroup.html",
+                        "status": "publish",
+                        "id": 15048,
+                        "sha256": "a45131ae876b88d1913bc01f5757090e7b78eec216386195a95ad1df5e7be498"
+                    },
+                    {
+                        "content": "Table.html",
+                        "status": "publish",
+                        "id": 13359,
+                        "sha256": "3e0515d0b669ce108146f87218380efc8238f1bf2099ee197e252d3b58dbcf24"
+                    },
+                    {
+                        "content": "Tabview.html",
+                        "status": "publish",
+                        "id": 13360,
+                        "sha256": "b90723bab29813f959cd7afbf825fe3212e4363a7930954f68be37de9d9cc62a"
+                    },
+                    {
+                        "content": "Tab.html",
+                        "status": "publish",
+                        "id": 13361,
+                        "sha256": "ddf179475ee2e7b9d6784c287af2b794ce9017dbda84dea320ec518973045089"
+                    },
+                    {
+                        "content": "Text (Dashboard).html",
+                        "status": "publish",
+                        "id": 12227,
+                        "sha256": "8f1aff1c03d2494687fff63ae6ac2df7e08aacac56e8f19d914c8bdd34b9cf0c"
+                    },
+                    {
+                        "content": "Text (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12228,
+                        "sha256": "fcc4684f22b43e50eaefbd026f82bed89f3e8ae381cd4e95f13e10f6b6306031"
+                    },
+                    {
+                        "content": "Textarea.html",
+                        "status": "publish",
+                        "id": 12229,
+                        "sha256": "23cb5834b7f5394b1754c08b8b3d458b710baf04000051f2d36b6ea6e9789df4"
+                    },
+                    {
+                        "content": "Tileview.html",
+                        "status": "publish",
+                        "id": 13362,
+                        "sha256": "21f30e834404a10071ea0cc6c8f0878e98a971c5367d883bec8496dcc5823d68"
+                    },
+                    {
+                        "content": "ToggleButton.html",
+                        "status": "publish",
+                        "id": 12230,
+                        "sha256": "2f35190c136057476f32e50b4b74403c695e970a25c24de71e605177fa19632a"
+                    },
+                    {
+                        "content": "Window.html",
+                        "status": "publish",
+                        "id": 13363,
+                        "sha256": "f7df1da54a863d38b017409c22a324c729f9f3ac6d904567827658fb4bd5c101"
+                    },
+                    {
+                        "content": "Embedded Dashboard.html",
+                        "status": "publish",
+                        "id": 12681,
+                        "sha256": "1f82f76029cc799757846763e1761c25025c1b61107d05001965832149046a71"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Container",
+                    "id": 204
+                },
+                "articles": [
+                    {
+                        "content": "Container (Dashboard).html",
+                        "status": "publish",
+                        "id": 12231,
+                        "sha256": "ab034a54e3b2edee8461aa1f0f301329680f9cf7f8275c8fce9a0ffb06b06bbb"
+                    },
+                    {
+                        "content": "Container (LVGL).html",
+                        "status": "publish",
+                        "id": 13120,
+                        "sha256": "c27379999dd95ef7f3899c3c040e243e4528ca5600eb901a03b925ae61fdd056"
+                    },
+                    {
+                        "content": "Grid.html",
+                        "status": "publish",
+                        "id": 12232,
+                        "sha256": "01199f110fe46c8c1e3b97d582a411d871d65f84d795e3db2e79547471531416"
+                    },
+                    {
+                        "content": "List (Dashboard).html",
+                        "status": "publish",
+                        "id": 13364,
+                        "sha256": "7d93310762dfed7022cdf57b829d7d85fef498918a102b50ae40bf2fa3d0ffc3"
+                    },
+                    {
+                        "content": "Select.html",
+                        "status": "publish",
+                        "id": 12234,
+                        "sha256": "19828380662f5387e40d093cec74e2bc9ecb0e90e657e9414502587dc16e617c"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Input",
+                    "id": 205
+                },
+                "articles": [
+                    {
+                        "content": "Calendar.html",
+                        "status": "publish",
+                        "id": 12235,
+                        "sha256": "0e499647c892f9349b5153f4221937d07120bbcc197f160aec5d2b3d0ad57968"
+                    },
+                    {
+                        "content": "Checkbox (Dashboard).html",
+                        "status": "publish",
+                        "id": 12236,
+                        "sha256": "4bd817e270c0c4118a08b419783a1c8a005208bf559eac5bbc23892ed696221a"
+                    },
+                    {
+                        "content": "Checkbox (LVGL).html",
+                        "status": "publish",
+                        "id": 12237,
+                        "sha256": "94e99ec9e034d2771338594a3795d5e429ad5f42358cbbb35af4ef5f9bb2ca00"
+                    },
+                    {
+                        "content": "Colorwheel.html",
+                        "status": "publish",
+                        "id": 12238,
+                        "sha256": "c6c968e37cceef5c3b0a43610b2572cb246fa10f1c03e6950d758c8577940eec"
+                    },
+                    {
+                        "content": "Dropdown (Dashboard).html",
+                        "status": "publish",
+                        "id": 12239,
+                        "sha256": "8d63abda32aed694801482b1163553e9f0de6b48066d4a0ba9fcfc8f47935c52"
+                    },
+                    {
+                        "content": "Dropdown (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12240,
+                        "sha256": "3dcfe7508fdbbf654a2d34c44922fb5724de51b8f34eb16a467186a16b235745"
+                    },
+                    {
+                        "content": "Dropdown (LVGL).html",
+                        "status": "publish",
+                        "id": 12241,
+                        "sha256": "f3b37925208b1b9e30f76ccb4ec7743bee2efdc3213fc46dc5a96917e3b6b556"
+                    },
+                    {
+                        "content": "Imgbutton.html",
+                        "status": "publish",
+                        "id": 12242,
+                        "sha256": "a7a519a4154e0d59c981441bc2fcdc25102ea8342d63ea360de1eb35595d0595"
+                    },
+                    {
+                        "content": "Input (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12243,
+                        "sha256": "d2fcdea271a55f3fd41321051a2bc349fcad6fbafcb11c17d44bfde14aa48a89"
+                    },
+                    {
+                        "content": "Keyboard.html",
+                        "status": "publish",
+                        "id": 12244,
+                        "sha256": "eae64f1889083a5f1cfd6563c093db2866c7029431a141473af21da80636d682"
+                    },
+                    {
+                        "content": "NumberInput.html",
+                        "status": "publish",
+                        "id": 12591,
+                        "sha256": "0a1900c663b67576605ef8c3ecfbadba71d0efb94198fa37d94d002d19a032de"
+                    },
+                    {
+                        "content": "Radio.html",
+                        "status": "publish",
+                        "id": 12629,
+                        "sha256": "5a231d84756cf19c8fd7718172c431192ddb37f10ea3032fcd9fbfa4066d3e5e"
+                    },
+                    {
+                        "content": "Roller (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12245,
+                        "sha256": "baa9f9f1d62e97bf55a73dacb1257014d13d380d13c40837ca44fe2f1bb67c32"
+                    },
+                    {
+                        "content": "Roller (LVGL).html",
+                        "status": "publish",
+                        "id": 12246,
+                        "sha256": "b194a746544450ea0f4d976bf89a82cf4d814b5f3ecdb82fa61ac47392a27946"
+                    },
+                    {
+                        "content": "Scale.html",
+                        "status": "publish",
+                        "id": 12630,
+                        "sha256": "467a55c787c1c1414e7b93da4b8dc8c3175df784d4f07858c08f659ce77655cd"
+                    },
+                    {
+                        "content": "Spinbox.html",
+                        "status": "publish",
+                        "id": 13365,
+                        "sha256": "3aae80bebecfbd9c1bc91301d60ca4b0f9a90305cc541948877ee5542aa9d73b"
+                    },
+                    {
+                        "content": "Slider (Dashboard).html",
+                        "status": "publish",
+                        "id": 12247,
+                        "sha256": "772fbfec7b4a8ebeb3b411d70f9b257c59cb59ee15762f184df1e430aad9fa8a"
+                    },
+                    {
+                        "content": "Slider (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12248,
+                        "sha256": "9ad10cc5ee57fa5a348424b391a3ae0e8f2621cf417d73fa2bbcb96d687f1918"
+                    },
+                    {
+                        "content": "Slider (LVGL).html",
+                        "status": "publish",
+                        "id": 12249,
+                        "sha256": "e2a291f1c6b8db6ec68427ecef8ff7dbe29147dba5ef463fab40f5098e2e03df"
+                    },
+                    {
+                        "content": "Switch (Dashboard).html",
+                        "status": "publish",
+                        "id": 12250,
+                        "sha256": "5c0671f2b655de9818bfb2a4a886282f7700e38a5390a700fb3276ebcc30b0ba"
+                    },
+                    {
+                        "content": "Switch (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12251,
+                        "sha256": "b99cac61dc7aa15b3d9a56d2364a2df391462fbdd98143f5817c888b33365fc3"
+                    },
+                    {
+                        "content": "Switch (LVGL).html",
+                        "status": "publish",
+                        "id": 12252,
+                        "sha256": "f6f43c41970078a007155822066043e321095b95a39c540694e657ea6453c6eb"
+                    },
+                    {
+                        "content": "Terminal.html",
+                        "status": "publish",
+                        "id": 12253,
+                        "sha256": "d59dd83bb96b0986243672b8a7d171c53c097bc6fa71868ebe928f50bf46c40c"
+                    },
+                    {
+                        "content": "TextInput.html",
+                        "status": "publish",
+                        "id": 12254,
+                        "sha256": "fa7e1a95272998a7c6c35259a9145af52353802eb6450b4f5f868aff7f6e9cbc"
+                    },
+                    {
+                        "content": "UpDown.html",
+                        "status": "publish",
+                        "id": 12255,
+                        "sha256": "c92e89f73ad4dc8f9b3e33677bc04e6ee0299b01e945d6eb970e86e253eb3d4f"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Visualiser",
+                    "id": 206
+                },
+                "articles": [
+                    {
+                        "content": "AnimationImage.html",
+                        "status": "publish",
+                        "id": 13366,
+                        "sha256": "a4806d44061780b061c66fd52492a6cde0e371d43ed4ddb560c5bae90e2a24c6"
+                    },
+                    {
+                        "content": "Bar.html",
+                        "status": "publish",
+                        "id": 12256,
+                        "sha256": "4a0599db4891c84dfa631fac993bd6a4cd9275784e5d17cd616a57b8c515d679"
+                    },
+                    {
+                        "content": "BarGraph.html",
+                        "status": "publish",
+                        "id": 12257,
+                        "sha256": "08d1def9ec822ff4c7dbbe6475f8d31fc912a6431e596b3110e42c7d1b764eaf"
+                    },
+                    {
+                        "content": "Chart.html",
+                        "status": "publish",
+                        "id": 12258,
+                        "sha256": "0aadb7a6c537e19b4586607082bac4cfc1c06f31e21386ba2ee2944b7bb6a45a"
+                    },
+                    {
+                        "content": "Canvas.html",
+                        "status": "publish",
+                        "id": 13367,
+                        "sha256": "58b13e1504efcdb1a5985d22cde88017a2038f599bee8ac386d9dfc3379cf1fd"
+                    },
+                    {
+                        "content": "EEZChart.html",
+                        "status": "publish",
+                        "id": 12259,
+                        "sha256": "8268b64004f269d0d7f3a322b360a2e865c188b2811c8a8c515f4b43150ca9af"
+                    },
+                    {
+                        "content": "Gauge (Dashboard).html",
+                        "status": "publish",
+                        "id": 12260,
+                        "sha256": "8fd0d0eef6e77c1290a0254840d6891ee386448e8d7910c067de5f6c05b25faf"
+                    },
+                    {
+                        "content": "Gauge (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12261,
+                        "sha256": "841f289a32992f227e13d24f07621db2e09904abdb4cc4329a7d74983b8d12e6"
+                    },
+                    {
+                        "content": "Led.html",
+                        "status": "publish",
+                        "id": 13368,
+                        "sha256": "4c7e3dfc4b1da2b68d28b6bc2dc18c425c6cb3573534c17dc40308848f5cd4dd"
+                    },
+                    {
+                        "content": "Line.html",
+                        "status": "publish",
+                        "id": 13369,
+                        "sha256": "d6d8c5ce357c8f61d90d4623d1f297809cee0b7d19e9ad86d5957818d28f17e6"
+                    },
+                    {
+                        "content": "LineChart (Dashboard).html",
+                        "status": "publish",
+                        "id": 12262,
+                        "sha256": "e55bf730772d903b1d7b9df15cf094bb3d17859a85b8fc3f7f236de11526b200"
+                    },
+                    {
+                        "content": "LineChart (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12263,
+                        "sha256": "55c5b17682076eaf180157ba118360fc317b776675fefe8eab2d2c13ed9adbeb"
+                    },
+                    {
+                        "content": "Meter.html",
+                        "status": "publish",
+                        "id": 12264,
+                        "sha256": "fb346979574f29c736bd346853d9fc00f9aa7a979db97cde295c8316818a2ec3"
+                    },
+                    {
+                        "content": "Plotly.html",
+                        "status": "publish",
+                        "id": 12954,
+                        "sha256": "059eab39b3ad45799407e9baf82bfc39a91dbfe0e8e270d48d1213b568beaac1"
+                    },
+                    {
+                        "content": "Progress (Dashboard).html",
+                        "status": "publish",
+                        "id": 12265,
+                        "sha256": "0e652df727a10fcef92e6b72d03c13be888224bc0685d75a701bce90844ac77e"
+                    },
+                    {
+                        "content": "Progress (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12266,
+                        "sha256": "a30f05fdd9c0151848365b2182e240cb80bdfceb2e485b6317b429870e45fc62"
+                    },
+                    {
+                        "content": "QRCode (Dashboard).html",
+                        "status": "publish",
+                        "id": 12267,
+                        "sha256": "d1dfc264dbaeb590048380d5ecc363fbd90c87badcf10d401d2c3a0a7d803b48"
+                    },
+                    {
+                        "content": "QRCode (EEZ-GUI).html",
+                        "status": "publish",
+                        "id": 12268,
+                        "sha256": "6151a5eb1c54e984d739cb5370452d621e9f500e86d806794cd195cec7e05b12"
+                    },
+                    {
+                        "content": "Spinner (Dashboard).html",
+                        "status": "publish",
+                        "id": 12269,
+                        "sha256": "9c3ecc7929ad5b82f16b03d0efcb711702ff89de8de65a1f8ee911ccddd36663"
+                    },
+                    {
+                        "content": "Spinner (LVGL).html",
+                        "status": "publish",
+                        "id": 12270,
+                        "sha256": "9aa0e98278ec049ab89e4f782f3f86a5e49588a33b013b702c633b3f20c42b94"
+                    },
+                    {
+                        "content": "Tabulator.html",
+                        "status": "publish",
+                        "id": 12955,
+                        "sha256": "92d01cc311f9bc141bfecfe3615d9dfce7f5cae629ae0d622a32593c6e0f7314"
+                    }
+                ]
+            },
+            {
+                "category": {
+                    "name": "Instrument",
+                    "id": 226
+                },
+                "articles": [
+                    {
+                        "content": "InstrumentTerminal.html",
+                        "status": "publish",
+                        "id": 12725,
+                        "sha256": "18a31629c2a2394740c9be589392bebd29d3e06330160a206b98f8fe98ab9a6d"
+                    }
+                ]
+            }
+        ]
+    },
+    "images": [
+        {
+            "fileName": "add_to_instrument_history_action.png",
+            "id": 9994,
+            "source_url": "https://www.envox.eu/wp-content/uploads/83af01247f93030453912538496437ddf1fb8a43b9747ef6b4e232709aff7e82-add_to_instrument_history_action.png",
+            "sha256": "83af01247f93030453912538496437ddf1fb8a43b9747ef6b4e232709aff7e82"
+        },
+        {
+            "fileName": "add_to_instrument_history_description.png",
+            "id": 9996,
+            "source_url": "https://www.envox.eu/wp-content/uploads/958b023478b0400631a3110000a4d4568b9d3cbd3abb9e7a42fc684a61bf2057-add_to_instrument_history_description-1.png",
+            "sha256": "958b023478b0400631a3110000a4d4568b9d3cbd3abb9e7a42fc684a61bf2057"
+        },
+        {
+            "fileName": "add_to_instrument_history_history.png",
+            "id": 9999,
+            "source_url": "https://www.envox.eu/wp-content/uploads/48e569ba9733bedd23b4ada0cef9a3ca6a86b9418529f3611b443232ea99a28e-add_to_instrument_history_history-2.png",
+            "sha256": "48e569ba9733bedd23b4ada0cef9a3ca6a86b9418529f3611b443232ea99a28e"
+        },
+        {
+            "fileName": "add_to_instrument_history_label.png",
+            "id": 10000,
+            "source_url": "https://www.envox.eu/wp-content/uploads/677101c03a78f1488f4cb1bbb81e0dd6fb8864d793505dbe9c8dccb0748feb40-add_to_instrument_history_label.png",
+            "sha256": "677101c03a78f1488f4cb1bbb81e0dd6fb8864d793505dbe9c8dccb0748feb40"
+        },
+        {
+            "fileName": "add_to_instrument_history_major_subdivision_horizontal.png",
+            "id": 10001,
+            "source_url": "https://www.envox.eu/wp-content/uploads/aeb76a549c0d91a8e49566d829ad56961b3024886752553409c45b3c2701c295-add_to_instrument_history_major_subdivision_horizontal.png",
+            "sha256": "aeb76a549c0d91a8e49566d829ad56961b3024886752553409c45b3c2701c295"
+        },
+        {
+            "fileName": "add_to_instrument_history_major_subdivision_vertical.png",
+            "id": 10002,
+            "source_url": "https://www.envox.eu/wp-content/uploads/0ab12fa16e17b344c6fbf1b34fe6ad301823a936532e984e98318ad8712b1af9-add_to_instrument_history_major_subdivision_vertical.png",
+            "sha256": "0ab12fa16e17b344c6fbf1b34fe6ad301823a936532e984e98318ad8712b1af9"
+        },
+        {
+            "fileName": "add_to_instrument_history_minor_subdivision_horizontal.png",
+            "id": 10003,
+            "source_url": "https://www.envox.eu/wp-content/uploads/11afa7c7a2fbec8bd00269026efe8018fdaa693d8e3c10b8b1502f4263900f0e-add_to_instrument_history_minor_subdivision_horizontal.png",
+            "sha256": "11afa7c7a2fbec8bd00269026efe8018fdaa693d8e3c10b8b1502f4263900f0e"
+        },
+        {
+            "fileName": "add_to_instrument_history_minor_subdivision_vertical.png",
+            "id": 10004,
+            "source_url": "https://www.envox.eu/wp-content/uploads/0a2d6f342a6557b40c43c87d45856b455b3d337c34291754924c76c85decfdd2-add_to_instrument_history_minor_subdivision_vertical.png",
+            "sha256": "0a2d6f342a6557b40c43c87d45856b455b3d337c34291754924c76c85decfdd2"
+        },
+        {
+            "fileName": "align_and_distribute.png",
+            "id": 10005,
+            "source_url": "https://www.envox.eu/wp-content/uploads/f949fc456e4a686f66fb284b05af776e72556cda5565669ba4692511b6b1eff2-align_and_distribute.png",
+            "sha256": "f949fc456e4a686f66fb284b05af776e72556cda5565669ba4692511b6b1eff2"
+        },
+        {
+            "fileName": "animation.png",
+            "id": 10006,
+            "source_url": "https://www.envox.eu/wp-content/uploads/0997778e0c9914d4bee41745ba18c2a0c82b838a9b6d9ee55f0831dc7ca38e3c-animation.png",
+            "sha256": "0997778e0c9914d4bee41745ba18c2a0c82b838a9b6d9ee55f0831dc7ca38e3c"
+        },
+        {
+            "fileName": "comment.png",
+            "id": 10007,
+            "source_url": "https://www.envox.eu/wp-content/uploads/1e288ca12527ca74857ace6d4f93c0232f884f38177909a5ebd7450d780ca8ff-comment.png",
+            "sha256": "1e288ca12527ca74857ace6d4f93c0232f884f38177909a5ebd7450d780ca8ff"
+        },
+        {
+            "fileName": "counter.png",
+            "id": 10010,
+            "source_url": "https://www.envox.eu/wp-content/uploads/39f81ce2b67452137121a23f0cf368790dd5e0eb7eb8d7c2916d29b82a6801df-counter-2.png",
+            "sha256": "39f81ce2b67452137121a23f0cf368790dd5e0eb7eb8d7c2916d29b82a6801df"
+        },
+        {
+            "fileName": "csv_countrycity_struct_def.png",
+            "id": 10015,
+            "source_url": "https://www.envox.eu/wp-content/uploads/6562582d06f4d08424cca19eb576dcc81c70a5e89dacef41947e3b33d45f755c-csv_countrycity_struct_def-4.png",
+            "sha256": "6562582d06f4d08424cca19eb576dcc81c70a5e89dacef41947e3b33d45f755c"
+        },
+        {
+            "fileName": "csv_result_output_type.png",
+            "id": 10016,
+            "source_url": "https://www.envox.eu/wp-content/uploads/b3f21c63d325d605fb67bb80eeb36198233a8cf29db996d63b236d927cac84cc-csv_result_output_type.png",
+            "sha256": "b3f21c63d325d605fb67bb80eeb36198233a8cf29db996d63b236d927cac84cc"
+        },
+        {
+            "fileName": "get_instrument_id1.png",
+            "id": 10017,
+            "source_url": "https://www.envox.eu/wp-content/uploads/d5ad7da5c649c15d17c7b68ad5d5ed8f0e8d2158af24eddb555e182fd1fe7127-get_instrument_id1.png",
+            "sha256": "d5ad7da5c649c15d17c7b68ad5d5ed8f0e8d2158af24eddb555e182fd1fe7127"
+        },
+        {
+            "fileName": "get_instrument_id2.png",
+            "id": 10019,
+            "source_url": "https://www.envox.eu/wp-content/uploads/229a14700099297f069318f1a76ae4cabd3330b0e97b56d1074229bf525b48ad-get_instrument_id2-1.png",
+            "sha256": "229a14700099297f069318f1a76ae4cabd3330b0e97b56d1074229bf525b48ad"
+        },
+        {
+            "fileName": "get_instrument_properties.png",
+            "id": 10020,
+            "source_url": "https://www.envox.eu/wp-content/uploads/fd711d8b580506249d3defe14bce305e125d7a1f3f6a0e6f2aad5653dce8d0e1-get_instrument_properties.png",
+            "sha256": "fd711d8b580506249d3defe14bce305e125d7a1f3f6a0e6f2aad5653dce8d0e1"
+        },
+        {
+            "fileName": "get_instrument_properties_rigol_props.png",
+            "id": 10023,
+            "source_url": "https://www.envox.eu/wp-content/uploads/b259c8dffd15d6f035793aa6eefc6f92fccabf423c6f9c4ecc4a5b4216f5c50f-get_instrument_properties_rigol_props-2.png",
+            "sha256": "b259c8dffd15d6f035793aa6eefc6f92fccabf423c6f9c4ecc4a5b4216f5c50f"
+        },
+        {
+            "fileName": "get_instrument_properties_struct1.png",
+            "id": 10024,
+            "source_url": "https://www.envox.eu/wp-content/uploads/96fb8746da50daa5b34931cc8105c02a7ae5a2349be97fb2139586d573cb2743-get_instrument_properties_struct1.png",
+            "sha256": "96fb8746da50daa5b34931cc8105c02a7ae5a2349be97fb2139586d573cb2743"
+        },
+        {
+            "fileName": "get_instrument_properties_struct2.png",
+            "id": 10025,
+            "source_url": "https://www.envox.eu/wp-content/uploads/289dfd37a6a598cf60f3007c376009749bd45430c000ec538154651c5c840bd8-get_instrument_properties_struct2.png",
+            "sha256": "289dfd37a6a598cf60f3007c376009749bd45430c000ec538154651c5c840bd8"
+        },
+        {
+            "fileName": "json_countrycity_struct_def.png",
+            "id": 10030,
+            "source_url": "https://www.envox.eu/wp-content/uploads/fcc474e9e451d61675811f4e93df9f4a58f9aa9ab41ca4cf179600b0b33a56e4-json_countrycity_struct_def-4.png",
+            "sha256": "fcc474e9e451d61675811f4e93df9f4a58f9aa9ab41ca4cf179600b0b33a56e4"
+        },
+        {
+            "fileName": "json_result_output_type.png",
+            "id": 10031,
+            "source_url": "https://www.envox.eu/wp-content/uploads/bd37eaaa8be2b5367f28023170145bf4667092d9a540f76ab358327d5f167e39-json_result_output_type.png",
+            "sha256": "bd37eaaa8be2b5367f28023170145bf4667092d9a540f76ab358327d5f167e39"
+        },
+        {
+            "fileName": "loop.png",
+            "id": 10032,
+            "source_url": "https://www.envox.eu/wp-content/uploads/fd69bcf5cea31c3b8389330d021320f4ffefdc70d9e2472c0b7caee369e821b4-loop.png",
+            "sha256": "fd69bcf5cea31c3b8389330d021320f4ffefdc70d9e2472c0b7caee369e821b4"
+        },
+        {
+            "fileName": "scpi_command_expression.png",
+            "id": 10034,
+            "source_url": "https://www.envox.eu/wp-content/uploads/8934b66c66dc1c75dfe917002b95f8bda8f9bca0167d21fb3b63fcf8fa9b377e-scpi_command_expression-1.png",
+            "sha256": "8934b66c66dc1c75dfe917002b95f8bda8f9bca0167d21fb3b63fcf8fa9b377e"
+        },
+        {
+            "fileName": "scpi_query_expression.png",
+            "id": 10035,
+            "source_url": "https://www.envox.eu/wp-content/uploads/6c3e9a5efe5f6915f10327b95192e802c5488e5483e92d18227536958f46bb57-scpi_query_expression.png",
+            "sha256": "6c3e9a5efe5f6915f10327b95192e802c5488e5483e92d18227536958f46bb57"
+        },
+        {
+            "fileName": "scpi_query_output.png",
+            "id": 10040,
+            "source_url": "https://www.envox.eu/wp-content/uploads/0c344d59548f02b1fe5f586c0ac73207d3f596b14aff3dfc773dfd9d1da8f48c-scpi_query_output-4.png",
+            "sha256": "0c344d59548f02b1fe5f586c0ac73207d3f596b14aff3dfc773dfd9d1da8f48c"
+        },
+        {
+            "fileName": "scpi_query_variable.png",
+            "id": 10042,
+            "source_url": "https://www.envox.eu/wp-content/uploads/f8d68b7871835b0471f646f61f43b1f133ad29610d2ddcc92f80b75dda491917-scpi_query_variable-1.png",
+            "sha256": "f8d68b7871835b0471f646f61f43b1f133ad29610d2ddcc92f80b75dda491917"
+        },
+        {
+            "fileName": "select_instrument_persistent_checkbox.png",
+            "id": 10043,
+            "source_url": "https://www.envox.eu/wp-content/uploads/766a0322b3b2260e4e683491b44173e2d44be9968d913bad3212d18652074ab5-select_instrument_persistent_checkbox.png",
+            "sha256": "766a0322b3b2260e4e683491b44173e2d44be9968d913bad3212d18652074ab5"
+        },
+        {
+            "fileName": "show_keyboard.png",
+            "id": 10044,
+            "source_url": "https://www.envox.eu/wp-content/uploads/51a968fef58e70d3a31b04a6eeb7e99d2dde673b9305e33be5db571daefb46e1-show_keyboard.png",
+            "sha256": "51a968fef58e70d3a31b04a6eeb7e99d2dde673b9305e33be5db571daefb46e1"
+        },
+        {
+            "fileName": "show_keypad.png",
+            "id": 10045,
+            "source_url": "https://www.envox.eu/wp-content/uploads/c2e44668414d0148d180125bd4743b58a7307c42afc2f7be5bee117e22efcd0f-show_keypad.png",
+            "sha256": "c2e44668414d0148d180125bd4743b58a7307c42afc2f7be5bee117e22efcd0f"
+        },
+        {
+            "fileName": "show_message_box_error.png",
+            "id": 10047,
+            "source_url": "https://www.envox.eu/wp-content/uploads/fe944b05ca36fa6f85f36ab2105c55f4ed4a016c320bc8efffa21d2604d07943-show_message_box_error-1.png",
+            "sha256": "fe944b05ca36fa6f85f36ab2105c55f4ed4a016c320bc8efffa21d2604d07943"
+        },
+        {
+            "fileName": "show_message_box_info.png",
+            "id": 10050,
+            "source_url": "https://www.envox.eu/wp-content/uploads/272b3478a00e92a6b67d5662206a17a13dc08bf46a76cd9a664f8ae8985163f5-show_message_box_info-2.png",
+            "sha256": "272b3478a00e92a6b67d5662206a17a13dc08bf46a76cd9a664f8ae8985163f5"
+        },
+        {
+            "fileName": "show_message_box_question.png",
+            "id": 10052,
+            "source_url": "https://www.envox.eu/wp-content/uploads/48a994f9f9e5bc16de70c36da4fa6ae6315f182318bb4a0e4a66bfb6b39fb766-show_message_box_question-1.png",
+            "sha256": "48a994f9f9e5bc16de70c36da4fa6ae6315f182318bb4a0e4a66bfb6b39fb766"
+        },
+        {
+            "fileName": "test_and_set.png",
+            "id": 10054,
+            "source_url": "https://www.envox.eu/wp-content/uploads/68a102f0eacb8f91fc7e5c0e221e8d2968c767da6b89858f557ecabedb19b2f1-test_and_set-1.png",
+            "sha256": "68a102f0eacb8f91fc7e5c0e221e8d2968c767da6b89858f557ecabedb19b2f1"
+        },
+        {
+            "fileName": "widget_centering.png",
+            "id": 10056,
+            "source_url": "https://www.envox.eu/wp-content/uploads/e34326507e4a12b81b4c69582ac9e627748f4c72c43d4f5aa35400c1a99392e4-widget_centering-1.png",
+            "sha256": "e34326507e4a12b81b4c69582ac9e627748f4c72c43d4f5aa35400c1a99392e4"
+        },
+        {
+            "fileName": "gauge_arc_bar_color.png",
+            "id": 12201,
+            "source_url": "https://www.envox.eu/wp-content/uploads/efc8f2b739d1662f2c01a66004bca43402069b7e1b1a052f6929298c9b223398-gauge_arc_bar_color-1.png",
+            "sha256": "efc8f2b739d1662f2c01a66004bca43402069b7e1b1a052f6929298c9b223398"
+        },
+        {
+            "fileName": "grid_column_flow.png",
+            "id": 12202,
+            "source_url": "https://www.envox.eu/wp-content/uploads/627fdcf95b381f457fd25213a1faac4dbdd5e4055bf3bec6e17051dbb4752644-grid_column_flow-1.png",
+            "sha256": "627fdcf95b381f457fd25213a1faac4dbdd5e4055bf3bec6e17051dbb4752644"
+        },
+        {
+            "fileName": "grid_row_flow.png",
+            "id": 12203,
+            "source_url": "https://www.envox.eu/wp-content/uploads/8930504907c27041f37aac765c388041f2e87e5fce8fdc588a2118d254e820f7-grid_row_flow-1.png",
+            "sha256": "8930504907c27041f37aac765c388041f2e87e5fce8fdc588a2118d254e820f7"
+        },
+        {
+            "fileName": "line_chart.png",
+            "id": 12204,
+            "source_url": "https://www.envox.eu/wp-content/uploads/19b050d464f5faac615ab8ac209df16ec6e45050923274b9fb09d31d455fbd70-line_chart-1.png",
+            "sha256": "19b050d464f5faac615ab8ac209df16ec6e45050923274b9fb09d31d455fbd70"
+        },
+        {
+            "fileName": "line_chart_dashboard.png",
+            "id": 12205,
+            "source_url": "https://www.envox.eu/wp-content/uploads/d98ec4cf56dd4e14012ae344d9d3c200887d1e778a00c2f05011b5dc3a49c39d-line_chart_dashboard-1.png",
+            "sha256": "d98ec4cf56dd4e14012ae344d9d3c200887d1e778a00c2f05011b5dc3a49c39d"
+        },
+        {
+            "fileName": "progress_horz.png",
+            "id": 12206,
+            "source_url": "https://www.envox.eu/wp-content/uploads/c54e405679233ba09426ee1dfb3edc30727df1e380b4bc115871bfb11e318f99-progress_horz-1.png",
+            "sha256": "c54e405679233ba09426ee1dfb3edc30727df1e380b4bc115871bfb11e318f99"
+        },
+        {
+            "fileName": "progress_vert.png",
+            "id": 12207,
+            "source_url": "https://www.envox.eu/wp-content/uploads/2a24470c3c11bb5005815fc1789ee1db2dc10e26d20860133a13502d5a9e94dd-progress_vert-1.png",
+            "sha256": "2a24470c3c11bb5005815fc1789ee1db2dc10e26d20860133a13502d5a9e94dd"
+        },
+        {
+            "fileName": "scrollbar.png",
+            "id": 12208,
+            "source_url": "https://www.envox.eu/wp-content/uploads/a0827a3facddd81c66f09cc55ea64500d1abc24a5b23dd97d8929567c10f8115-scrollbar-1.png",
+            "sha256": "a0827a3facddd81c66f09cc55ea64500d1abc24a5b23dd97d8929567c10f8115"
+        },
+        {
+            "fileName": "scrollbar_vert.png",
+            "id": 12209,
+            "source_url": "https://www.envox.eu/wp-content/uploads/392e62b7202326c2ea5b016e610d211589fa18c0f00e3598cb38b318aab97538-scrollbar_vert-1.png",
+            "sha256": "392e62b7202326c2ea5b016e610d211589fa18c0f00e3598cb38b318aab97538"
+        },
+        {
+            "fileName": "widget_resizing.png",
+            "id": 12210,
+            "source_url": "https://www.envox.eu/wp-content/uploads/d2857120016585b501c10aafdb47a6e35c1903ac26fdb20e671118bc2c682cae-widget_resizing-1.png",
+            "sha256": "d2857120016585b501c10aafdb47a6e35c1903ac26fdb20e671118bc2c682cae"
+        },
+        {
+            "fileName": "scpi_terminal.png",
+            "id": 12660,
+            "source_url": "https://www.envox.eu/wp-content/uploads/7b11dce0332ee685520503d9946ec7ae30258b4c30f3fdc16d303151f2263517-scpi_terminal.png",
+            "sha256": "7b11dce0332ee685520503d9946ec7ae30258b4c30f3fdc16d303151f2263517"
+        },
+        {
+            "fileName": "lvgl_tabview_conf1.png",
+            "id": 13111,
+            "source_url": "https://www.envox.eu/wp-content/uploads/12af3ed008fd01a9c88f590b2140412461c9bfde344d234a15c22bda2ae40153-lvgl_tabview_conf1.png",
+            "sha256": "12af3ed008fd01a9c88f590b2140412461c9bfde344d234a15c22bda2ae40153"
+        },
+        {
+            "fileName": "lvgl_tabview_conf2.png",
+            "id": 13112,
+            "source_url": "https://www.envox.eu/wp-content/uploads/dbad060764d04a61cdb2c056e6878abe5708179aea142c38b96b3324e75a0683-lvgl_tabview_conf2.png",
+            "sha256": "dbad060764d04a61cdb2c056e6878abe5708179aea142c38b96b3324e75a0683"
+        }
+    ]
+}
