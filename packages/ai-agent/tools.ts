@@ -122,6 +122,8 @@ export function navigateToScreen(ctx: ToolContext, screen: string): string {
 /**
  * 截取当前 LVGL 页面预览（编辑器是真 LVGL 跑在 wasm，帧常驻 2D canvas，
  * 分辨率恒等于页面逻辑尺寸）。返回 PNG dataURL。
+ * 注意：多个页面编辑器 tab 并存时，隐藏的旧编辑器会残留暗 canvas——
+ * 只取布局上可见的（getClientRects 为空 = display:none），否则截到旧帧。
  */
 export function screenshotOnce(): string | undefined {
     const canvases = document.querySelectorAll<HTMLCanvasElement>(
@@ -130,6 +132,12 @@ export function screenshotOnce(): string | undefined {
     let best: HTMLCanvasElement | undefined;
     for (let j = 0; j < canvases.length; j++) {
         const c = canvases[j];
+        if (c.width === 0 || c.height === 0) {
+            continue;
+        }
+        if (c.getClientRects().length === 0) {
+            continue; // 隐藏编辑器的残留 canvas
+        }
         if (!best || c.width * c.height > best.width * best.height) {
             best = c;
         }
