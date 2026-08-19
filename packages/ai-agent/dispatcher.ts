@@ -36,6 +36,7 @@ import {
     reloadProject,
     runBuild,
     runCheck,
+    screenshotObject,
     screenshotWithRetry,
     selectProject,
     sendInput,
@@ -255,6 +256,15 @@ export async function executeBridgeTool(tool: string, args: any): Promise<any> {
                 ctx,
                 String(args.name ?? ""),
                 args.value
+            );
+        }
+
+        case "screenshot_object": {
+            if (!ctx) throw new Error("EEZ Studio 里没有打开的工程");
+            return await screenshotObject(
+                ctx,
+                String(args.path ?? ""),
+                typeof args.padding === "number" ? args.padding : 8
             );
         }
 

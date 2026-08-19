@@ -1173,11 +1173,7 @@ export function gotoObject(ctx: ToolContext, path: string) {
     };
 }
 
-/**
- * 读两级选中来源（分开返回，避免视角遮蔽）：
- * editorSelection=活动页面编辑器里选中的部件（goto_object 后看这个）；
- * panelSelection=导航面板的选中（propertyGrid 优先用它，会遮蔽前者）。
- */
+/** 读两级选中来源（分开返回，避免视角遮蔽）：editorSelection=活动页面编辑器里选中的部件（goto_object 后看这个）；panelSelection=导航面板的选中（propertyGrid 优先用它，会遮蔽前者）。 */
 export function getSelection(ctx: ToolContext) {
     const store: any = ctx.projectStore;
     const fmt = (o: any) => ({
@@ -1535,4 +1531,101 @@ export async function addImage(
         bpp: bitmap.bpp,
         usage: `create_widget LVGLImageWidget 的 image 属性填 "${bitmap.name}"`
     };
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// 组件级截图（页面截图 + 组件绝对几何裁剪）
+
+/**
+ * 计算部件在页面里的绝对矩形：沿对象路径逐级累加祖先 LVGL 部件的
+ * left/top（px）。不用 Component.rect——它的语义依赖运行时挂载状态，
+ * 静态读取不可靠。非 px 单位（%/content 定位）无法静态求值，报错。
+ */
+function absoluteWidgetRect(ctx: ToolContext, obj: any) {
+    for (const w of [obj, ...ancestorWidgets(ctx, obj)]) {
+        for (const unit of [w.leftUnit, w.topUnit]) {
+            if (unit && unit !== "px") {
+                throw new Error(
+                    `部件或祖先用了 ${unit} 定位单位，静态几何求不了（仅支持 px）`
+                );
+            }
+        }
+    }
+    let left = obj.left ?? 0;
+    let top = obj.top ?? 0;
+    for (const anc of ancestorWidgets(ctx, obj)) {
+        left += anc.left ?? 0;
+        top += anc.top ?? 0;
+    }
+    return {
+        left,
+        top,
+        width: obj.width ?? 0,
+        height: obj.height ?? 0
+    };
+}
+
+function ancestorWidgets(ctx: ToolContext, obj: any): any[] {
+    const segs = objectPathOf(obj).split("/").filter(Boolean);
+    const out: any[] = [];
+    // 路径形如 /userPages/0/components/0/children/3/children/1：
+    // 每两级一个节点，页级（前 4 段）的 ScreenWidget 也计入（left/top 为 0）
+    for (let n = segs.length - 2; n >= 4; n -= 2) {
+        const anc: any = getObjectFromStringPath(
+            ctx.projectStore.project,
+            "/" + segs.slice(0, n).join("/")
+        );
+        if (anc && String(anc.type ?? "").startsWith("LVGL")) {
+            out.push(anc);
+        }
+    }
+    return out;
+}
+
+/** 截取单个部件的特写（页面截图按绝对矩形裁剪，padding 四周留白） */
+export async function screenshotObject(
+    ctx: ToolContext,
+    objPath: string,
+    padding: number
+): Promise<{ dataUrl: string; file: string; rect: any }> {
+    const obj = resolveObject(ctx, objPath);
+    if (!String(obj.type ?? "").startsWith("LVGL")) {
+        throw new Error(`只支持 LVGL 部件，这是 ${obj.type ?? "非部件对象"}`);
+    }
+    const pageUrl = screenshotOnce();
+    if (!pageUrl) {
+        throw new Error("页面截图失败：没有可见的预览 canvas（先 navigate 打开该页面）");
+    }
+    const rect = absoluteWidgetRect(ctx, obj);
+
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+        const im = new Image();
+        im.onload = () => resolve(im);
+        im.onerror = () => reject(new Error("页面截图解码失败"));
+        im.src = pageUrl;
+    });
+    const pad = Number.isFinite(padding) ? padding : 8;
+    const sx = Math.max(0, Math.round(rect.left - pad));
+    const sy = Math.max(0, Math.round(rect.top - pad));
+    const sw = Math.min(img.width - sx, Math.round(rect.width + pad * 2));
+    const sh = Math.min(img.height - sy, Math.round(rect.height + pad * 2));
+    if (sw <= 0 || sh <= 0) {
+        throw new Error(
+            `部件矩形越界: (${rect.left},${rect.top},${rect.width}x${rect.height})，页面 ${img.width}x${img.height}`
+        );
+    }
+    const crop = document.createElement("canvas");
+    crop.width = sw;
+    crop.height = sh;
+    crop.getContext("2d")!.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+    const dataUrl = crop.toDataURL("image/png");
+
+    const dir = path.join(ctx.workdir, "_shots");
+    fs.mkdirSync(dir, { recursive: true });
+    const file = path.join(
+        dir,
+        `obj_${new Date().toISOString().replace(/[:.]/g, "-")}.png`
+    );
+    fs.writeFileSync(file, Buffer.from(dataUrl.split(",")[1], "base64"));
+    return { dataUrl, file, rect: { ...rect, padding: pad } };
 }
