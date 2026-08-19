@@ -21,7 +21,6 @@ import {
 import { ProjectContext } from "project-editor/project/context";
 import { Editor, LayoutModels, Section } from "project-editor/store";
 import { PropertiesPanel } from "./PropertiesPanel";
-import { AIPanel } from "ai-agent/panel";
 import { ComponentsPalette } from "project-editor/flow/editor/ComponentsPalette";
 import { BreakpointsPanel } from "project-editor/flow/debugger/BreakpointsPanel";
 import { ThemesSideView } from "project-editor/features/style/theme";
@@ -211,7 +210,9 @@ const Content = observer(
             }
 
             if (component === "aiAgent") {
-                return <AIPanel />;
+                // 内置 AI agent 面板已移除（MCP 桥路线取代）；存量布局里
+                // 可能还引用这个组件，返回 null 兜底
+                return null;
             }
 
             if (component === "componentsPalette") {

@@ -467,14 +467,6 @@ export class LayoutModels extends AbstractLayoutModels {
                                                 id: LayoutModels.PROPERTIES_TAB_ID,
                                                 component: "propertiesPanel",
                                                 icon: "svg:properties"
-                                            },
-                                            {
-                                                type: "tab",
-                                                enableClose: false,
-                                                name: "AI Agent",
-                                                id: LayoutModels.AI_AGENT_TAB_ID,
-                                                component: "aiAgent",
-                                                icon: "material:smart_toy"
                                             }
                                         ]
                                     },
@@ -1151,40 +1143,23 @@ export class LayoutModels extends AbstractLayoutModels {
 
     load(layoutModels: any) {
         super.load(layoutModels);
-        this.ensureAIAgentTab();
+        this.removeAIAgentTab();
         this.projectStore.project.enableTabs();
     }
 
     /**
-     * 旧工程保存的布局里没有 AI Agent tab（加载会覆盖默认布局），
-     * 这里在 Properties 旁边自动补上（参照 project.tsx enableTab 的做法）。
+     * 内置 AI agent 面板已移除（MCP 桥路线取代），但旧工程的 ui-state
+     * 布局里还残留 AI Agent tab，这里加载时自动删掉。
      */
-    ensureAIAgentTab() {
-        const tabJson = {
-            type: "tab",
-            enableClose: false,
-            name: "AI Agent",
-            id: LayoutModels.AI_AGENT_TAB_ID,
-            component: "aiAgent",
-            icon: "material:smart_toy"
-        };
+    removeAIAgentTab() {
         for (const model of this.models) {
             const layoutModel = model.get();
             if (!layoutModel) continue;
-            if (layoutModel.getNodeById(LayoutModels.AI_AGENT_TAB_ID)) continue;
-            const propTab = layoutModel.getNodeById(
-                LayoutModels.PROPERTIES_TAB_ID
-            ) as FlexLayout.TabNode;
-            if (propTab && propTab.getParent()) {
-                layoutModel.doAction(
-                    FlexLayout.Actions.addNode(
-                        tabJson,
-                        propTab.getParent()!.getId(),
-                        FlexLayout.DockLocation.CENTER,
-                        -1,
-                        false
-                    )
-                );
+            const tabNode = layoutModel.getNodeById(
+                LayoutModels.AI_AGENT_TAB_ID
+            );
+            if (tabNode) {
+                layoutModel.doAction(FlexLayout.Actions.deleteTab(tabNode.getId()));
             }
         }
     }
