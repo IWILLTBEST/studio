@@ -105,8 +105,20 @@ const AIPanelInner = observer(
             config: loadConfig() as AgentConfig,
             requirement: "把左侧导航栏的选中指示条改成绿色",
             screens: "",
-            showConfig: false
+            showConfig: false,
+            view: "harness", // "harness"（嵌入 dsh Web UI）| "builtin"（内置驾驶舱）
+            harnessOnline: false
         };
+
+        async componentDidMount() {
+            // 探测 dsh 是否在跑（跨端口，用 no-cors 只测可达性）
+            try {
+                await fetch("http://127.0.0.1:3080", { mode: "no-cors", signal: AbortSignal.timeout(3000) });
+                this.setState({ harnessOnline: true });
+            } catch {
+                this.setState({ harnessOnline: false, view: "builtin" });
+            }
+        }
 
         setConfig(patch: Partial<AgentConfig>) {
             this.setState({ config: { ...this.state.config, ...patch } });
@@ -217,6 +229,23 @@ const AIPanelInner = observer(
         render() {
             return (
                 <div style={{ display: "flex", flexDirection: "column", height: "100%", fontSize: 12 }}>
+                    {/* 视图切换条 */}
+                    <div style={{ display: "flex", gap: 4, padding: 4, borderBottom: "1px solid #444", background: "#111" }}>
+                        <Button color={this.state.view === "harness" ? "secondary" : "primary"} size="medium" onClick={() => this.setState({ view: "harness" })}>💬 Harness</Button>
+                        <Button color={this.state.view === "builtin" ? "secondary" : "primary"} size="medium" onClick={() => this.setState({ view: "builtin" })}>🛠 内置</Button>
+                        <span style={{ color: this.state.harnessOnline ? "#27AE60" : "#E74C3C", fontSize: 11, alignSelf: "center" }}>
+                            {this.state.harnessOnline ? "dsh 在线" : "dsh 未启动（用 start-dsh.cmd）"}
+                        </span>
+                    </div>
+                    {this.state.view === "harness" ? (
+                        <webview
+                            src="http://127.0.0.1:3080"
+                            partition="persist:eez-agent"
+                            allowpopups={true}
+                            style={{ flex: 1, border: "none", background: "#fff" }}
+                        />
+                    ) : (
+                    <React.Fragment>
                     {/* 配置区 */}
                     <div style={{ padding: 6, borderBottom: "1px solid #444", background: "#1a1a1a" }}>
                         <div style={{ display: "flex", gap: 6, marginBottom: 4 }}>
@@ -269,6 +298,8 @@ const AIPanelInner = observer(
                             <LogEntry key={i} log={log} />
                         ))}
                     </div>
+                    </React.Fragment>
+                    )}
                 </div>
             );
         }

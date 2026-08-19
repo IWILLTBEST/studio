@@ -930,10 +930,46 @@ const RunEditSwitchControls = observer(
                         title="Enter edit mode (Shift+F5)"
                         icon="material:mode_edit"
                         iconSize={iconSize}
-                        onClick={this.context.onSetEditorMode}
+                        onClick={() => {
+                            this.context.onSetEditorMode();
+                        }}
                         selected={
-                            !this.context.runtime && !this.isFullSimulatorMode
+                            !this.context.runtime &&
+                            !this.isFullSimulatorMode
                         }
+                    />
+
+                    <ButtonAction
+                        text="AI"
+                        title="Open AI Agent Window"
+                        icon={
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.73V7h3a4 4 0 0 1 4 4v1h1a1 1 0 0 1 0 2h-1v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3H3a1 1 0 0 1 0-2h1v-1a4 4 0 0 1 4-4h3V5.73A2 2 0 0 1 12 2zM9 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                            </svg>
+                        }
+                        iconSize={24}
+                        onClick={() => {
+                            const { BrowserWindow } = require("@electron/remote");
+                            const existing = BrowserWindow.getAllWindows().find(
+                                (w: any) => w.getTitle() === "AI Agent"
+                            );
+                            if (existing && !existing.isDestroyed()) {
+                                existing.focus();
+                            } else {
+                                const aiWin = new BrowserWindow({
+                                    title: "AI Agent",
+                                    width: 480,
+                                    height: 720,
+                                    webPreferences: {
+                                        nodeIntegration: true,
+                                        webviewTag: true,
+                                        contextIsolation: false
+                                    }
+                                });
+                                aiWin.loadURL("http://127.0.0.1:3080");
+                                aiWin.on("closed", () => {});
+                            }
+                        }}
                     />
 
                     <ButtonAction
@@ -941,7 +977,7 @@ const RunEditSwitchControls = observer(
                         title="Enter run mode (F5)"
                         icon={RUN_ICON}
                         iconSize={iconSize}
-                        onClick={this.context.onSetRuntimeMode}
+                        onClick={() => this.context.onSetRuntimeMode()}
                         selected={
                             this.context.runtime &&
                             !this.context.runtime.isDebuggerActive &&
@@ -973,7 +1009,7 @@ const RunEditSwitchControls = observer(
                             </svg>
                         }
                         iconSize={iconSize}
-                        onClick={this.context.onSetDebuggerMode}
+                        onClick={() => this.context.onSetDebuggerMode()}
                         selected={
                             this.context.runtime &&
                             this.context.runtime.isDebuggerActive &&

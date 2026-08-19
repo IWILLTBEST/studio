@@ -101,21 +101,32 @@ export function navigateToScreen(ctx: ToolContext, screen: string): string {
  * 截取当前 LVGL 页面预览（编辑器是真 LVGL 跑在 wasm，帧常驻 2D canvas，
  * 分辨率恒等于页面逻辑尺寸）。返回 PNG dataURL。
  */
-export function screenshot(): string | undefined {
+export function screenshotOnce(): string | undefined {
     const canvases = document.querySelectorAll<HTMLCanvasElement>(
         ".EezStudio_FlowEditorCanvasContainer .eez-canvas canvas"
     );
     let best: HTMLCanvasElement | undefined;
-    for (let i = 0; i < canvases.length; i++) {
-        const c = canvases[i];
+    for (let j = 0; j < canvases.length; j++) {
+        const c = canvases[j];
         if (!best || c.width * c.height > best.width * best.height) {
             best = c;
         }
     }
-    if (!best) {
-        return undefined;
+    if (best && best.width > 0 && best.height > 0) {
+        return best.toDataURL("image/png");
     }
-    return best.toDataURL("image/png");
+    return undefined;
+}
+
+/** 带重试的截图：navigate/reload 后 canvas 可能需要 1~2 秒才出现 */
+export async function screenshotWithRetry(maxWait = 4000): Promise<string | undefined> {
+    const start = Date.now();
+    while (Date.now() - start < maxWait) {
+        const data = screenshotOnce();
+        if (data) return data;
+        await sleep(500);
+    }
+    return undefined;
 }
 
 /** 截图存盘（_shots/ 目录），返回 {dataUrl, file} */
@@ -123,7 +134,7 @@ export function screenshotToFile(
     workdir: string,
     tag: string
 ): { dataUrl: string; file: string } | undefined {
-    const dataUrl = screenshot();
+    const dataUrl = screenshotOnce();
     if (!dataUrl) {
         return undefined;
     }

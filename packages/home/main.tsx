@@ -171,6 +171,10 @@ async function main() {
 
     await loadExtensions(nodeModuleFolders);
 
+    // AI Agent 桥的渲染进程侧（常驻，工具在请求到达时现取活动工程）
+    const { registerAgentBridgeDispatcher } = await import("ai-agent/dispatcher");
+    registerAgentBridgeDispatcher();
+
     extensionsCatalog.load();
 
     if (!buildProject) {

@@ -102,6 +102,7 @@ const Content = observer(
         componentDidMount(): void {
             this.context.editorsStore?.openInitialEditors();
             this.context.editorsStore?.refresh(true);
+
         }
 
         factory = (node: FlexLayout.TabNode) => {

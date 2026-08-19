@@ -103,6 +103,9 @@ app.on("ready", async function () {
     }
 
     await import("main/menu");
+
+    const { startAgentBridge } = await import("main/agent-bridge");
+    startAgentBridge();
 });
 
 // Quit when all windows are closed.

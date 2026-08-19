@@ -11,6 +11,10 @@ export function openHomeWindow(params?: Partial<IWindowParams>) {
     return openWindow(Object.assign(HOME_WINDOW_PARAMS, params));
 }
 
+export function findHomeWindow() {
+    return findWindowByParams(HOME_WINDOW_PARAMS);
+}
+
 export function bringHomeWindowToFocus() {
     let homeWindow = findWindowByParams(HOME_WINDOW_PARAMS);
     if (homeWindow) {

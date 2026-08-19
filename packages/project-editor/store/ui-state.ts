@@ -1,6 +1,13 @@
 import fs from "fs";
-import { computed, makeObservable } from "mobx";
-import { observable, extendObservable, action, toJS, runInAction } from "mobx";
+import {
+    computed,
+    makeObservable,
+    observable,
+    extendObservable,
+    action,
+    toJS,
+    runInAction
+} from "mobx";
 import { each } from "lodash";
 
 import * as notification from "eez-studio-ui/notification";
@@ -16,6 +23,8 @@ import { isScrapbookItemFilePath } from "project-editor/store/scrapbook";
 export type LogPanelFilter = "all" | "scpi" | "error" | "info" | "debug";
 
 export class UIStateStore {
+    showAIMode = false;
+
     selectedBuildConfiguration: string;
     features: any;
     savedState: any;
@@ -77,6 +86,7 @@ export class UIStateStore {
 
     constructor(public projectStore: ProjectStore) {
         makeObservable(this, {
+            showAIMode: observable,
             selectedBuildConfiguration: observable,
             features: observable,
             savedState: observable,
