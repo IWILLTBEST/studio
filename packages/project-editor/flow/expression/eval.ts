@@ -182,6 +182,12 @@ function evalConstantExpressionNode(
         }
 
         if (node.type == "TextResource") {
+            if (project.projectTypeTraits.isLVGL) {
+                // translated by an external library (e.g. lv_i18n),
+                // show the text resource ID in the editor
+                return node.value;
+            }
+
             const textResource = project.texts.resources.find(
                 textResource => textResource.resourceID == node.value
             );

@@ -163,6 +163,25 @@ function buildExpressionNode(
     }
 
     if (node.type == "TextResource") {
+        if (assets.projectStore.projectTypeTraits.isLVGL) {
+            // Translated by an external library (e.g. lv_i18n) through the
+            // translate hook on the target. The simulator has no hook, so
+            // it is given only the text resource ID.
+            if (assets.option == "buildFiles") {
+                return [
+                    makePushConstantInstruction(
+                        assets,
+                        node.value,
+                        node.valueType
+                    ),
+                    makeOperationInstruction(operationIndexes["Flow.translate"])
+                ];
+            }
+            return [
+                makePushConstantInstruction(assets, node.value, node.valueType)
+            ];
+        }
+
         if (assets.projectStore.project.texts) {
             return [
                 makePushConstantInstruction(

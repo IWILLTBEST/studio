@@ -111,6 +111,12 @@ function checkExpressionNode(component: Component, rootNode: ExpressionNode) {
         if (node.type == "TextResource") {
             const project = ProjectEditor.getProject(component);
 
+            if (project.projectTypeTraits.isLVGL) {
+                // translated by an external library (e.g. lv_i18n),
+                // there is no text resource catalog inside the project
+                return;
+            }
+
             if (
                 !project.texts ||
                 !project.texts.resources.find(
