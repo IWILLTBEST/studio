@@ -173,6 +173,10 @@ export class Assets {
     dashboardComponentClassNameToComponentIdMap: {
         [name: string]: number;
     } = {};
+
+    // text ids used in T"..." expressions, collected during the flow build
+    // (LVGL only), emitted in screens.c for "lv_i18n extract"
+    lvglTranslatedTextIds = new Set<string>();
     nextDashboardActionComponentId = FIRST_DASHBOARD_ACTION_COMPONENT_TYPE;
     nextDashboardWidgetComponentId = FIRST_DASHBOARD_WIDGET_COMPONENT_TYPE;
     nextLVGLWidgetComponentId = FIRST_LVGL_WIDGET_COMPONENT_TYPE;

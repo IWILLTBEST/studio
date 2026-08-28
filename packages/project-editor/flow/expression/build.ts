@@ -167,6 +167,7 @@ function buildExpressionNode(
             // Translated by an external library (e.g. lv_i18n) through the
             // translate hook on the target. The simulator has no hook, so
             // it is given only the text resource ID.
+            assets.lvglTranslatedTextIds.add(node.value);
             if (assets.option == "buildFiles") {
                 return [
                     makePushConstantInstruction(

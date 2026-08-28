@@ -2362,6 +2362,26 @@ export class LVGLBuild extends Build {
         }
         build.blockEnd("}");
 
+        if (this.assets.lvglTranslatedTextIds.size > 0) {
+            build.line("");
+            build.line(
+                "// This function is never called. It lists the texts used in"
+            );
+            build.line(
+                '// EEZ Flow expressions, so that "lv_i18n extract" can find'
+            );
+            build.line("// them.");
+            build.line("#ifdef _");
+            build.line("void eez_flow_translatable_texts() {");
+            for (const textId of [
+                ...this.assets.lvglTranslatedTextIds
+            ].sort()) {
+                build.line(`    _(${escapeCString(textId)});`);
+            }
+            build.line("}");
+            build.line("#endif");
+        }
+
         return this.result;
     }
 
