@@ -2404,6 +2404,7 @@ struct LVGLComponent_PlayAnimation_ActionType : public LVGLComponent_ActionType 
     uint32_t time;
     uint32_t flags;
     uint32_t path;
+    int32_t repeatCount;
 };
 struct LVGLComponent_SetProperty_ActionType : public LVGLComponent_ActionType {
     int32_t target;

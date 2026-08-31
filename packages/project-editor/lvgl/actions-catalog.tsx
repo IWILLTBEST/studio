@@ -1825,6 +1825,12 @@ const ANIM_PROPERTIES: IActionPropertyDefinition[] = [
         name: "path",
         type: `enum:${LV_ANIM_PATH_ENUM_NAME}`,
         helpText: "The animation path"
+    },
+    {
+        name: "repeatCount",
+        type: "integer",
+        helpText:
+            "How many times to repeat the animation after the first run: 0 = play once, -1 = repeat forever"
     }
 ];
 
@@ -1835,11 +1841,12 @@ const ANIM_DEFAULTS = {
     time: 1000,
     relative: true,
     instant: false,
-    path: "LINEAR"
+    path: "LINEAR",
+    repeatCount: 0
 };
 
 const animLabel = (
-    [object, start, end, delay, time, relative, instant, path]: string[],
+    [object, start, end, delay, time, relative, instant, path, repeatCount]: string[],
     [
         _1,
         startLabel,
@@ -1848,7 +1855,8 @@ const animLabel = (
         timeLabel,
         relativeLabel,
         instantLabel,
-        _2
+        _2,
+        _3
     ]: string[]
 ) => (
     <>
@@ -1856,6 +1864,7 @@ const animLabel = (
         <i>{delayLabel}</i>={delay} <i>{timeLabel}</i>={time}
         {relative == "ON" ? " RELATIVE" : ""}
         {instant == "ON" ? " INSTANT" : ""} {path}
+        {repeatCount == "-1" ? " ∞" : repeatCount != "0" ? ` x${Number(repeatCount) + 1}` : ""}
     </>
 );
 

@@ -2114,6 +2114,7 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
     relative: boolean;
     instant: boolean;
     path: keyof typeof ANIM_PATHS;
+    repeatCount: number;
 
     override makeEditable() {
         super.makeEditable();
@@ -2127,7 +2128,8 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
             time: observable,
             relative: observable,
             instant: observable,
-            path: observable
+            path: observable,
+            repeatCount: observable
         });
     }
 
@@ -2186,6 +2188,11 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
                 type: PropertyType.Enum,
                 enumItems: Object.keys(ANIM_PATHS).map(id => ({ id })),
                 enumDisallowUndefined: true
+            },
+            {
+                name: "repeatCount",
+                displayName: "Repeat count (0 = once, -1 = infinite)",
+                type: PropertyType.Number
             }
         ],
         defaultValue: {
@@ -2196,7 +2203,8 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
             time: 1000,
             relative: true,
             instant: false,
-            path: ""
+            path: "",
+            repeatCount: 0
         },
         listLabel: (
             action: LVGLPlayAnimationActionType,
@@ -2213,7 +2221,11 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
                 action.end
             }, Delay=${action.delay} ms, Time=${action.time} ms, Relative=${
                 action.relative ? "On" : "Off"
-            }, Instant=${action.instant ? "On" : "Off"} ${action.path}`;
+            }, Instant=${
+                action.instant ? "On" : "Off"
+            } ${action.path}, Repeat=${
+                action.repeatCount == -1 ? "Infinite" : action.repeatCount
+            }`;
         },
         check: (object: LVGLPlayAnimationActionType, messages: IMessage[]) => {
             if (!object.target) {
@@ -2267,6 +2279,10 @@ export class LVGLPlayAnimationActionType extends LVGLActionType {
 
         // path
         dataBuffer.writeUint32(ANIM_PATHS[this.path]);
+
+        // repeatCount (0 = play once, -1 = infinite; mirrors
+        // lv_anim_set_repeat_count in the exported eez-flow framework)
+        dataBuffer.writeInt32(this.repeatCount ?? 0);
     }
 }
 
