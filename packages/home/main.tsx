@@ -6,7 +6,9 @@ import { createRoot } from "react-dom/client";
 import { configure } from "mobx";
 import { observer } from "mobx-react";
 
-import { loadExtensions } from "eez-studio-shared/extensions/extensions";
+import {
+    loadExtensions
+} from "eez-studio-shared/extensions/extensions";
 import { getNodeModuleFolders } from "eez-studio-shared/extensions/yarn";
 
 import * as notification from "eez-studio-ui/notification";

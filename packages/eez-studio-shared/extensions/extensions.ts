@@ -11,7 +11,8 @@ import {
     readJsObjectFromFile,
     removeFolder,
     renameFile,
-    readFolder
+    readFolder,
+    isRenderer
 } from "eez-studio-shared/util-electron";
 import { guid } from "eez-studio-shared/guid";
 import { firstWord } from "eez-studio-shared/string";
@@ -21,7 +22,8 @@ import { registerSource, sendMessage, watch } from "eez-studio-shared/notify";
 import {
     IExtension,
     IExtensionProperties,
-    ExtensionType
+    ExtensionType,
+    IExtensionApi
 } from "eez-studio-shared/extensions/extension";
 
 import {
@@ -60,9 +62,9 @@ async function loadExtension(
                     if (mainScript) {
                         // this is measurement functions extension
                         extensionType = "measurement-functions";
-                        extension = require(extensionFolderPath +
-                            "/" +
-                            mainScript).default;
+                        extension = require(
+                            extensionFolderPath + "/" + mainScript
+                        ).default;
                     } else if (
                         packageJsonEezStudio[CONF_NODE_MODULE_PROPERTY_NAME]
                     ) {
@@ -124,9 +126,60 @@ async function loadExtension(
     return undefined;
 }
 
+let extensionApi: IExtensionApi | undefined;
+
+function getExtensionApi(): IExtensionApi {
+    if (!extensionApi) {
+        if (isRenderer()) {
+            extensionApi = {
+                renderer: {
+                    requireModule: (name: string) => {
+                        if (name == "mobx") {
+                            return require("mobx");
+                        } else {
+                            throw new Error(
+                                `module not exported to extensions: ${name}`
+                            );
+                        }
+                    },
+                    // The tabs-store singleton is created lazily by loadTabs()
+                    // (after loadExtensions), so the module has to be required
+                    // inside the calls — capturing its exports at
+                    // extension-registration time would freeze `tabs` at
+                    // undefined.
+                    getOpenProjects: () => {
+                        const { tabs, ProjectEditorTab } =
+                            require("home/tabs-store") as typeof import("home/tabs-store");
+                        return tabs.tabs
+                            .filter(tab => tab instanceof ProjectEditorTab)
+                            .map(tab => ({
+                                name: path.basename(tab.filePath ?? ""),
+                                filePath: tab.filePath,
+                                active: tab === tabs.activeTab
+                            }));
+                    },
+                    getActiveProjectStore: () => {
+                        const { tabs, ProjectEditorTab } =
+                            require("home/tabs-store") as typeof import("home/tabs-store");
+                        return tabs.activeTab instanceof ProjectEditorTab
+                            ? tabs.activeTab.projectStore
+                            : undefined;
+                    }
+                }
+            };
+        } else {
+            extensionApi = {
+                main: {}
+            };
+        }
+    }
+
+    return extensionApi;
+}
+
 export function registerExtension(extension: IExtension) {
     if (extension.init) {
-        extension.init();
+        extension.init(getExtensionApi());
     }
 
     action(() => extensions.set(extension.id, extension))();
