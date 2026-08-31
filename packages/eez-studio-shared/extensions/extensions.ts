@@ -164,6 +164,80 @@ function getExtensionApi(): IExtensionApi {
                         return tabs.activeTab instanceof ProjectEditorTab
                             ? tabs.activeTab.projectStore
                             : undefined;
+                    },
+                    activateProjectTab: (filePath: string) => {
+                        const { tabs, ProjectEditorTab } =
+                            require("home/tabs-store") as typeof import("home/tabs-store");
+                        const normalize = (p?: string) =>
+                            p?.replace(/\\/g, "/").toLowerCase();
+                        const tab = tabs.tabs.find(
+                            tab =>
+                                tab instanceof ProjectEditorTab &&
+                                normalize(tab.filePath) ===
+                                    normalize(filePath)
+                        );
+                        if (!tab) {
+                            throw new Error(
+                                `no open project tab for ${filePath}`
+                            );
+                        }
+                        if (tabs.activeTab !== tab) {
+                            tab.makeActive();
+                        }
+                    },
+                    openProject: (filePath: string, runMode?: boolean) => {
+                        const { openProject } =
+                            require("home/tabs-store") as typeof import("home/tabs-store");
+                        return openProject(filePath, !!runMode);
+                    },
+                    // Toolkits below re-export project-editor symbols the
+                    // same lazy way — required at call time, so nothing is
+                    // frozen at extension-registration time.
+                    // 下述 toolkit 同样在调用时才 require，避免注册期冻结导出。
+                    getEditorObjectToolkit: () => {
+                        const store =
+                            require("project-editor/store") as typeof import("project-editor/store");
+                        const object =
+                            require("project-editor/core/object") as typeof import("project-editor/core/object");
+                        const search =
+                            require("project-editor/core/search") as typeof import("project-editor/core/search");
+                        return {
+                            createObject: store.createObject,
+                            getClassByName: object.getClassByName,
+                            getClassesDerivedFrom: object.getClassesDerivedFrom,
+                            getDefaultValue: object.getDefaultValue,
+                            setParent: object.setParent,
+                            visitObjects: search.visitObjects,
+                            getObjectPath: store.getObjectPath,
+                            getObjectPathAsString: store.getObjectPathAsString
+                        };
+                    },
+                    getLvglToolkit: () => ({
+                        LVGLWidget:
+                            require("project-editor/lvgl/widgets/Base").LVGLWidget,
+                        LVGLStyle: require("project-editor/lvgl/style").LVGLStyle,
+                        Page: require("project-editor/features/page/page").Page,
+                        Color:
+                            require("project-editor/features/style/theme").Color,
+                        BUILT_IN_FONTS:
+                            require("project-editor/lvgl/style-catalog")
+                                .BUILT_IN_FONTS
+                    }),
+                    getAssetToolkit: () => {
+                        const font =
+                            require("project-editor/features/font/font") as any;
+                        const fontExtract =
+                            require("project-editor/features/font/font-extract") as any;
+                        const bitmap =
+                            require("project-editor/features/bitmap/bitmap") as any;
+                        return {
+                            Font: font.Font,
+                            extractFont: fontExtract.extractFont,
+                            getLvglEncodingsAndSymbols:
+                                font.getLvglEncodingsAndSymbols,
+                            Bitmap: bitmap.Bitmap,
+                            createBitmap: bitmap.createBitmap
+                        };
                     }
                 }
             };

@@ -210,6 +210,91 @@ export interface IExtensionApi {
          * change between releases — extensions should feature-detect.
          */
         getActiveProjectStore?(): any;
+
+        /**
+         * Make the project editor tab for `filePath` the selected tab
+         * (same code path as the user clicking the tab). No-op when it is
+         * already selected. Path comparison is case-insensitive and
+         * slash-insensitive. Throws when no open tab matches.
+         */
+        activateProjectTab?(filePath: string): void;
+
+        /**
+         * Open a project file in a new editor tab (or select the existing
+         * tab when one is already open for it). Same code path as File →
+         * Open Project.
+         */
+        openProject?(filePath: string, runMode?: boolean): void;
+
+        /**
+         * The editor object-model layer: object construction, the class
+         * registry, tree traversal and object paths. Best-effort export of
+         * project-editor/store, project-editor/core/object and
+         * project-editor/core/search — it tracks Studio internals and may
+         * change between releases; extensions should feature-detect.
+         */
+        getEditorObjectToolkit?(): {
+            /** Construct an EezObject of aClass from a plain object. */
+            createObject(
+                projectStore: any,
+                jsObject: any,
+                aClass: any,
+                key?: string
+            ): any;
+            /** Look up a registered editor class by name. */
+            getClassByName(projectStore: any, className: string): any;
+            /** All registered classes derived from parentClass. */
+            getClassesDerivedFrom(projectStore: any, parentClass: any): any[];
+            /** The default value for a property of classInfo. */
+            getDefaultValue(projectStore: any, classInfo: any): any;
+            /** Set an object's parent (owner link for getObjectPath). */
+            setParent(object: any, parentObject: any): void;
+            /** Iterate every EezObject in the tree rooted at root. */
+            visitObjects(root: any): Iterable<any>;
+            /** Path segments of an object, e.g. ["userPages", 0, "components"]. */
+            getObjectPath(object: any): (string | number)[];
+            /** Path of an object as a string, e.g. "/userPages/0/components". */
+            getObjectPathAsString(object: any): string;
+        };
+
+        /**
+         * The LVGL widget/style layer. Best-effort export of
+         * project-editor/lvgl/style, lvgl/style-catalog,
+         * lvgl/widgets/Base, features/page/page and features/style/theme —
+         * it tracks Studio internals and may change between releases;
+         * extensions should feature-detect.
+         */
+        getLvglToolkit?(): {
+            /** Base class of every LVGL widget (for class derivation walks). */
+            LVGLWidget: any;
+            /** Class of named LVGL styles. */
+            LVGLStyle: any;
+            /** Class of pages (user widgets / screens). */
+            Page: any;
+            /** Color value class. */
+            Color: any;
+            /** Built-in font descriptors (Montserrat sizes). */
+            BUILT_IN_FONTS: any;
+        };
+
+        /**
+         * The font/bitmap asset layer. Best-effort export of
+         * project-editor/features/font/font, font-extract and
+         * features/bitmap/bitmap — it tracks Studio internals and may
+         * change between releases; extensions should feature-detect.
+         */
+        getAssetToolkit?(): {
+            /** Font asset class. */
+            Font: any;
+            /** Extract a TTF's glyphs/subset for a new font asset. */
+            extractFont: any;
+            /** Parse LVGL ranges/symbols strings into encodings + symbol set. */
+            getLvglEncodingsAndSymbols: any;
+            /** Bitmap asset class. */
+            Bitmap: any;
+            /** Create a bitmap asset from an image file. */
+            createBitmap: any;
+        };
     }
 }
 
