@@ -1831,6 +1831,12 @@ const ANIM_PROPERTIES: IActionPropertyDefinition[] = [
         type: "integer",
         helpText:
             "How many times to repeat the animation after the first run: 0 = play once, -1 = repeat forever"
+    },
+    {
+        name: "playback",
+        type: "boolean",
+        helpText:
+            "If checked the animation plays in reverse when the forward run finishes (ping-pong), using the same duration"
     }
 ];
 
@@ -1842,11 +1848,12 @@ const ANIM_DEFAULTS = {
     relative: true,
     instant: false,
     path: "LINEAR",
-    repeatCount: 0
+    repeatCount: 0,
+    playback: false
 };
 
 const animLabel = (
-    [object, start, end, delay, time, relative, instant, path, repeatCount]: string[],
+    [object, start, end, delay, time, relative, instant, path, repeatCount, playback]: string[],
     [
         _1,
         startLabel,
@@ -1856,7 +1863,8 @@ const animLabel = (
         relativeLabel,
         instantLabel,
         _2,
-        _3
+        _3,
+        _4
     ]: string[]
 ) => (
     <>
@@ -1865,6 +1873,7 @@ const animLabel = (
         {relative == "ON" ? " RELATIVE" : ""}
         {instant == "ON" ? " INSTANT" : ""} {path}
         {repeatCount == "-1" ? " ∞" : repeatCount != "0" ? ` x${Number(repeatCount) + 1}` : ""}
+        {playback == "ON" ? " PING-PONG" : ""}
     </>
 );
 

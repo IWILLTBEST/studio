@@ -3261,7 +3261,6 @@ void executeLVGLComponent(FlowState *flowState, unsigned componentIndex) {
             if (specific->flags & ANIMATION_ITEM_FLAG_RELATIVE) {
                 lv_anim_set_get_value_cb(&anim, anim_get_callbacks[specific->property]);
             }
-            lv_anim_set_repeat_count(&anim, specific->repeatCount);
             lv_anim_start(&anim);
         } else if (general->action == SET_PROPERTY) {
             auto specific = (LVGLComponent_SetProperty_ActionType *)general;
@@ -4034,7 +4033,8 @@ ACTION_END
     BOOL_PROP(relative); \
     BOOL_PROP(instant); \
     INT32_PROP(path); \
-    INT32_PROP(repeatCount);
+    INT32_PROP(repeatCount); \
+    BOOL_PROP(playback);
 static void playAnimation(lv_obj_t *obj,
     int32_t start,
     int32_t end,
@@ -4044,6 +4044,7 @@ static void playAnimation(lv_obj_t *obj,
     bool instant,
     int32_t path,
     int32_t repeatCount,
+    bool playback,
     lv_anim_exec_xcb_t set_callback,
     lv_anim_get_value_cb_t get_callback
 ) {
@@ -4061,35 +4062,38 @@ static void playAnimation(lv_obj_t *obj,
         lv_anim_set_get_value_cb(&anim, get_callback);
     }
     lv_anim_set_repeat_count(&anim, repeatCount);
+    if (playback) {
+        lv_anim_set_playback_duration(&anim, time);
+    }
     lv_anim_start(&anim);
 }
 ACTION_START(animX)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_x, anim_callback_get_x);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_x, anim_callback_get_x);
 ACTION_END
 ACTION_START(animY)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_y, anim_callback_get_y);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_y, anim_callback_get_y);
 ACTION_END
 ACTION_START(animWidth)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_width, anim_callback_get_width);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_width, anim_callback_get_width);
 ACTION_END
 ACTION_START(animHeight)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_height, anim_callback_get_height);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_height, anim_callback_get_height);
 ACTION_END
 ACTION_START(animOpacity)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_opacity, anim_callback_get_opacity);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_opacity, anim_callback_get_opacity);
 ACTION_END
 ACTION_START(animImageZoom)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_image_zoom, anim_callback_get_image_zoom);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_image_zoom, anim_callback_get_image_zoom);
 ACTION_END
 ACTION_START(animImageAngle)
     ANIM_PROPS;
-    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, anim_callback_set_image_angle, anim_callback_get_image_angle);
+    playAnimation(obj, start, end, delay, time, relative, instant, path, repeatCount, playback, anim_callback_set_image_angle, anim_callback_get_image_angle);
 ACTION_END
 ACTION_START(createScreen)
     SCREEN_PROP(screen);
