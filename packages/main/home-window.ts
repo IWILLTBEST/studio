@@ -1,4 +1,8 @@
 import { openWindow, findWindowByParams, IWindowParams } from "main/window";
+export function findHomeWindow() {
+    return findWindowByParams(HOME_WINDOW_PARAMS);
+}
+
 
 export const HOME_WINDOW_URL = "home/index.html";
 
