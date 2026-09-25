@@ -14,6 +14,7 @@ import { findBitmap, ProjectType } from "project-editor/project/project";
 import { specificGroup } from "project-editor/ui-components/PropertyGrid/groups";
 
 import { LVGLWidget } from "./internal";
+import { escapeCString } from "../widget-common";
 import { ProjectEditor } from "project-editor/project-editor-interface";
 import {
     getChildOfObject,
@@ -100,6 +101,7 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
 export class LVGLGifWidget extends LVGLWidget {
     image: string;
     fromFileSystem: boolean;
+    file: string;
 
     static classInfo = makeDerivedClassInfo(LVGLWidget.classInfo, {
         enabledInComponentPalette: (projectType: ProjectType) =>
@@ -133,6 +135,16 @@ export class LVGLGifWidget extends LVGLWidget {
                 checkboxStyleSwitch: true,
                 formText:
                     "Instead of embedding the GIF as a byte array, the generated code references it with a file path (streamed via lv_fs, e.g. GIF_openFile) and the build copies the .gif file next to the generated sources. The path prefix comes from the build File system path setting and must match the drive letter registered by the target's lv_fs driver (e.g. S:/ for littlefs on SD, A:/ for stdio). Requires LV_USE_GIF and an lv_fs driver on the device."
+            },
+            {
+                name: "file",
+                displayName: "File",
+                type: PropertyType.String,
+                propertyGridGroup: specificGroup,
+                hideInPropertyGrid: (widget: LVGLGifWidget) =>
+                    !widget.fromFileSystem,
+                formText:
+                    "Optional full device path of the GIF (including the drive letter, e.g. S:/animations/hero.gif). When set, the build emits nothing for this GIF (put the file on the device yourself) and Source serves only as the editor preview stand-in - prefer a fixed pixel size when the real file's dimensions differ."
             }
         ],
 
@@ -144,7 +156,8 @@ export class LVGLGifWidget extends LVGLWidget {
             widthUnit: "content",
             heightUnit: "content",
             image: "",
-            fromFileSystem: false
+            fromFileSystem: false,
+            file: ""
         },
 
         icon: (
@@ -179,7 +192,21 @@ export class LVGLGifWidget extends LVGLWidget {
                 }
             }
 
-            if (widget.fromFileSystem) {
+            if (
+                widget.fromFileSystem &&
+                widget.file &&
+                !/^[A-Za-z0-9]+:/.test(widget.file)
+            ) {
+                messages.push(
+                    new Message(
+                        MessageType.ERROR,
+                        `File must be a full device path including the drive letter (e.g. S:/animations/hero.gif)`,
+                        getChildOfObject(widget, "file")
+                    )
+                );
+            }
+
+            if (widget.fromFileSystem && !widget.file) {
                 if (
                     !ProjectEditor.getProject(widget).settings.build
                         .fileSystemPath
@@ -221,7 +248,8 @@ export class LVGLGifWidget extends LVGLWidget {
 
         makeObservable(this, {
             image: observable,
-            fromFileSystem: observable
+            fromFileSystem: observable,
+            file: observable
         });
     }
 
@@ -234,11 +262,21 @@ export class LVGLGifWidget extends LVGLWidget {
             code.createObject("lv_gif_create");
             if (bitmap) {
                 if (this.fromFileSystem) {
-                    // streamed from the device file system (lv_fs path)
-                    code.callObjectFunction(
-                        "lv_gif_set_src",
-                        code.lvglBuild.getGifFileSystemAccessor(this.image)
-                    );
+                    if (this.file) {
+                        // pure pointing mode: verbatim device path,
+                        // nothing is emitted or copied for this GIF
+                        code.callObjectFunction(
+                            "lv_gif_set_src",
+                            escapeCString(this.file)
+                        );
+                    } else {
+                        // streamed from the device file system,
+                        // the .gif file is copied next to the sources
+                        code.callObjectFunction(
+                            "lv_gif_set_src",
+                            code.lvglBuild.getGifFileSystemAccessor(this.image)
+                        );
+                    }
                 } else {
                     // embedded as a byte array descriptor
                     code.lvglBuild.markGifEmbedded(this.image);
