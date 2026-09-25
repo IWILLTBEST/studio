@@ -12,13 +12,13 @@ import * as notification from "eez-studio-ui/notification";
 import type { ExampleProject } from "project-editor/project/ui/Wizard";
 
 export const EEZ_PROJECT_EXAMPLES_REPOSITORY =
-    "https://github.com/eez-open/eez-project-examples";
+    "https://github.com/IWILLTBEST/eez-examples";
 
 const CATALOG_VERSION_DOWNLOAD_URL =
-    "https://github.com/eez-open/eez-project-examples/raw/master/build/catalog-version.json";
+    "https://github.com/IWILLTBEST/eez-examples/raw/main/build/catalog-version.json";
 
 const CATALOG_DOWNLOAD_URL =
-    "https://github.com/eez-open/eez-project-examples/raw/master/build/catalog.zip";
+    "https://github.com/IWILLTBEST/eez-examples/raw/main/build/catalog.zip";
 
 interface ICatalogVersion {
     lastModified: Date;
