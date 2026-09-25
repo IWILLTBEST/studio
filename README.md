@@ -14,7 +14,7 @@ A personal build of [EEZ Studio](https://github.com/eez-open/studio) that integr
 | List | [eez-open/studio#1056](https://github.com/eez-open/studio/pull/1056) | open | button & text entries (`lv_list_add_button` / `lv_list_add_text`), bitmap/symbol/expression icons, per-entry Event handlers |
 | TileView | [eez-open/studio#1057](https://github.com/eez-open/studio/pull/1057) | open | Tile child widgets with bitmask slide directions |
 | Menu | [eez-open/studio#1058](https://github.com/eez-open/studio/pull/1058) | open | Menu page/section child widgets, first page shown via `lv_menu_set_page` |
-| GIF | — (fork-only, see [#758](https://github.com/eez-open/studio/issues/758)) | fork | `lv_gif_create` + `lv_gif_set_src` with raw GIF bytes embedded as an `lv_img_dsc_t`; requires `LV_USE_GIF=1` on the device; editor preview shows the first frame |
+| GIF | — (fork-only, see [#758](https://github.com/eez-open/studio/issues/758)) | fork | `lv_gif_create` + `lv_gif_set_src` with raw GIF bytes embedded as an `lv_img_dsc_t`; requires `LV_USE_GIF=1` on the device; LVGL 8.4 editor preview plays the animation in Run mode (after the wasm build warm-up), 9.x preview shows a placeholder |
 
 Related example projects: [eez-open/eez-project-examples#4](https://github.com/eez-open/eez-project-examples/pull/4) (merged) and [#5](https://github.com/eez-open/eez-project-examples/pull/5) (open) — the examples replicate the official LVGL documentation examples.
 
