@@ -48,6 +48,14 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
     const runtime = simulatorCode.runtime;
     const wasm = runtime.wasm;
 
+    // lv_img_dsc_t layout on wasm32:
+    // - LVGL 8.x: bitfield header (4 bytes), data@4, data_size@8
+    // - LVGL 9.x: lv_image_header_t (magic/cf/flags/w/h/stride, 24
+    //   bytes), data@24, data_size@28
+    // (lv_gif only reads data/data_size, the header is left zeroed)
+    const dataOffset = code.isV9 ? 24 : 4;
+    const dscSize = code.isV9 ? 32 : 12;
+
     let perWasm = gifDscCache.get(wasm);
     if (!perWasm) {
         perWasm = new Map<string, number>();
@@ -76,10 +84,10 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
     const bytesPtr = wasm._malloc(bytes.length);
     wasm.HEAPU8.set(bytes, bytesPtr);
 
-    const dscPtr = wasm._malloc(12);
-    wasm.HEAPU32.fill(0, dscPtr >> 2, (dscPtr >> 2) + 3);
-    wasm.HEAPU32[(dscPtr + 4) >> 2] = bytesPtr;
-    wasm.HEAPU32[(dscPtr + 8) >> 2] = bytes.length;
+    const dscPtr = wasm._malloc(dscSize);
+    wasm.HEAPU32.fill(0, dscPtr >> 2, (dscPtr >> 2) + dscSize / 4);
+    wasm.HEAPU32[(dscPtr + dataOffset) >> 2] = bytesPtr;
+    wasm.HEAPU32[(dscPtr + dataOffset + 4) >> 2] = bytes.length;
 
     perWasm.set(bitmapName, dscPtr);
     return dscPtr;
@@ -199,18 +207,23 @@ export class LVGLGifWidget extends LVGLWidget {
                     `&${code.lvglBuild.getImageVariableName(this.image)}`
                 );
             }
-        } else if (code.isV9) {
-            // the editor wasm for LVGL 9.x is built without LV_USE_GIF,
-            // show a placeholder (same as the Lottie widget)
-            code.createObject("lv_obj_create");
         } else {
-            // LVGL 8.4 editor wasm has lv_gif compiled in: real animation
-            code.createObject("lv_gif_create");
-            if (bitmap?.image) {
-                const dscPtr = getGifDscPtr(code, bitmap);
-                if (dscPtr) {
-                    code.callObjectFunction("lv_gif_set_src", dscPtr);
+            // feature-detect: the editor wasm must be built with
+            // LV_USE_GIF (upstream builds only enable it for 8.4; our
+            // fork also ships a 9.4.0 build with it enabled)
+            const wasm = (code as any).runtime.wasm;
+            if (wasm && wasm._lv_gif_create) {
+                code.createObject("lv_gif_create");
+                if (bitmap?.image) {
+                    const dscPtr = getGifDscPtr(code, bitmap);
+                    if (dscPtr) {
+                        code.callObjectFunction("lv_gif_set_src", dscPtr);
+                    }
                 }
+            } else {
+                // no lv_gif in this editor wasm: placeholder
+                // (same as the Lottie widget)
+                code.createObject("lv_obj_create");
             }
         }
     }
