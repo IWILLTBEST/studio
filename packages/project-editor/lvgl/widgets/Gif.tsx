@@ -99,6 +99,7 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
 
 export class LVGLGifWidget extends LVGLWidget {
     image: string;
+    fromFileSystem: boolean;
 
     static classInfo = makeDerivedClassInfo(LVGLWidget.classInfo, {
         enabledInComponentPalette: (projectType: ProjectType) =>
@@ -123,6 +124,15 @@ export class LVGLGifWidget extends LVGLWidget {
                 propertyGridGroup: specificGroup,
                 formText:
                     "A GIF bitmap (imported without decoding). The raw file bytes are embedded in the generated code (LV_IMG_CF_RAW descriptor) and played by lv_gif. Note: the size of the frame buffer allocated at runtime is determined by the canvas size of the GIF."
+            },
+            {
+                name: "fromFileSystem",
+                displayName: "From file system",
+                type: PropertyType.Boolean,
+                propertyGridGroup: specificGroup,
+                checkboxStyleSwitch: true,
+                formText:
+                    "Instead of embedding the GIF as a byte array, the generated code references it with a file path (streamed via lv_fs, e.g. GIF_openFile) and the build copies the .gif file next to the generated sources. The path prefix comes from the build File system path setting and must match the drive letter registered by the target's lv_fs driver (e.g. S:/ for littlefs on SD, A:/ for stdio). Requires LV_USE_GIF and an lv_fs driver on the device."
             }
         ],
 
@@ -133,7 +143,8 @@ export class LVGLGifWidget extends LVGLWidget {
             height: 40,
             widthUnit: "content",
             heightUnit: "content",
-            image: ""
+            image: "",
+            fromFileSystem: false
         },
 
         icon: (
@@ -168,6 +179,21 @@ export class LVGLGifWidget extends LVGLWidget {
                 }
             }
 
+            if (widget.fromFileSystem) {
+                if (
+                    !ProjectEditor.getProject(widget).settings.build
+                        .fileSystemPath
+                ) {
+                    messages.push(
+                        new Message(
+                            MessageType.ERROR,
+                            `File system path is not set (Build settings)`,
+                            widget
+                        )
+                    );
+                }
+            }
+
             if (
                 ProjectEditor.getProject(
                     widget
@@ -194,7 +220,8 @@ export class LVGLGifWidget extends LVGLWidget {
         super.makeEditable();
 
         makeObservable(this, {
-            image: observable
+            image: observable,
+            fromFileSystem: observable
         });
     }
 
@@ -206,10 +233,20 @@ export class LVGLGifWidget extends LVGLWidget {
         if (code.lvglBuild) {
             code.createObject("lv_gif_create");
             if (bitmap) {
-                code.callObjectFunction(
-                    "lv_gif_set_src",
-                    `&${code.lvglBuild.getImageVariableName(this.image)}`
-                );
+                if (this.fromFileSystem) {
+                    // streamed from the device file system (lv_fs path)
+                    code.callObjectFunction(
+                        "lv_gif_set_src",
+                        code.lvglBuild.getGifFileSystemAccessor(this.image)
+                    );
+                } else {
+                    // embedded as a byte array descriptor
+                    code.lvglBuild.markGifEmbedded(this.image);
+                    code.callObjectFunction(
+                        "lv_gif_set_src",
+                        `&${code.lvglBuild.getImageVariableName(this.image)}`
+                    );
+                }
             }
         } else {
             // feature-detect: the editor wasm must be built with

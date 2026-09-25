@@ -73,24 +73,26 @@ interface UpdateColorCallbackForUserWidget {
 // lv_img_dsc_t. lv_gif_set_src plays them via GIF_openRAM and only reads
 // the data/data_size fields, so the header is left zeroed.
 //
+async function getGifBitmapBytes(build: LVGLBuild, bitmap: Bitmap) {
+    const image = bitmap.image!;
+    if (image.startsWith("data:")) {
+        return Buffer.from(
+            image.substring(image.indexOf(",") + 1),
+            "base64"
+        );
+    }
+    const fs = await import("fs");
+    return await fs.promises.readFile(
+        build.project._store.getAbsoluteFilePath(image)
+    );
+}
+
 async function getGifBitmapSourceFile(
     build: LVGLBuild,
     bitmap: Bitmap,
     fileName: string
 ) {
-    let bytes: Buffer;
-    const image = bitmap.image!;
-    if (image.startsWith("data:")) {
-        bytes = Buffer.from(
-            image.substring(image.indexOf(",") + 1),
-            "base64"
-        );
-    } else {
-        const fs = await import("fs");
-        bytes = await fs.promises.readFile(
-            build.project._store.getAbsoluteFilePath(image)
-        );
-    }
+    const bytes = await getGifBitmapBytes(build, bitmap);
 
     const lines: string[] = [];
     lines.push(`const uint8_t ${fileName}_data[] = {`);
@@ -120,6 +122,11 @@ export class LVGLBuild extends Build {
     styleNames = new Map<string, string>();
     fontNames = new Map<string, string>();
     bitmapNames = new Map<string, string>();
+
+    // GIF widgets referencing a bitmap through the file system mode /
+    // the embedded byte-array mode (a bitmap can be used by both)
+    gifFromFileSystemBitmaps = new Set<string>();
+    gifEmbeddedBitmaps = new Set<string>();
 
     isFirstPass: boolean;
 
@@ -773,6 +780,37 @@ export class LVGLBuild extends Build {
 
             return IMAGE_PREFIX + this.bitmapNames.get(bitmap.objID)!;
         }
+    }
+
+    markGifEmbedded(bitmapName: string) {
+        this.gifEmbeddedBitmaps.add(bitmapName);
+    }
+
+    getGifFileSystemAccessor(bitmapName: string) {
+        let foundBitmap: Bitmap | undefined;
+        foundBitmap = this.bitmaps.find(
+            bitmapobject => bitmapobject.name == bitmapName
+        );
+
+        if (foundBitmap) {
+            this.assets.markBitmapUsed(foundBitmap);
+        }
+
+        this.gifFromFileSystemBitmaps.add(bitmapName);
+
+        // the device-side path prefix (drive letter) registered by the
+        // target's lv_fs driver, e.g. "S:/" for littlefs on SD
+        let path = this.project.settings.build.fileSystemPath ?? "";
+        path = path.replace(/\\/g, "/");
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
+
+        const output =
+            "ui_image_" +
+            (foundBitmap ? this.bitmapNames.get(foundBitmap.objID)! : bitmapName);
+
+        return `"${path}${output}.gif"`;
     }
 
     getImageAccessor(bitmap: Bitmap | string) {
@@ -3099,6 +3137,51 @@ extern ext_font_desc_t fonts[];
                 (async () => {
                     const output =
                         "ui_image_" + this.bitmapNames.get(bitmap.objID)!;
+
+                    if (bitmap.isGif) {
+                        const fsMode = this.gifFromFileSystemBitmaps.has(
+                            bitmap.name
+                        );
+                        const embeddedMode = this.gifEmbeddedBitmaps.has(
+                            bitmap.name
+                        );
+
+                        if (fsMode) {
+                            // write the raw GIF file for the device file
+                            // system (flashed next to the firmware)
+                            try {
+                                const bytes = await getGifBitmapBytes(
+                                    this,
+                                    bitmap
+                                );
+                                await writeBinaryData(
+                                    this.project._store.getAbsoluteFilePath(
+                                        destinationFolder
+                                    ) +
+                                        "/" +
+                                        (this.project.settings.build
+                                            .separateFolderForImagesAndFonts
+                                            ? "images/"
+                                            : "") +
+                                        output +
+                                        ".gif",
+                                    bytes
+                                );
+                            } catch (err) {
+                                this.project._store.outputSectionsStore.write(
+                                    Section.OUTPUT,
+                                    MessageType.ERROR,
+                                    `Error generating bitmap file '${output}.gif': ${err}`
+                                );
+                            }
+                        }
+
+                        if (!embeddedMode) {
+                            // only used through the file system mode:
+                            // no byte-array descriptor needed
+                            return;
+                        }
+                    }
 
                     if (
                         this.project.settings.build.imageExportMode == "binary"
