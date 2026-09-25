@@ -48,13 +48,15 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
     const runtime = simulatorCode.runtime;
     const wasm = runtime.wasm;
 
-    // lv_img_dsc_t layout on wasm32:
+    // lv_img_dsc_t layout on wasm32 (verified against the actual
+    // headers; lv_gif only reads data/data_size, the header is left
+    // zeroed):
     // - LVGL 8.x: bitfield header (4 bytes), data@4, data_size@8
-    // - LVGL 9.x: lv_image_header_t (magic/cf/flags/w/h/stride, 24
-    //   bytes), data@24, data_size@28
-    // (lv_gif only reads data/data_size, the header is left zeroed)
-    const dataOffset = code.isV9 ? 24 : 4;
-    const dscSize = code.isV9 ? 32 : 12;
+    // - LVGL 9.x: bitfield lv_image_header_t (12 bytes),
+    //   data_size@12, data@16 (+ 2 reserved pointers)
+    const dataOffset = code.isV9 ? 16 : 4;
+    const sizeOffset = code.isV9 ? 12 : 8;
+    const dscSize = code.isV9 ? 24 : 12;
 
     let perWasm = gifDscCache.get(wasm);
     if (!perWasm) {
@@ -87,7 +89,7 @@ function getGifDscPtr(code: LVGLCode, bitmap: Bitmap): number {
     const dscPtr = wasm._malloc(dscSize);
     wasm.HEAPU32.fill(0, dscPtr >> 2, (dscPtr >> 2) + dscSize / 4);
     wasm.HEAPU32[(dscPtr + dataOffset) >> 2] = bytesPtr;
-    wasm.HEAPU32[(dscPtr + dataOffset + 4) >> 2] = bytes.length;
+    wasm.HEAPU32[(dscPtr + sizeOffset) >> 2] = bytes.length;
 
     perWasm.set(bitmapName, dscPtr);
     return dscPtr;

@@ -474,12 +474,13 @@ export class Assets {
         this.bitmaps = [];
         this.getAssets<Bitmap>(
             project => project.bitmaps,
-            bitmap => bitmap.id != undefined
+            bitmap => bitmap.id != undefined && !bitmap.isGif
         ).forEach(bitmap => (this.bitmaps[bitmap.id! - 1] = bitmap));
         this.getAssets<Bitmap>(
             project => project.bitmaps,
             bitmap =>
                 bitmap.id == undefined &&
+                !bitmap.isGif &&
                 (bitmap.alwaysBuild ||
                     isDashboardProject(this.projectStore.project))
         ).forEach(bitmap => this.bitmaps.push(bitmap));
@@ -797,6 +798,12 @@ export class Assets {
         }
 
         if (bitmap) {
+            // GIF bitmaps are consumed by the GIF widget as raw bytes
+            // (own descriptor path); never decoded into the pixel assets
+            if (bitmap.isGif) {
+                return 0;
+            }
+
             for (let i = 0; i < this.bitmaps.length; i++) {
                 if (bitmap == this.bitmaps[i]) {
                     return this.projectStore.masterProject ? -(i + 1) : i + 1;
