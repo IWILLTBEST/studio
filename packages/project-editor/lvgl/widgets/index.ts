@@ -22,6 +22,8 @@ import {
     LVGLListWidget,
     LVGLLottieWidget,
     LVGLMenuWidget,
+    LVGLMenuPageWidget,
+    LVGLMenuSectionWidget,
     LVGLMessageBoxButtonWidget,
     LVGLMessageBoxWidget,
     LVGLMeterWidget,
@@ -147,6 +149,8 @@ registerClass("LVGLListWidget", LVGLListWidget);
 registerClass("LVGLLottieWidget", LVGLLottieWidget);
 registerClass("LVGLKeyboardWidget", LVGLKeyboardWidget);
 registerClass("LVGLMenuWidget", LVGLMenuWidget);
+registerClass("LVGLMenuPageWidget", LVGLMenuPageWidget);
+registerClass("LVGLMenuSectionWidget", LVGLMenuSectionWidget);
 registerClass("LVGLMessageBoxButtonWidget", LVGLMessageBoxButtonWidget);
 registerClass("LVGLMessageBoxWidget", LVGLMessageBoxWidget);
 registerClass("LVGLMeterWidget", LVGLMeterWidget);

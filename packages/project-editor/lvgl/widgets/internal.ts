@@ -21,6 +21,7 @@ export * from "./List";
 export * from "./Lottie";
 export * from "./Keyboard";
 export * from "./Menu";
+export * from "./MenuPage";
 export * from "./MessageBox";
 export * from "./MessageBoxButton";
 export * from "./Meter";
