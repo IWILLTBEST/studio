@@ -13,6 +13,7 @@ import {
     LVGLColorwheelWidget,
     LVGLContainerWidget,
     LVGLDropdownWidget,
+    LVGLGifWidget,
     LVGLImageWidget,
     LVGLImgbuttonWidget,
     LVGLKeyboardWidget,
@@ -107,6 +108,7 @@ import type { LVGLVersion } from "project-editor/project/project";
 
 export {
     LVGLArcWidget,
+    LVGLGifWidget,
     LVGLBarWidget,
     LVGLButtonMatrixWidget,
     LVGLContainerWidget,
@@ -140,6 +142,7 @@ registerClass("LVGLCanvasWidget", LVGLCanvasWidget);
 registerClass("LVGLColorwheelWidget", LVGLColorwheelWidget);
 registerClass("LVGLContainerWidget", LVGLContainerWidget);
 registerClass("LVGLDropdownWidget", LVGLDropdownWidget);
+registerClass("LVGLGifWidget", LVGLGifWidget);
 registerClass("LVGLImageWidget", LVGLImageWidget);
 registerClass("LVGLImgbuttonWidget", LVGLImgbuttonWidget);
 registerClass("LVGLLabelWidget", LVGLLabelWidget);

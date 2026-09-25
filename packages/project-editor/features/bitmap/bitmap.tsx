@@ -325,7 +325,7 @@ export class Bitmap extends EezObject {
                                 filters: [
                                     {
                                         name: "Image files",
-                                        extensions: ["png", "jpg", "jpeg"]
+                                        extensions: ["png", "jpg", "jpeg", "gif"]
                                     },
                                     { name: "All Files", extensions: ["*"] }
                                 ]
@@ -515,6 +515,20 @@ export class Bitmap extends EezObject {
         );
     }
 
+    get isGif() {
+        if (!this.image) {
+            return false;
+        }
+
+        if (this.image.startsWith("data:")) {
+            return this.image
+                .toLowerCase()
+                .startsWith("data:image/gif;");
+        }
+
+        return path.extname(this.image).toLowerCase() == ".gif";
+    }
+
     get imageElement() {
         if (!this.image) {
             return null;
@@ -644,6 +658,8 @@ export class Bitmap extends EezObject {
         let fileType: string;
         if (ext == ".jpg" || ext == ".jpeg") {
             fileType = "image/jpg";
+        } else if (ext == ".gif") {
+            fileType = "image/gif";
         } else {
             fileType = "image/png";
         }
@@ -682,6 +698,8 @@ export async function createBitmap(
                 const ext = path.extname(filePath).toLowerCase();
                 if (ext == ".jpg" || ext == ".jpeg") {
                     fileType = "image/jpg";
+                } else if (ext == ".gif") {
+                    fileType = "image/gif";
                 } else {
                     fileType = "image/png";
                 }
@@ -730,10 +748,12 @@ export async function createBitmapFromFile(
 
         if (projectStore.project.settings.general.embedBitmaps) {
             let fileType = file.type;
-            if (file.type == undefined) {
+            if (!file.type) {
                 const ext = path.extname(file.name).toLowerCase();
                 if (ext == ".jpg" || ext == ".jpeg") {
                     fileType = "image/jpg";
+                } else if (ext == ".gif") {
+                    fileType = "image/gif";
                 } else {
                     fileType = "image/png";
                 }

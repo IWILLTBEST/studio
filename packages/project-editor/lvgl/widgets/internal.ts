@@ -13,6 +13,7 @@ export * from "./Checkbox";
 export * from "./Colorwheel";
 export * from "./Container";
 export * from "./Dropdown";
+export * from "./Gif";
 export * from "./Image";
 export * from "./Imgbutton";
 export * from "./Led";

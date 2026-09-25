@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { clipboard, nativeImage } from "electron";
 import { getCurrentWindow, dialog } from "@electron/remote";
 import React from "react";
@@ -111,7 +112,8 @@ export const ImageProperty = observer(
                                                     extensions: [
                                                         "png",
                                                         "jpg",
-                                                        "jpeg"
+                                                        "jpeg",
+                                                        "gif"
                                                     ]
                                                 },
                                                 {
@@ -135,6 +137,15 @@ export const ImageProperty = observer(
                                                       )
                                                 : false;
                                         if (embeddedImage) {
+                                            const ext = path
+                                                .extname(filePaths[0])
+                                                .toLowerCase();
+                                            const imageType =
+                                                ext == ".jpg" || ext == ".jpeg"
+                                                    ? "image/jpg"
+                                                    : ext == ".gif"
+                                                    ? "image/gif"
+                                                    : "image/png";
                                             fs.readFile(
                                                 this.context.getAbsoluteFilePath(
                                                     filePaths[0]
@@ -143,7 +154,7 @@ export const ImageProperty = observer(
                                                 (err: any, data: any) => {
                                                     if (!err) {
                                                         changeValue(
-                                                            "data:image/png;base64," +
+                                                            `data:${imageType};base64,` +
                                                                 data
                                                         );
                                                     }

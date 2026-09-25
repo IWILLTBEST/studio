@@ -68,6 +68,50 @@ interface UpdateColorCallbackForUserWidget {
     updateColorsForPage: UpdateColorCallbackForPage;
 }
 
+//
+// GIF bitmaps are exported as raw (undecoded) file bytes wrapped in an
+// lv_img_dsc_t. lv_gif_set_src plays them via GIF_openRAM and only reads
+// the data/data_size fields, so the header is left zeroed.
+//
+async function getGifBitmapSourceFile(
+    build: LVGLBuild,
+    bitmap: Bitmap,
+    fileName: string
+) {
+    let bytes: Buffer;
+    const image = bitmap.image!;
+    if (image.startsWith("data:")) {
+        bytes = Buffer.from(
+            image.substring(image.indexOf(",") + 1),
+            "base64"
+        );
+    } else {
+        const fs = await import("fs");
+        bytes = await fs.promises.readFile(
+            build.project._store.getAbsoluteFilePath(image)
+        );
+    }
+
+    const lines: string[] = [];
+    lines.push(`const uint8_t ${fileName}_data[] = {`);
+    for (let i = 0; i < bytes.length; i += 20) {
+        lines.push(
+            "    " +
+                Array.from(bytes.slice(i, i + 20))
+                    .map(byte => "0x" + byte.toString(16).padStart(2, "0"))
+                    .join(", ") +
+                ","
+        );
+    }
+    lines.push("};");
+    lines.push("");
+    lines.push(`const lv_img_dsc_t ${fileName} = {`);
+    lines.push(`    .data = ${fileName}_data,`);
+    lines.push(`    .data_size = sizeof(${fileName}_data),`);
+    lines.push("};");
+    return lines.join("\n");
+}
+
 export class LVGLBuild extends Build {
     project: Project;
 
@@ -3090,10 +3134,16 @@ extern ext_font_desc_t fonts[];
                     } else {
                         // write C file
                         try {
-                            let source = await getLvglBitmapSourceFile(
-                                bitmap,
-                                this.getImageVariableName(bitmap)
-                            );
+                            let source = bitmap.isGif
+                                ? await getGifBitmapSourceFile(
+                                      this,
+                                      bitmap,
+                                      this.getImageVariableName(bitmap)
+                                  )
+                                : await getLvglBitmapSourceFile(
+                                      bitmap,
+                                      this.getImageVariableName(bitmap)
+                                  );
 
                             source = `#ifdef __has_include
     #if __has_include("lvgl.h")

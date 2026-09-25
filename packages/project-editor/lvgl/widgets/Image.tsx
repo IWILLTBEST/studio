@@ -218,6 +218,14 @@ export class LVGLImageWidget extends LVGLWidget {
 
                 if (!bitmap) {
                     messages.push(propertyNotFoundMessage(widget, "image"));
+                } else if (bitmap.isGif) {
+                    messages.push(
+                        new Message(
+                            MessageType.ERROR,
+                            `GIF bitmaps are only supported by the GIF widget`,
+                            getChildOfObject(widget, "image")
+                        )
+                    );
                 }
             }
 
