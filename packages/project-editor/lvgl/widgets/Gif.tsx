@@ -131,6 +131,8 @@ export class LVGLGifWidget extends LVGLWidget {
             top: 0,
             width: 60,
             height: 40,
+            widthUnit: "content",
+            heightUnit: "content",
             image: ""
         },
 
