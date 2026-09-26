@@ -6,6 +6,7 @@ import { dialog, getCurrentWindow } from "@electron/remote";
 import { shell } from "electron";
 
 import { guid } from "eez-studio-shared/guid";
+import { t } from "eez-studio-shared/i18n";
 import { humanize } from "eez-studio-shared/string";
 import { filterNumber } from "eez-studio-shared/validation";
 
@@ -561,7 +562,11 @@ export const Property = observer(
                                 </button>
                             </div>
                             {formText && (
-                                <div className="form-text">{formText}</div>
+                                <div className="form-text">
+                                    {typeof formText === "string"
+                                        ? t(formText)
+                                        : formText}
+                                </div>
                             )}
                         </div>
                     );
@@ -579,7 +584,11 @@ export const Property = observer(
                                 readOnly={readOnly || propertyInfo.computed}
                             />
                             {formText && (
-                                    <div className="form-text">{formText}</div>
+                                    <div className="form-text">
+                                        {typeof formText === "string"
+                                            ? t(formText)
+                                            : formText}
+                                    </div>
                                 )}
                         </div>
                     );
@@ -682,7 +691,10 @@ export const Property = observer(
                         enumItem => enumItem.id == this._value
                     );
                     const value = enumItem
-                        ? enumItem.label || humanize(enumItem.id.toString())
+                        ? t(
+                              enumItem.label ||
+                                  humanize(enumItem.id.toString())
+                          )
                         : this._value;
 
                     return (
@@ -717,7 +729,7 @@ export const Property = observer(
                             
                             options.push(
                                 <option key={id} value={id}>
-                                    {label}
+                                    {t(label)}
                                 </option>
                             );
                         });
@@ -756,7 +768,10 @@ export const Property = observer(
                                 let groupOptions: JSX.Element[] = [];
                                 addEnumItemsToOptions(group.items, groupOptions, propertyInfo.enumGroupSeparator)
                                 options.push(
-                                    <optgroup key={group.label} label={group.label}>
+                                    <optgroup
+                                        key={group.label}
+                                        label={t(group.label)}
+                                    >
                                         {groupOptions}
                                     </optgroup>
                                 );
@@ -920,9 +935,11 @@ export const Property = observer(
                         label={
                             !propertyInfo.checkboxStyleSwitch &&
                             !propertyInfo.checkboxHideLabel
-                                ? getObjectPropertyDisplayName(
-                                      this.props.objects[0],
-                                      propertyInfo
+                                ? t(
+                                      getObjectPropertyDisplayName(
+                                          this.props.objects[0],
+                                          propertyInfo
+                                      )
                                   )
                                 : undefined
                         }
@@ -996,7 +1013,11 @@ export const Property = observer(
                                 readOnly={readOnly || propertyInfo.computed}
                             />
                             {formText && (
-                                <div className="form-text">{formText}</div>
+                                <div className="form-text">
+                                    {typeof formText === "string"
+                                        ? t(formText)
+                                        : formText}
+                                </div>
                             )}
                         </div>
                     );
@@ -1017,7 +1038,11 @@ export const Property = observer(
                             onClick={this.props.onClick}
                         />
                         {formText && (
-                            <div className="form-text">{formText}</div>
+                            <div className="form-text">
+                                {typeof formText === "string"
+                                    ? t(formText)
+                                    : formText}
+                            </div>
                         )}
                     </div>
                 );

@@ -1,4 +1,5 @@
 import { humanize } from "eez-studio-shared/string";
+import { t } from "eez-studio-shared/i18n";
 import { observer } from "mobx-react";
 import { computed, makeObservable, runInAction } from "mobx";
 import classNames from "classnames";
@@ -184,7 +185,7 @@ export const LVGLStylesDefinitionProperty = observer(
                                             size={18}
                                             className="triangle"
                                         />
-                                        {propertiesGroup.groupName}
+                                        {t(propertiesGroup.groupName)}
                                         {numModifications > 0
                                             ? ` (${numModifications})`
                                             : ""}

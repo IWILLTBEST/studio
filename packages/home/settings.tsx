@@ -35,6 +35,12 @@ import {
     getTimeFormat,
     setTimeFormat
 } from "eez-studio-shared/i10n";
+import {
+    UI_LANGUAGES,
+    getUiLanguage,
+    setUiLanguage,
+    t
+} from "eez-studio-shared/i18n";
 import { formatBytes } from "eez-studio-shared/formatBytes";
 
 import { showDialog, Dialog } from "eez-studio-ui/dialog";
@@ -133,6 +139,7 @@ class SettingsController {
     selectedDatabase: InstrumentDatabase | undefined;
 
     locale: string = getLocale();
+    uiLanguage: string = getUiLanguage();
     dateFormat: string = getDateFormat();
     timeFormat: string = getTimeFormat();
     isDarkTheme: boolean = getIsDarkTheme();
@@ -167,11 +174,13 @@ class SettingsController {
         makeObservable(this, {
             selectedDatabase: observable,
             locale: observable,
+            uiLanguage: observable,
             dateFormat: observable,
             timeFormat: observable,
             isDarkTheme: observable,
             mru: observable,
             restartRequired: computed,
+            onUiLanguageChange: action.bound,
             onLocaleChange: action.bound,
             onDateFormatChanged: action.bound,
             onTimeFormatChanged: action.bound,
@@ -228,6 +237,11 @@ class SettingsController {
             this.dateFormat !== this.activeDateFormat ||
             this.timeFormat !== this.activeTimeFormat
         );
+    }
+
+    onUiLanguageChange(value: string) {
+        this.uiLanguage = value;
+        setUiLanguage(value);
     }
 
     onLocaleChange(value: string) {
@@ -1017,12 +1031,26 @@ export const Settings = observer(
             return (
                 <div className="EezStudio_HomeSettingsBody">
                     <PropertyList>
-                        <SettingsSectionHeader title="Databases" />
+                        <SettingsSectionHeader title={t("Databases")} />
                         <Databases />
 
-                        <SettingsSectionHeader title="Localization" />
+                        <SettingsSectionHeader title={t("Localization")} />
                         <SelectProperty
-                            name="Locale"
+                            name={t("Language")}
+                            value={settingsController.uiLanguage}
+                            onChange={settingsController.onUiLanguageChange}
+                        >
+                            {UI_LANGUAGES.map(uiLanguage => (
+                                <option
+                                    key={uiLanguage.code}
+                                    value={uiLanguage.code}
+                                >
+                                    {t(uiLanguage.name)}
+                                </option>
+                            ))}
+                        </SelectProperty>
+                        <SelectProperty
+                            name={t("Locale")}
                             value={settingsController.locale}
                             onChange={settingsController.onLocaleChange}
                         >
@@ -1041,7 +1069,7 @@ export const Settings = observer(
                                 ))}
                         </SelectProperty>
                         <SelectProperty
-                            name="Date format"
+                            name={t("Date format")}
                             value={settingsController.dateFormat}
                             onChange={settingsController.onDateFormatChanged}
                         >
@@ -1055,7 +1083,7 @@ export const Settings = observer(
                             ))}
                         </SelectProperty>
                         <SelectProperty
-                            name="Time format"
+                            name={t("Time format")}
                             value={settingsController.timeFormat}
                             onChange={settingsController.onTimeFormatChanged}
                         >
@@ -1069,15 +1097,15 @@ export const Settings = observer(
                             ))}
                         </SelectProperty>
 
-                        <SettingsSectionHeader title="External Tools" />
+                        <SettingsSectionHeader title={t("External Tools")} />
                         <PythonSettings />
 
-                        <SettingsSectionHeader title="Project Editor" />
+                        <SettingsSectionHeader title={t("Project Editor")} />
                         <TemplateSettings />
 
-                        <SettingsSectionHeader title="Appearance" />
+                        <SettingsSectionHeader title={t("Appearance")} />
                         <BooleanProperty
-                            name={`Dark theme`}
+                            name={t("Dark theme")}
                             value={settingsController.isDarkTheme}
                             onChange={settingsController.switchTheme}
                             checkboxStyleSwitch={true}
@@ -1090,7 +1118,7 @@ export const Settings = observer(
                                     className="btn btn-primary EezStudio_PulseTransition"
                                     onClick={settingsController.restart}
                                 >
-                                    Restart
+                                    {t("Restart")}
                                 </button>
                             </div>
                         </Header>

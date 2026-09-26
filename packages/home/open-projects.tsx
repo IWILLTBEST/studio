@@ -16,6 +16,7 @@ import { observer } from "mobx-react";
 import { ButtonAction, IconAction } from "eez-studio-ui/action";
 
 import { stringCompare } from "eez-studio-shared/string";
+import { t } from "eez-studio-shared/i18n";
 
 import { IListNode, List, ListContainer, ListItem } from "eez-studio-ui/list";
 import { settingsController } from "home/settings";
@@ -236,7 +237,7 @@ export const Projects = observer(
 
             menu.append(
                 new MenuItem({
-                    label: "Edit Project",
+                    label: t("Edit Project"),
                     click: openProjectsStore.editProject
                 })
             );
@@ -244,7 +245,7 @@ export const Projects = observer(
             if (node.data.hasFlowSupport) {
                 menu.append(
                     new MenuItem({
-                        label: "Run Project",
+                        label: t("Run Project"),
                         click: openProjectsStore.runProject
                     })
                 );
@@ -252,14 +253,14 @@ export const Projects = observer(
 
             menu.append(
                 new MenuItem({
-                    label: "Copy Project Path",
+                    label: t("Copy Project Path"),
                     click: openProjectsStore.copyProjectPath
                 })
             );
 
             menu.append(
                 new MenuItem({
-                    label: "Remove From List",
+                    label: t("Remove From List"),
                     click: openProjectsStore.removeFromList
                 })
             );
@@ -299,8 +300,8 @@ export const Projects = observer(
                         <div className="EezStudio_HomeTab_Projects_Actions">
                             <ButtonAction
                                 className="btn-primary"
-                                text={"Open Project"}
-                                title="Open a local EEZ Studio Project"
+                                text={t("Open Project")}
+                                title={t("Open a local EEZ Studio Project")}
                                 icon={HOME_TAB_OPEN_ICON}
                                 onClick={() => {
                                     ipcRenderer.send("open-project");

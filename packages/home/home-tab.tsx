@@ -19,6 +19,7 @@ import { Projects } from "home/open-projects";
 import { Instruments, defaultInstrumentsStore } from "home/instruments";
 import { HOME_TAB_OPEN_ICON } from "project-editor/ui-components/icons";
 import { instrumentDatabases } from "eez-studio-shared/db";
+import { t } from "eez-studio-shared/i18n";
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -225,7 +226,7 @@ export const Home = observer(
                                 onClick={action(() => {
                                     homeTabStore.activeTab = "settings";
                                 })}
-                                title="Global user settings"
+                                title={t("Global user settings")}
                             >
                                 <Icon
                                     icon={"material:settings"}
