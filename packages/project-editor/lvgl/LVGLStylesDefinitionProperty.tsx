@@ -310,7 +310,7 @@ export const LVGLStylesDefinitionTree = observer(
                             id: "_totalModifications",
                             label: (
                                 <span className="EezStudio_LVGLStyle_PartLabel">
-                                    {`Changed (${totalModifications})`}
+                                    {t("Changed")} ({totalModifications})
                                 </span>
                             ),
                             children: [],
@@ -324,7 +324,7 @@ export const LVGLStylesDefinitionTree = observer(
                               const numModifications =
                                   this.getNumModificationsForPart(part);
 
-                              const partLabel = humanize(part) + " part";
+                              const partLabel = t(humanize(part) + " part");
 
                               return {
                                   id: part,
@@ -378,8 +378,8 @@ export const LVGLStylesDefinitionTree = observer(
                                                   )}
                                               >
                                                   {numModifications == 0
-                                                      ? state
-                                                      : `${state} (${numModifications})`}
+                                                      ? t(state)
+                                                      : `${t(state)} (${numModifications})`}
                                               </span>
                                           ),
                                           children: [],
@@ -550,9 +550,11 @@ export const LVGLStylesDefinitionGroupProperties = observer(
                                     )
                             );
 
-                            const propertyName = getObjectPropertyDisplayName(
-                                propertyObjects[0],
-                                propertyInfo
+                            const propertyName = t(
+                                getObjectPropertyDisplayName(
+                                    propertyObjects[0],
+                                    propertyInfo
+                                )
                             );
 
                             let propertyNameShort;
@@ -562,10 +564,21 @@ export const LVGLStylesDefinitionGroupProperties = observer(
                             } else if (groupName == "padding") {
                                 groupName = "pad";
                             }
+                            const groupNameLocalized = t(
+                                propertiesGroup.groupName.trim()
+                            );
                             if (propertyName.toLowerCase().startsWith(groupName + " ")) {
                                 // Remove group name prefix from property name
                                 propertyNameShort = propertyName
                                     .substring(groupName.length )
+                                    .trim();
+                            } else if (
+                                groupNameLocalized &&
+                                propertyName.startsWith(groupNameLocalized)
+                            ) {
+                                // Same for the translated group name
+                                propertyNameShort = propertyName
+                                    .substring(groupNameLocalized.length)
                                     .trim();
                             } else {
                                 propertyNameShort = propertyName;

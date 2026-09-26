@@ -6,6 +6,7 @@ import { MenuItem } from "@electron/remote";
 import { Rect } from "eez-studio-shared/geometry";
 
 import { humanize } from "eez-studio-shared/string";
+import { t } from "eez-studio-shared/i18n";
 import { Checkbox } from "project-editor/ui-components/PropertyGrid/Checkbox";
 
 import {
@@ -322,7 +323,7 @@ const LVGLWidgetFlagsProperty = observer(
                             <Checkbox
                                 key={flagName}
                                 state={state}
-                                label={humanize(flagName)}
+                                label={t(humanize(flagName))}
                                 onChange={(value: boolean) => {
                                     this.context.undoManager.setCombineCommands(
                                         true
@@ -470,7 +471,7 @@ const LVGLWidgetStatesProperty = observer(
                             <Checkbox
                                 key={stateName}
                                 state={state}
-                                label={humanize(stateName)}
+                                label={t(humanize(stateName))}
                                 onChange={(value: boolean) => {
                                     this.context.undoManager.setCombineCommands(
                                         true
