@@ -2619,13 +2619,26 @@
         overflow: hidden;
     }
 
-    & > div:nth-child(1) {
+    & > div:first-child {
         border-top-left-radius: var(--bs-border-radius);
         border-bottom-left-radius: var(--bs-border-radius);
         overflow-y: auto;
     }
 
-    & > div:nth-child(2) {
+    .EezStudio_LVGLStylesDefinition_Sash {
+        flex: none;
+        width: 5px;
+        border: none;
+        cursor: col-resize;
+        background: transparent;
+        transition: background 0.15s;
+
+        &:hover {
+            background: @panelBorderColor;
+        }
+    }
+
+    & > div:last-child {
         border-left: none;
         border-top-right-radius: var(--bs-border-radius);
         border-bottom-right-radius: var(--bs-border-radius);

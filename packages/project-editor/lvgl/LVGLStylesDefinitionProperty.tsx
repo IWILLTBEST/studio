@@ -43,18 +43,61 @@ type TreeNodeData =
     | undefined;
 
 export const LVGLStylesDefinitionProperty = observer(
-    class LVGLStylesDefinitionProperty extends React.Component<PropertyProps> {
+    class LVGLStylesDefinitionProperty extends React.Component<
+        PropertyProps,
+        { treeWidth: number }
+    > {
         static contextType = ProjectContext;
         declare context: React.ContextType<typeof ProjectContext>;
 
         constructor(props: any) {
             super(props);
 
+            const savedWidth = parseInt(
+                window.localStorage.getItem(
+                    "lvglStylesDefinitionTreeWidth"
+                ) || "",
+                10
+            );
+
+            this.state = {
+                treeWidth:
+                    savedWidth >= 90 && savedWidth <= 500 ? savedWidth : 160
+            };
+
             makeObservable(this, {
                 lvglPart: computed,
                 lvglState: computed
             });
         }
+
+        onSashMouseDown = (event: React.MouseEvent) => {
+            event.preventDefault();
+
+            const startX = event.clientX;
+            const startWidth = this.state.treeWidth;
+            let lastWidth = startWidth;
+
+            const onMouseMove = (e: MouseEvent) => {
+                lastWidth = Math.min(
+                    500,
+                    Math.max(90, startWidth + e.clientX - startX)
+                );
+                this.setState({ treeWidth: lastWidth });
+            };
+
+            const onMouseUp = () => {
+                window.removeEventListener("mousemove", onMouseMove);
+                window.removeEventListener("mouseup", onMouseUp);
+                window.localStorage.setItem(
+                    "lvglStylesDefinitionTreeWidth",
+                    String(lastWidth)
+                );
+            };
+
+            window.addEventListener("mousemove", onMouseMove);
+            window.addEventListener("mouseup", onMouseUp);
+        };
 
         get lvglPart() {
             let part: LVGLParts | undefined =
@@ -131,12 +174,22 @@ export const LVGLStylesDefinitionProperty = observer(
 
             return (
                 <div className="EezStudio_LVGLStylesDefinition">
-                    <div>
+                    <div
+                        style={{
+                            width: this.state.treeWidth,
+                            minWidth: this.state.treeWidth,
+                            flex: "none"
+                        }}
+                    >
                         <LVGLStylesDefinitionTree
                             stylesDefinitions={stylesDefinitions}
                             {...this.props}
                         />
                     </div>
+                    <div
+                        className="EezStudio_LVGLStylesDefinition_Sash"
+                        onMouseDown={this.onSashMouseDown}
+                    />
                     <div>
                         {lvglProperties.map(propertiesGroup => {
                             const expanded = this.isExpanded(propertiesGroup);
@@ -569,17 +622,21 @@ export const LVGLStylesDefinitionGroupProperties = observer(
                             );
                             if (propertyName.toLowerCase().startsWith(groupName + " ")) {
                                 // Remove group name prefix from property name
-                                propertyNameShort = propertyName
-                                    .substring(groupName.length )
+                                const rest = propertyName
+                                    .substring(groupName.length)
                                     .trim();
+                                propertyNameShort = rest || propertyName;
                             } else if (
                                 groupNameLocalized &&
                                 propertyName.startsWith(groupNameLocalized)
                             ) {
-                                // Same for the translated group name
-                                propertyNameShort = propertyName
+                                // Same for the translated group name; keep the
+                                // full name when nothing would be left (e.g.
+                                // Layout inside the 布局 group)
+                                const rest = propertyName
                                     .substring(groupNameLocalized.length)
                                     .trim();
+                                propertyNameShort = rest || propertyName;
                             } else {
                                 propertyNameShort = propertyName;
                             }
