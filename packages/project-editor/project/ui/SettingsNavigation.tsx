@@ -5,6 +5,7 @@ import * as FlexLayout from "flexlayout-react";
 
 import { FlexLayoutContainer } from "eez-studio-ui/FlexLayout";
 import { Icon } from "eez-studio-ui/icon";
+import { t } from "eez-studio-shared/i18n";
 
 import { getProperty, getParent, IEezObject } from "project-editor/core/object";
 import {
@@ -458,7 +459,7 @@ export const SettingsContent = observer(
                 return (
                     <div className="EezStudio_SettingsEditor">
                         <PropertyGrid objects={[this.object]} />
-                        <h3>Project features</h3>
+                        <h3>{t("Project features")}</h3>
                         <div className="d-flex flex-wrap">
                             {projectFeatures}
                         </div>

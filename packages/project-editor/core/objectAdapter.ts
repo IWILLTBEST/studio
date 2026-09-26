@@ -970,10 +970,11 @@ export class TreeAdapter {
     itemToString(item: TreeObjectAdapter) {
         const classInfo = getClassInfo(item.object);
         if (classInfo.listLabel) {
-            return classInfo.listLabel(item.object, true);
+            const label = classInfo.listLabel(item.object, true);
+            return typeof label === "string" ? t(label) : label;
         }
 
-        return objectToString(item.object);
+        return t(objectToString(item.object));
     }
 
     isAncestor(item: TreeObjectAdapter, ancestor: TreeObjectAdapter): boolean {

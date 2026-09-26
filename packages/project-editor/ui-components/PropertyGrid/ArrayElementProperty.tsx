@@ -47,6 +47,7 @@ import { PropertyName } from "./PropertyName";
 import { Property } from "./Property";
 import { closestByClass } from "eez-studio-shared/dom";
 import { Point, pointDistance } from "eez-studio-shared/geometry";
+import { t } from "eez-studio-shared/i18n";
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -277,7 +278,13 @@ export const ArrayProperty = observer(
                         {toolbar}
                         {content}
                     </div>
-                    {formText && <div className="form-text">{formText}</div>}
+                    {formText && (
+                        <div className="form-text">
+                            {typeof formText === "string"
+                                ? t(formText)
+                                : formText}
+                        </div>
+                    )}
                 </>
             );
         }
