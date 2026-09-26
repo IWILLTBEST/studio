@@ -41,6 +41,7 @@ export const PropertyName = observer(
             let propertyName = t(
                 getObjectPropertyDisplayName(objects[0], propertyInfo)
             );
+            
 
             if (propertyInfo.propertyGridCollapsable) {
                 const enabled =

@@ -333,7 +333,11 @@ export async function executeBridgeTool(tool: string, args: any): Promise<any> {
 
         case "goto_object": {
             if (!ctx) throw new Error("EEZ Studio 里没有打开的工程");
-            return gotoObject(ctx, String(args.path ?? ""));
+            return gotoObject(
+                ctx,
+                String(args.path ?? ""),
+                args.panel === true
+            );
         }
 
         case "get_selection": {

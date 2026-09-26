@@ -1168,11 +1168,18 @@ export async function redoProject(ctx: ToolContext) {
 }
 
 /** 在编辑器里选中并定位到对象（check 报错后跳到出错部件用） */
-export function gotoObject(ctx: ToolContext, path: string) {
+export function gotoObject(ctx: ToolContext, path: string, panel?: boolean) {
     const obj = resolveObject(ctx, path);
     // showInNavigation/selectObject 置 false：不动导航面板——面板选中会在
-    // propertyGridObjects 里遮蔽编辑器选中，导致 get_selection 读到页面
-    ctx.projectStore.navigationStore.showObjects([obj], true, false, false);
+    // propertyGridObjects 里遮蔽编辑器选中，导致 get_selection 读到页面。
+    // args.panel=true 时反向利用该遮蔽：让属性面板选中目标（验收部件
+    // 特定属性行等场景）。
+    ctx.projectStore.navigationStore.showObjects(
+        [obj],
+        true,
+        panel === true,
+        panel === true
+    );
     return {
         selected: objectPathOf(obj),
         objID: obj.objID,

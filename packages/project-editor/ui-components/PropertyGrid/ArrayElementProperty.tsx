@@ -1295,9 +1295,11 @@ const ArrayElementProperty = observer(
                         </div>
                     );
                 } else {
-                    const propertyName = propertyInfo.propertyGridFullRowComponent ? "" : getObjectPropertyDisplayName(
-                        object,
-                        propertyInfo
+                    const propertyName = propertyInfo.propertyGridFullRowComponent ? "" : t(
+                        getObjectPropertyDisplayName(
+                            object,
+                            propertyInfo
+                        )
                     );
                     return (
                         <div className={className}>
