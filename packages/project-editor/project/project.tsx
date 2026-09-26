@@ -772,7 +772,7 @@ export const PROJECT_TYPE_NAMES = {
     [ProjectType.EEZ_GUI_LITE]: "EEZ-GUI Lite"
 };
 
-export type LVGLVersion = "8.4.0" | "9.2.2" | "9.3.0" | "9.4.0" | "9.5.0";
+export type LVGLVersion = "8.4.0" | "9.2.2" | "9.3.0" | "9.4.0" | "9.5.0" | "9.6.0";
 
 export class General extends EezObject {
     projectVersion: ProjectVersion = "v3";
@@ -905,7 +905,8 @@ export class General extends EezObject {
                     { id: "9.2.2", label: "9.2.2" },
                     { id: "9.3.0", label: "9.3.0" },
                     { id: "9.4.0", label: "9.4.0" },
-                    { id: "9.5.0", label: "9.5.0" }
+                    { id: "9.5.0", label: "9.5.0" },
+                    { id: "9.6.0", label: "9.6.0" }
                 ],
                 enumDisallowUndefined: true,
                 disabled: (general: General) =>

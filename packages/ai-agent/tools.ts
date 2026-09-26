@@ -1318,7 +1318,7 @@ export function setPreviewTheme(ctx: ToolContext, themeName: string) {
     return `编辑态预览主题已切换为 ${themeName}（screenshot 即可看效果）`;
 }
 
-const LVGL_VERSIONS = ["8.4.0", "9.2.2", "9.3.0", "9.4.0", "9.5.0"];
+const LVGL_VERSIONS = ["8.4.0", "9.2.2", "9.3.0", "9.4.0", "9.5.0", "9.6.0"];
 
 /** 程序化新建最小 LVGL 工程（模板落盘 + 打开新 tab） */
 export async function createProject(

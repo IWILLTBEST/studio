@@ -289,7 +289,7 @@ registerLvglEnum(
         FLOATING: LVGL_FLAG_CODES_90.FLOATING,
         OVERFLOW_VISIBLE: LVGL_FLAG_CODES_90.OVERFLOW_VISIBLE
     },
-    ["9.2.2", "9.3.0", "9.4.0", "9.5.0"]
+    ["9.2.2", "9.3.0", "9.4.0", "9.5.0", "9.6.0"]
 );
 
 registerLvglEnum(LV_STATE_ENUM_NAME, 
@@ -328,8 +328,8 @@ registerLvglEnum(LV_STATE_ENUM_NAME,
         USER3: LVGL_STATE_CODES_MORE_V9_5_0.USER3,
         USER4: LVGL_STATE_CODES_MORE_V9_5_0.USER4,
         ALL: LVGL_STATE_CODES_MORE_V9_5_0.ALL,
-    }, 
-    ["9.5.0"]
+    },
+    ["9.5.0", "9.6.0"]
 );
 
 registerLvglEnum(LV_BUTTONMATRIX_CTRL_ENUM_NAME, LV_BUTTONMATRIX_CTRL);
@@ -363,4 +363,4 @@ registerLvglEnum(LV_PART_ENUM_NAME, {
     TEXTAREA_PLACEHOLDER: LVGL_PARTS_9.TEXTAREA_PLACEHOLDER,
 
     ANY: LVGL_PARTS_9.ANY
-}, ["9.2.2", "9.3.0", "9.4.0", "9.5.0"]);
+}, ["9.2.2", "9.3.0", "9.4.0", "9.5.0", "9.6.0"]);

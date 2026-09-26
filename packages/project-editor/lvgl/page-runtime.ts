@@ -140,7 +140,7 @@ export abstract class LVGLPageRuntime {
         this.wasm = undefined as any;
         this.toLVGLCode = new SimulatorLVGLCode(
             this,
-            this.isLVGLVersion(["9.5.0"])
+            this.isLVGLVersion(["9.5.0", "9.6.0"])
                 ? LVGL_CONSTANTS_ALL_95
                 : LVGL_CONSTANTS_ALL
         );

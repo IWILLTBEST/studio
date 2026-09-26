@@ -42,7 +42,7 @@ export function getPartBuildCode(part: string) {
 export function getStateCode(project: Project, state: string) {
     let result = 0;
 
-    const lvglStatesVar = project.settings.general.lvglVersion == "9.5.0" ? lvglStates_V9_5_0 : lvglStates;
+    const lvglStatesVar = ["9.5.0", "9.6.0"].includes(project.settings.general.lvglVersion) ? lvglStates_V9_5_0 : lvglStates;
 
     state.split("|").forEach(stateStr => {
         const stateCode = (lvglStatesVar as any)[stateStr];
