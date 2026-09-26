@@ -235,7 +235,7 @@ export function registerAction(actionDefinition: IActionDefinition) {
                 makeAssignableExpressionProperty(
                     {
                         name: actionProperty.name,
-                        displayName: `Store ${actionProperty.name} into`,
+                        displayName: () => t(`Store ${actionProperty.name} into`),
                         type: PropertyType.MultilineText
                     },
                     expressionType
