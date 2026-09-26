@@ -95,6 +95,14 @@ async function getGifBitmapSourceFile(
     const bytes = await getGifBitmapBytes(build, bitmap);
 
     const lines: string[] = [];
+    lines.push("#ifdef __has_include");
+    lines.push('    #if __has_include("lvgl.h")');
+    lines.push("        #ifndef LV_LVGL_H_INCLUDE_SIMPLE");
+    lines.push("            #define LV_LVGL_H_INCLUDE_SIMPLE");
+    lines.push("        #endif");
+    lines.push("    #endif");
+    lines.push("#endif");
+    lines.push('#include "lvgl.h"');
     lines.push(`const uint8_t ${fileName}_data[] = {`);
     for (let i = 0; i < bytes.length; i += 20) {
         lines.push(
