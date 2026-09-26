@@ -27,6 +27,7 @@ import {
 } from "eez-studio-shared/util-electron";
 import { guid } from "eez-studio-shared/guid";
 import { stringCompare } from "eez-studio-shared/string";
+import { t } from "eez-studio-shared/i18n";
 
 import { showDialog } from "eez-studio-ui/dialog";
 import { Loader } from "eez-studio-ui/loader";
@@ -645,7 +646,7 @@ export class WizardModel {
         if (this.exampleProjectTypes.get("_newExamples")!.length > 0) {
             rootNode.children.push({
                 id: "_newExamples",
-                label: "New Examples",
+                label: t("New Examples"),
                 children: [],
                 selected: this.folder == "_newExamples",
                 expanded: true
@@ -654,7 +655,7 @@ export class WizardModel {
 
         rootNode.children.push({
             id: "_allExamples",
-            label: "All Examples",
+            label: t("All Examples"),
             children: [],
             selected: this.folder == "_allExamples",
             expanded: true
@@ -748,9 +749,10 @@ export class WizardModel {
                 id: "dashboard",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.DASHBOARD],
                 image: DASHBOARD_PROJECT_ICON(128),
-                projectName: "Dashboard",
-                description:
-                    "Start your new Dashboard project development here.",
+                projectName: t("Dashboard"),
+                description: t(
+                    "Start your new Dashboard project development here."
+                ),
                 projectFileUrl: getTemplatePathOrUrl(
                     "templates/dashboard.eez-project"
                 )
@@ -759,8 +761,10 @@ export class WizardModel {
                 id: "firmware",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.FIRMWARE],
                 image: EEZ_GUI_PROJECT_ICON(128),
-                projectName: "EEZ-GUI",
-                description: "Start your new EEZ-GUI project development here.",
+                projectName: t("EEZ-GUI"),
+                description: t(
+                    "Start your new EEZ-GUI project development here."
+                ),
                 projectFileUrl: getTemplatePathOrUrl(
                     "templates/firmware.eez-project"
                 )
@@ -769,8 +773,8 @@ export class WizardModel {
                 id: "LVGL",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.LVGL],
                 image: LVGL_PROJECT_ICON(128),
-                projectName: "LVGL",
-                description: "Start your new LVGL project development here.",
+                projectName: t("LVGL"),
+                description: t("Start your new LVGL project development here."),
                 projectFileUrl: {
                     "8.4.0": getTemplatePathOrUrl(
                         "templates/v0.23.0/LVGL-8.3.eez-project"
@@ -793,9 +797,10 @@ export class WizardModel {
                 id: "LVGL with EEZ Flow",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.LVGL],
                 image: LVGL_WITH_FLOW_PROJECT_ICON(128),
-                projectName: "LVGL with EEZ Flow",
-                description:
-                    "Start your new LVGL with EEZ Flow project development here.",
+                projectName: t("LVGL with EEZ Flow"),
+                description: t(
+                    "Start your new LVGL with EEZ Flow project development here."
+                ),
                 projectFileUrl: {
                     "8.4.0": getTemplatePathOrUrl(
                         "templates/v0.23.0/LVGL with EEZ Flow-8.3.eez-project"
@@ -818,8 +823,8 @@ export class WizardModel {
                 id: "IEXT",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.IEXT],
                 image: IEXT_PROJECT_ICON(128),
-                projectName: "IEXT",
-                description: "Start your new IEXT project development here.",
+                projectName: t("IEXT"),
+                description: t("Start your new IEXT project development here."),
                 projectFileUrl: {
                     SCPI: getTemplatePathOrUrl("templates/IEXT.eez-project"),
                     PROPRIETARY: getTemplatePathOrUrl(
@@ -831,8 +836,10 @@ export class WizardModel {
                 id: "EEZ-GUI Lite",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.EEZ_GUI_LITE],
                 image: EEZ_GUI_LITE_PROJECT_ICON(128),
-                projectName: "EEZ-GUI Lite",
-                description: "Start your new EEZ-GUI Lite project development here.",
+                projectName: t("EEZ-GUI Lite"),
+                description: t(
+                    "Start your new EEZ-GUI Lite project development here."
+                ),
                 projectFileUrl: getTemplatePathOrUrl(
                     "templates/eez-gui-lite.eez-project"
                 )
@@ -846,9 +853,10 @@ export class WizardModel {
                 id: "applet",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.APPLET],
                 image: APPLET_ICON(128),
-                projectName: "BB3 Applet",
-                description:
-                    "Start your new BB3 Applet project development here.",
+                projectName: t("BB3 Applet"),
+                description: t(
+                    "Start your new BB3 Applet project development here."
+                ),
                 projectFileUrl: getTemplatePathOrUrl(
                     "templates/applet.eez-project"
                 )
@@ -857,9 +865,10 @@ export class WizardModel {
                 id: "resource",
                 projectType: PROJECT_TYPE_NAMES[ProjectType.RESOURCE],
                 image: MICROPYTHON_ICON(128),
-                projectName: "BB3 MicroPython Script",
-                description:
-                    "Start your new BB3 MicroPython project development here.",
+                projectName: t("BB3 MicroPython Script"),
+                description: t(
+                    "Start your new BB3 MicroPython project development here."
+                ),
                 projectFileUrl: getTemplatePathOrUrl(
                     "templates/resource.eez-project"
                 )
@@ -908,7 +917,7 @@ export class WizardModel {
                     id: "_allTemplates",
                     label: (
                         <Count
-                            label="All Templates"
+                            label={t("All Templates")}
                             count={this.allTemplateProjectTypes.length}
                             attention={false}
                         ></Count>
@@ -925,7 +934,7 @@ export class WizardModel {
                     id: "_standard",
                     label: (
                         <Count
-                            label="Builtin Templates"
+                            label={t("Builtin Templates")}
                             count={this.standardProjectTypes.length}
                             attention={false}
                         ></Count>
@@ -942,7 +951,7 @@ export class WizardModel {
                     id: "_bb3",
                     label: (
                         <Count
-                            label="BB3 Script Templates"
+                            label={t("BB3 Script Templates")}
                             count={this.bb3ProjectTypes.length}
                             attention={false}
                         ></Count>
@@ -959,7 +968,7 @@ export class WizardModel {
                     id: "_templates",
                     label: (
                         <Count
-                            label="From envox.eu/gitea"
+                            label={t("From envox.eu/gitea")}
                             count={this.templateProjectTypes.length}
                             attention={false}
                         ></Count>
@@ -1089,7 +1098,7 @@ export class WizardModel {
         if (this.section == "templates") {
             const urlDef = this.selectedProjectType?.projectFileUrl;
             if (!urlDef) {
-                throw "Can't load EEZ-PROJECT file: no URL specified";
+                throw t("Can't load EEZ-PROJECT file: no URL specified");
             }
 
             if (typeof urlDef == "string") {
@@ -1120,7 +1129,7 @@ export class WizardModel {
             req.addEventListener("load", async () => {
                 if (req.readyState == 4) {
                     if (req.status != 200 || !req.response) {
-                        reject("Download failed!");
+                        reject(t("Download failed!"));
                         return;
                     }
                     try {
@@ -1132,7 +1141,7 @@ export class WizardModel {
             });
 
             req.addEventListener("error", error => {
-                reject("Network error");
+                reject(t("Network error"));
             });
 
             req.send();
@@ -1168,12 +1177,12 @@ export class WizardModel {
     validateName() {
         const name = this.name?.trim();
         if (!name) {
-            this.nameError = "This field is required.";
+            this.nameError = t("This field is required.");
             return;
         }
 
         if (!name.match(/[a-zA-Z_\-][a-zA-Z_\-0-9]*/)) {
-            this.nameError = "Invalid project name";
+            this.nameError = t("Invalid project name");
         }
 
         this.nameError = undefined;
@@ -1183,7 +1192,7 @@ export class WizardModel {
     validateLocation() {
         const location = this.location?.trim();
         if (!location) {
-            this.locationError = "This field is required.";
+            this.locationError = t("This field is required.");
             return;
         }
 
@@ -1200,8 +1209,9 @@ export class WizardModel {
                 fs.existsSync(this.projectFilePath!) &&
                 this.section == "templates"
             ) {
-                this.locationError =
-                    "Project with the same name already exists at this location.";
+                this.locationError = t(
+                    "Project with the same name already exists at this location."
+                );
                 return;
             }
         }
@@ -1220,12 +1230,12 @@ export class WizardModel {
 
         const bb3ProjectFile = this.bb3ProjectFile?.trim();
         if (!bb3ProjectFile) {
-            this.bb3ProjectFileError = "This field is required.";
+            this.bb3ProjectFileError = t("This field is required.");
             return;
         }
 
         if (!fs.existsSync(bb3ProjectFile)) {
-            this.bb3ProjectFileError = "File does not exists.";
+            this.bb3ProjectFileError = t("File does not exists.");
             return;
         }
 
@@ -1247,7 +1257,7 @@ export class WizardModel {
             req.addEventListener("load", async () => {
                 if (req.readyState == 4) {
                     if (req.status != 200 || !req.response) {
-                        reject("Download failed!");
+                        reject(t("Download failed!"));
                         return;
                     }
                     try {
@@ -1267,7 +1277,7 @@ export class WizardModel {
             });
 
             req.addEventListener("error", error => {
-                reject("Network error");
+                reject(t("Network error"));
             });
 
             req.send();
@@ -1319,7 +1329,7 @@ export class WizardModel {
                     if (!commandExists("git")) {
                         this.projectCreationError = (
                             <div>
-                                Git not installed. Install Git from{" "}
+                                {t("Git not installed. Install Git from")}{" "}
                                 <a
                                     href="#"
                                     onClick={event => {
@@ -1356,7 +1366,7 @@ export class WizardModel {
                     const { simpleGit } = await import("simple-git");
 
                     runInAction(
-                        () => (this.progress = "Cloning repository ...")
+                        () => (this.progress = t("Cloning repository ..."))
                     );
 
                     const onGitProgress = ({
@@ -1455,7 +1465,7 @@ export class WizardModel {
                         this.gitInit &&
                         !this.isSelectedExampleWithGitRepository
                     ) {
-                        runInAction(() => (this.progress = "Git init ..."));
+                        runInAction(() => (this.progress = t("Git init ...")));
                         if (manifestJson["submodules"] != undefined) {
                             const submodules: {
                                 name: string;
@@ -1543,7 +1553,9 @@ export class WizardModel {
                         } else {
                             runInAction(
                                 () =>
-                                    (this.progress = `Adding submodule eez-framework ...`)
+                                    (this.progress = t(
+                                        "Adding submodule eez-framework ..."
+                                    ))
                             );
 
                             await fs.promises.rm(
@@ -2091,9 +2103,9 @@ const ProjectTypeComponent = observer(
                                             event.preventDefault();
                                             openLink(projectType.repository!);
                                         }}
-                                        title="Project Git Repository"
+                                        title={t("Project Git Repository")}
                                     >
-                                        INFO
+                                        {t("INFO")}
                                     </a>
                                 )}
                         </div>
@@ -2114,7 +2126,7 @@ const ProjectTypeComponent = observer(
                         <div className="EezStudio_NewProjectWizard_ProjectType_Details_Description">
                             {projectType.author && (
                                 <div>
-                                    Created :{" "}
+                                    {t("Created :")}{" "}
                                     {projectType.authorLink ? (
                                         <a
                                             href="#"
@@ -2137,14 +2149,14 @@ const ProjectTypeComponent = observer(
 
                         <ProjectTypeInfo
                             infoList={{
-                                Type: projectType.projectType,
-                                Language: projectType.language,
-                                Resolution:
+                                [t("Type")]: projectType.projectType,
+                                [t("Language")]: projectType.language,
+                                [t("Resolution")]:
                                     projectType.displayWidth != undefined &&
                                     projectType.displayHeight != undefined
                                         ? `${projectType.displayWidth} x ${projectType.displayHeight}`
                                         : undefined,
-                                "LVGL version":
+                                [t("LVGL version")]:
                                     projectType.projectType ==
                                     PROJECT_TYPE_NAMES[ProjectType.LVGL]
                                         ? this.props.wizardModel.section ==
@@ -2231,7 +2243,7 @@ const ProjectProperties = observer(
             if (wizardModel.createProjectInProgress) {
                 return (
                     <div className="EezStudio_NewProjectWizard_CreateProjectProgress">
-                        <h6>Creating project ...</h6>
+                        <h6>{t("Creating project ...")}</h6>
                         <Loader />
                         <div>{wizardModel.progress || <span>&nbsp;</span>}</div>
                     </div>
@@ -2243,14 +2255,14 @@ const ProjectProperties = observer(
                     <PlatformDescription wizardModel={wizardModel} />
 
                     <div className="EezStudio_NewProjectWizard_ProjectProperties_Section">
-                        <h6>Project Settings</h6>
+                        <h6>{t("Project Settings")}</h6>
                         <div>
                             <div className="mb-3">
                                 <label
                                     htmlFor="new-project-wizard-name-input"
                                     className="form-label"
                                 >
-                                    Name
+                                    {t("Name")}
                                 </label>
                                 <NameInput
                                     id="new-project-wizard-name-input"
@@ -2277,7 +2289,7 @@ const ProjectProperties = observer(
                                             className="form-label"
                                             htmlFor="new-project-wizard-lvgl-version"
                                         >
-                                            LVGL version
+                                            {t("LVGL version")}
                                         </label>
                                         <select
                                             id="new-project-wizard-lvgl-version"
@@ -2310,7 +2322,7 @@ const ProjectProperties = observer(
                                             className="form-label"
                                             htmlFor="new-project-wizard-commands-protocol"
                                         >
-                                            Commands protocol
+                                            {t("Commands protocol")}
                                         </label>
                                         <select
                                             id="new-project-wizard-commands-protocol"
@@ -2327,7 +2339,7 @@ const ProjectProperties = observer(
                                         >
                                             <option value="SCPI">SCPI</option>
                                             <option value="PROPRIETARY">
-                                                Proprietary
+                                                {t("Proprietary")}
                                             </option>
                                         </select>
                                     </div>
@@ -2338,7 +2350,7 @@ const ProjectProperties = observer(
                                     htmlFor="new-project-wizard-location-input"
                                     className="col-form-label"
                                 >
-                                    Location
+                                    {t("Location")}
                                 </label>
                                 <DirectoryBrowserInput
                                     value={wizardModel.location || ""}
@@ -2375,7 +2387,7 @@ const ProjectProperties = observer(
                                         className="form-check-label"
                                         htmlFor="new-project-wizard-create-directory-checkbox"
                                     >
-                                        Create directory
+                                        {t("Create directory")}
                                     </label>
                                 </div>
                             )}
@@ -2388,8 +2400,8 @@ const ProjectProperties = observer(
                                     {wizardModel.selectedTemplateProject ||
                                     (wizardModel.isSelectedExampleWithGitRepository &&
                                         wizardModel.gitClone)
-                                        ? "Project folder path"
-                                        : "Project file path"}
+                                        ? t("Project folder path")
+                                        : t("Project file path")}
                                 </label>
                                 <div
                                     id="new-project-wizard-project-path-static"
@@ -2422,12 +2434,12 @@ const ProjectProperties = observer(
                                         className="form-check-label"
                                         htmlFor="new-project-wizard-git-clone-checkbox"
                                     >
-                                        Clone Git repository
+                                        {t("Clone Git repository")}
                                     </label>
                                     <div className="form-text">
-                                        Check this if you want to download the
-                                        entire repository not only eez-project
-                                        file and its dependencies.
+                                        {t(
+                                            "Check this if you want to download the entire repository not only eez-project file and its dependencies."
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -2449,7 +2461,7 @@ const ProjectProperties = observer(
                                         className="form-check-label"
                                         htmlFor="new-project-wizard-git-init-checkbox"
                                     >
-                                        Initialize as Git repository
+                                        {t("Initialize as Git repository")}
                                     </label>
                                 </div>
                             )}
@@ -2460,7 +2472,7 @@ const ProjectProperties = observer(
                                     <>
                                         <div className="mb-3">
                                             <label className="form-label">
-                                                BB3 project file option
+                                                {t("BB3 project file option")}
                                             </label>
 
                                             <div className="form-check ms-4">
@@ -2488,7 +2500,7 @@ const ProjectProperties = observer(
                                                     className="form-check-label"
                                                     htmlFor="new-project-wizard-bb3-project-download"
                                                 >
-                                                    Download from GitHub
+                                                    {t("Download from GitHub")}
                                                 </label>
 
                                                 {wizardModel.bb3ProjectOption ==
@@ -2527,7 +2539,9 @@ const ProjectProperties = observer(
                                                     className="form-check-label"
                                                     htmlFor="new-project-wizard-bb3-project-local"
                                                 >
-                                                    I already have a local copy
+                                                    {t(
+                                                        "I already have a local copy"
+                                                    )}
                                                 </label>
                                             </div>
                                         </div>
@@ -2539,7 +2553,7 @@ const ProjectProperties = observer(
                                                     htmlFor="new-project-wizard-bb3-project-file-path-input"
                                                     className="form-label"
                                                 >
-                                                    BB3 project file path
+                                                    {t("BB3 project file path")}
                                                 </label>
                                                 <FileBrowserInput
                                                     id="new-project-wizard-bb3-project-file-path-input"
@@ -2572,7 +2586,7 @@ const ProjectProperties = observer(
                                 wizardModel.type == "resource" && (
                                     <div className="mb-3">
                                         <label className="form-label">
-                                            Target BB3 firmware
+                                            {t("Target BB3 firmware")}
                                         </label>
 
                                         <div className="form-check ms-4">
@@ -2598,7 +2612,7 @@ const ProjectProperties = observer(
                                                 className="form-check-label"
                                                 htmlFor="new-project-wizard-bb3-target-version-v3"
                                             >
-                                                1.8 or newer
+                                                {t("1.8 or newer")}
                                             </label>
                                         </div>
 
@@ -2625,7 +2639,7 @@ const ProjectProperties = observer(
                                                 className="form-check-label"
                                                 htmlFor="new-project-wizard-bb3-target-version-v2"
                                             >
-                                                1.7.X or older
+                                                {t("1.7.X or older")}
                                             </label>
                                         </div>
                                     </div>
@@ -2640,14 +2654,14 @@ const ProjectProperties = observer(
                                             wizardModel.createProjectInProgress
                                         }
                                     >
-                                        Create Project
+                                        {t("Create Project")}
                                     </button>
                                 ) : (
                                     <>
                                         <ButtonAction
                                             className="btn-primary"
-                                            text="Edit Project"
-                                            title="Edit Project"
+                                            text={t("Edit Project")}
+                                            title={t("Edit Project")}
                                             icon="material:edit"
                                             onClick={this.onCreateProject}
                                             enabled={
@@ -2658,8 +2672,8 @@ const ProjectProperties = observer(
                                             ?.projectType != "IEXT" && (
                                             <ButtonAction
                                                 className="btn-secondary"
-                                                text="Run Project"
-                                                title="Run Project"
+                                                text={t("Run Project")}
+                                                title={t("Run Project")}
                                                 icon="material:play_arrow"
                                                 onClick={this.onRunProject}
                                                 enabled={
@@ -2692,54 +2706,55 @@ const ProjectProperties = observer(
     }
 );
 
-function PlatformDescription({ wizardModel }: { wizardModel: WizardModel }) {
-    if (!wizardModel.selectedProjectType) {
-        return null;
-    }
+const PlatformDescription = observer(
+    function PlatformDescription({ wizardModel }: { wizardModel: WizardModel }) {
+        if (!wizardModel.selectedProjectType) {
+            return null;
+        }
 
-    if (!wizardModel.selectedProjectType.targetPlatform) {
-        return null;
-    }
+        if (!wizardModel.selectedProjectType.targetPlatform) {
+            return null;
+        }
 
-    const html = {
-        __html: marked.parse(
-            wizardModel.selectedProjectType.targetPlatform || "",
-            { mangle: false, headerIds: false }
-        ) as string
-    };
+        const html = {
+            __html: marked.parse(
+                wizardModel.selectedProjectType.targetPlatform || "",
+                { mangle: false, headerIds: false }
+            ) as string
+        };
 
-    const targetPlatformLink =
-        wizardModel.selectedProjectType.targetPlatformLink;
+        const targetPlatformLink =
+            wizardModel.selectedProjectType.targetPlatformLink;
 
-    return (
-        <div className="EezStudio_NewProjectWizard_ProjectProperties_Section">
-            <h6>
-                <span>
-                    {wizardModel.selectedProjectType.projectType == "IEXT"
-                        ? "Instrument"
-                        : "Platform"}{" "}
-                    Description
-                </span>
-            </h6>
-            <div>
-                <div className="markdown" dangerouslySetInnerHTML={html} />
-                {targetPlatformLink && (
-                    <div className="mt-2">
-                        <a
-                            href="#"
-                            onClick={event => {
-                                event.preventDefault();
-                                openLink(targetPlatformLink);
-                            }}
-                        >
-                            Find more on the platform web site ...
-                        </a>
-                    </div>
-                )}
+        return (
+            <div className="EezStudio_NewProjectWizard_ProjectProperties_Section">
+                <h6>
+                    <span>
+                        {wizardModel.selectedProjectType.projectType == "IEXT"
+                            ? t("Instrument Description")
+                            : t("Platform Description")}
+                    </span>
+                </h6>
+                <div>
+                    <div className="markdown" dangerouslySetInnerHTML={html} />
+                    {targetPlatformLink && (
+                        <div className="mt-2">
+                            <a
+                                href="#"
+                                onClick={event => {
+                                    event.preventDefault();
+                                    openLink(targetPlatformLink);
+                                }}
+                            >
+                                {t("Find more on the platform web site ...")}
+                            </a>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
+);
 
 export const NewProjectWizard = observer(
     class NewProjectWizard extends React.Component<{
@@ -2787,11 +2802,11 @@ export const NewProjectWizard = observer(
                             </>
                         ) : (
                             <div className="EezStudio_NewProjectWizard_NoProjects">
-                                No{" "}
-                                {wizardModel.section == "templates"
-                                    ? "templates"
-                                    : "examples"}{" "}
-                                found
+                                {t(
+                                    wizardModel.section == "templates"
+                                        ? "No templates found"
+                                        : "No examples found"
+                                )}
                             </div>
                         )}
                     </div>
@@ -2812,7 +2827,7 @@ export function showNewProjectWizard() {
         {
             jsPanel: {
                 id: "new-project-wizard",
-                title: "New Project",
+                title: t("New Project"),
                 width: 1280,
                 height: 800
             }
@@ -2890,8 +2905,11 @@ class FileBrowserInput extends React.Component<{
         const result = await dialog.showOpenDialog(getCurrentWindow(), {
             properties: ["openFile"],
             filters: [
-                { name: "EEZ Project", extensions: ["eez-project"] },
-                { name: "All Files", extensions: ["*"] }
+                {
+                    name: t("EEZ Project"),
+                    extensions: ["eez-project"]
+                },
+                { name: t("All Files"), extensions: ["*"] }
             ]
         });
 
@@ -2931,10 +2949,10 @@ function openLink(url: string) {
 
 export async function confirmOverwrite(description: string) {
     const yesButton = {
-        label: "Yes",
+        label: t("Yes"),
         result: true
     };
-    const noButton = { label: "No", result: false };
+    const noButton = { label: t("No"), result: false };
 
     const os = require("os");
 
@@ -2950,7 +2968,7 @@ export async function confirmOverwrite(description: string) {
     let opts: Electron.MessageBoxOptions = {
         type: "warning",
         title: "EEZ Studio",
-        message: "Overwite?",
+        message: t("Overwite?"),
         detail: description,
         noLink: true,
         buttons: buttons.map(b => b.label),

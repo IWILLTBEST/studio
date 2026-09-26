@@ -74,7 +74,7 @@ const ProjectFeature = observer(
 
         onRemove = () => {
             confirm(
-                "Are you sure you want to remove this feature?",
+                t("Are you sure you want to remove this feature?"),
                 undefined,
                 () => {
                     if (this.context.project) {
@@ -138,9 +138,9 @@ const ProjectFeature = observer(
                         <button
                             className="btn btn-secondary float-right"
                             disabled={true}
-                            title="This feature can't be removed"
+                            title={t("This feature can't be removed")}
                         >
-                            Remove
+                            {t("Remove")}
                         </button>
                     );
                 } else {
@@ -148,9 +148,9 @@ const ProjectFeature = observer(
                         <button
                             className="btn btn-secondary float-right"
                             onClick={this.onRemove}
-                            title="Remove feature from the project"
+                            title={t("Remove feature from the project")}
                         >
-                            Remove
+                            {t("Remove")}
                         </button>
                     );
                 }
@@ -159,9 +159,9 @@ const ProjectFeature = observer(
                     <button
                         className="btn btn-success float-right"
                         onClick={this.onAdd}
-                        title="Add feature to the project"
+                        title={t("Add feature to the project")}
                     >
-                        Add
+                        {t("Add")}
                     </button>
                 );
             }
@@ -178,11 +178,13 @@ const ProjectFeature = observer(
                                 size={32}
                                 style={{ marginRight: 5 }}
                             />
-                            {this.props.projectFeature.displayName ||
-                                this.props.projectFeature.name}
+                            {t(
+                                this.props.projectFeature.displayName ||
+                                    this.props.projectFeature.name
+                            )}
                         </h5>
                         <p className="card-text">
-                            {this.props.projectFeature.description}.
+                            {t(this.props.projectFeature.description)}.
                         </p>
                         <div
                             style={{
@@ -659,9 +661,11 @@ const AddButton = observer(
                 this.props.objectAdapter.selectedObject &&
                 canAdd(this.props.objectAdapter.selectedObject) && (
                     <IconAction
-                        title={`Add ${getAddItemName(
-                            this.props.objectAdapter.selectedObject
-                        )}...`}
+                        title={t(
+                            `Add ${getAddItemName(
+                                this.props.objectAdapter.selectedObject
+                            )}...`
+                        )}
                         icon="material:add"
                         iconSize={16}
                         onClick={this.onAdd}
@@ -685,7 +689,7 @@ const DeleteButton = observer(
         render() {
             return (
                 <IconAction
-                    title="Delete Selected Item"
+                    title={t("Delete Selected Item")}
                     icon="material:delete"
                     iconSize={16}
                     onClick={this.onDelete}

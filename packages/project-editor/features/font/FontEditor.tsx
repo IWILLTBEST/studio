@@ -22,6 +22,7 @@ import {
 } from "project-editor/store";
 import { validators } from "eez-studio-shared/validation";
 import * as notification from "eez-studio-ui/notification";
+import { t } from "eez-studio-shared/i18n";
 
 import { ProjectContext } from "project-editor/project/context";
 import { EditorComponent } from "project-editor/project/ui/EditorComponent";
@@ -383,7 +384,9 @@ export const FontEditor = observer(
                                     `Adding characters failed: ${errorMessage}`
                                 );
                             } else {
-                                notification.error(`Adding characters failed!`);
+                                notification.error(
+                                    t(`Adding characters failed!`)
+                                );
                             }
 
                             return false;

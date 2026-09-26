@@ -8,6 +8,7 @@ import { makeObservable, observable, runInAction } from "mobx";
 import { pathToFileURL } from "url";
 
 import * as notification from "eez-studio-ui/notification";
+import { t } from "eez-studio-shared/i18n";
 
 import type { PropertyProps } from "project-editor/core/object";
 import { ProjectContext } from "project-editor/project/context";
@@ -75,7 +76,7 @@ export const ImageProperty = observer(
                                         )
                                     );
                                     notification.info(
-                                        "Image copied to clipboard"
+                                        t("Image copied to clipboard")
                                     );
                                 }}
                                 title="Copy image to clipboard"

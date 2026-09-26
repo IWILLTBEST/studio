@@ -8,6 +8,7 @@ import {
 } from "eez-studio-shared/util-electron";
 
 import * as notification from "eez-studio-ui/notification";
+import { t } from "eez-studio-shared/i18n";
 
 import type { ExampleProject } from "project-editor/project/ui/Wizard";
 
@@ -116,7 +117,7 @@ class ExamplesCatalog {
         } catch (error) {
             console.error(error);
             notification.error(
-                `Failed to download eez-project examples catalog version`
+                t(`Failed to download eez-project examples catalog version`)
             );
         }
 
@@ -161,7 +162,7 @@ class ExamplesCatalog {
         req.open("GET", CATALOG_DOWNLOAD_URL);
 
         const progressToastId = notification.info(
-            "Downloading eez-project examples catalog ...",
+            t("Downloading eez-project examples catalog ..."),
             {
                 autoClose: false,
                 hideProgressBar: false

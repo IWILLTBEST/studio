@@ -12,6 +12,7 @@ import { observer } from "mobx-react";
 
 import { IconAction } from "eez-studio-ui/action";
 import { SearchInput } from "eez-studio-ui/search-input";
+import { t } from "eez-studio-shared/i18n";
 
 import { getId, IEezObject } from "project-editor/core/object";
 import {
@@ -104,11 +105,13 @@ const AddButton = observer(
         render() {
             return (
                 <IconAction
-                    title={`Add ${
-                        this.props.navigationObject
-                            ? getAddItemName(this.props.navigationObject)
-                            : "Item"
-                    }...`}
+                    title={t(
+                        `Add ${
+                            this.props.navigationObject
+                                ? getAddItemName(this.props.navigationObject)
+                                : "Item"
+                        }...`
+                    )}
                     icon="material:add"
                     iconSize={16}
                     onClick={this.onAdd}
@@ -135,7 +138,7 @@ const DeleteButton = observer(
         render() {
             return (
                 <IconAction
-                    title="Delete Selected Item"
+                    title={t("Delete Selected Item")}
                     icon="material:delete"
                     iconSize={16}
                     onClick={this.onDelete}

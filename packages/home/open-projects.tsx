@@ -289,8 +289,8 @@ export const Projects = observer(
                             }
                             title={
                                 openProjectsStore.sortAlphabetically
-                                    ? "Sort alphabetically"
-                                    : "Show most recent first"
+                                    ? t("Sort alphabetically")
+                                    : t("Show most recent first")
                             }
                             onClick={openProjectsStore.toggleSort}
                         />
@@ -386,8 +386,8 @@ export const ProjectInfo = observer(
                         <div className="EezStudio_HomeTab_Projects_ProjectInfo_Actions">
                             <ButtonAction
                                 className="btn-primary"
-                                text="Edit Project"
-                                title="Edit Project"
+                                text={t("Edit Project")}
+                                title={t("Edit Project")}
                                 icon="material:edit"
                                 onClick={openProjectsStore.editProject}
                             />
@@ -395,23 +395,23 @@ export const ProjectInfo = observer(
                                 .hasFlowSupport && (
                                 <ButtonAction
                                     className="btn-secondary"
-                                    text="Run Project"
-                                    title="Run Project"
+                                    text={t("Run Project")}
+                                    title={t("Run Project")}
                                     icon="material:play_arrow"
                                     onClick={openProjectsStore.runProject}
                                 />
                             )}
                             <ButtonAction
                                 className="btn-secondary"
-                                text="Copy Project Path"
-                                title="Copy Project Path"
+                                text={t("Copy Project Path")}
+                                title={t("Copy Project Path")}
                                 icon="material:content_copy"
                                 onClick={openProjectsStore.copyProjectPath}
                             />
                             <ButtonAction
                                 className="btn-danger"
-                                text="Remove From List"
-                                title="Remove From List"
+                                text={t("Remove From List")}
+                                title={t("Remove From List")}
                                 icon="material:close"
                                 onClick={openProjectsStore.removeFromList}
                             />

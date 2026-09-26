@@ -340,8 +340,8 @@ class SettingsController {
 
         const result = await dialog.showSaveDialog(getCurrentWindow(), {
             filters: [
-                { name: "DB files", extensions: ["db"] },
-                { name: "All Files", extensions: ["*"] }
+                { name: t("DB files"), extensions: ["db"] },
+                { name: t("All Files"), extensions: ["*"] }
             ],
             defaultPath: defaultPath ?? undefined
         });
@@ -368,7 +368,7 @@ class SettingsController {
                 });
 
                 confirm(
-                    "Do you want to make this database active?",
+                    t("Do you want to make this database active?"),
                     undefined,
                     () => onFinish(true),
                     () => onFinish(false)
@@ -385,8 +385,8 @@ class SettingsController {
         const result = await dialog.showOpenDialog(getCurrentWindow(), {
             properties: ["openFile"],
             filters: [
-                { name: "DB files", extensions: ["db"] },
-                { name: "All Files", extensions: ["*"] }
+                { name: t("DB files"), extensions: ["db"] },
+                { name: t("All Files"), extensions: ["*"] }
             ],
             defaultPath: defaultPath ?? undefined
         });
@@ -410,7 +410,7 @@ class SettingsController {
             });
 
             confirm(
-                "Do you want to make this database active?",
+                t("Do you want to make this database active?"),
                 undefined,
                 () => onFinish(true),
                 () => onFinish(false)
@@ -425,8 +425,10 @@ class SettingsController {
                 instrumentDatabases.activeDatabasePath
         ) {
             confirm(
-                "Do you want to restart the application?",
-                "Restart is required to finish activation of new database.",
+                t("Do you want to restart the application?"),
+                t(
+                    "Restart is required to finish activation of new database."
+                ),
                 this.restart
             );
         }
@@ -538,19 +540,19 @@ const CompactDatabaseDialog = observer(
             return (
                 <Dialog
                     open={true}
-                    title="Compacting Database"
+                    title={t("Compacting Database")}
                     size="small"
-                    cancelButtonText="Close"
+                    cancelButtonText={t("Close")}
                     cancelDisabled={this.sizeAfter === undefined}
                 >
                     <table className="EezStudio_CompactDatabaseDialogTable">
                         <tbody>
                             <tr>
-                                <td>Size before</td>
+                                <td>{t("Size before")}</td>
                                 <td>{formatBytes(this.sizeBefore)}</td>
                             </tr>
                             <tr>
-                                <td>Size after</td>
+                                <td>{t("Size after")}</td>
                                 <td>
                                     {this.sizeAfter !== undefined ? (
                                         formatBytes(this.sizeAfter)
@@ -561,12 +563,12 @@ const CompactDatabaseDialog = observer(
                             </tr>
                             {this.sizeReduced !== undefined && (
                                 <tr>
-                                    <td>Size reduced by </td>
+                                    <td>{t("Size reduced by")} </td>
                                     <td>
                                         {formatBytes(
                                             this.sizeBefore - this.sizeAfter!
                                         )}{" "}
-                                        or {this.sizeReduced}%
+                                        {t("or")} {this.sizeReduced}%
                                     </td>
                                 </tr>
                             )}
@@ -600,7 +602,7 @@ const DatabaseListItem = observer(
                             fontWeight: database.isActive ? "bold" : "normal"
                         }}
                     >
-                        {database.isActive ? "[ACTIVE] " : ""}
+                        {database.isActive ? t("[ACTIVE]") + " " : ""}
                         {path.parse(database.filePath).name}
                     </td>
                 </tr>
@@ -627,18 +629,18 @@ const SelectedDatabaseDetails = observer(
                                 className="btn btn-primary btn-sm"
                                 onClick={settingsController.setAsActiveDatabase}
                             >
-                                Set as Active
+                                {t("Set as Active")}
                             </button>
                         </div>
                     )}
 
                     <div>
-                        <label
-                            htmlFor="EezStudio_ProjectEditorScrapbook_ItemDetails_Description"
-                            className="form-label"
-                        >
-                            Description:
-                        </label>
+                            <label
+                                htmlFor="EezStudio_ProjectEditorScrapbook_ItemDetails_Description"
+                                className="form-label"
+                            >
+                                {t("Description:")}
+                            </label>
                         <textarea
                             className="form-control"
                             id="EezStudio_ProjectEditorScrapbook_ItemDetails_Description"
@@ -653,7 +655,7 @@ const SelectedDatabaseDetails = observer(
                     </div>
 
                     <div>
-                        <label className="form-label">Path:</label>
+                        <label className="form-label">{t("Path:")}</label>
                         <div>{selectedDatabase.filePath}</div>
 
                         <button
@@ -664,7 +666,7 @@ const SelectedDatabaseDetails = observer(
                             }
                             style={{ marginTop: "5px" }}
                         >
-                            Show in Folder
+                            {t("Show in Folder")}
                         </button>
 
                         <button
@@ -675,7 +677,7 @@ const SelectedDatabaseDetails = observer(
                             }
                             style={{ marginTop: "5px", marginLeft: "5px" }}
                         >
-                            Copy Path to Clipboard
+                            {t("Copy Path to Clipboard")}
                         </button>
                     </div>
 
@@ -686,18 +688,18 @@ const SelectedDatabaseDetails = observer(
                         })}
                     >
                         <div>
-                            Database size is{" "}
+                            {t("Database size is")}{" "}
                             {formatBytes(selectedDatabase.databaseSize)}.
                         </div>
                         <div>
-                            Database compacted{" "}
+                            {t("Database compacted")}{" "}
                             {formatDateRelative(
                                 selectedDatabase.timeOfLastDatabaseCompactOperation
                             )}
                             .
                         </div>
                         {selectedDatabase.isCompactDatabaseAdvisable && (
-                            <div>{COMPACT_DATABASE_MESSAGE}</div>
+                            <div>{t(COMPACT_DATABASE_MESSAGE)}</div>
                         )}
                         <div className="btn-group me-2">
                             <button
@@ -705,7 +707,7 @@ const SelectedDatabaseDetails = observer(
                                 className="btn btn-secondary btn-sm"
                                 onClick={settingsController.compactDatabase}
                             >
-                                Compact Database
+                                {t("Compact Database")}
                             </button>
                         </div>
                     </div>
@@ -742,17 +744,17 @@ const DatatabaseList = observer(
                     <ToolbarHeader>
                         <IconAction
                             icon="material:add"
-                            title="Create a new database"
+                            title={t("Create a new database")}
                             onClick={settingsController.createNewDatabase}
                         />
                         <IconAction
                             icon={HOME_TAB_OPEN_ICON}
-                            title="Open an existing database"
+                            title={t("Open an existing database")}
                             onClick={settingsController.openDatabase}
                         />
                         <IconAction
                             icon="material:delete"
-                            title="Delete a database"
+                            title={t("Delete a database")}
                             onClick={settingsController.deleteDatabase}
                             enabled={
                                 settingsController.selectedDatabase &&
@@ -873,16 +875,16 @@ const PythonSettings = observer(
                     <td>
                         <PropertyList>
                             <StaticProperty
-                                name="Default path"
+                                name={t("Default path")}
                                 value={
                                     this.pythonPathError
-                                        ? "Python not found"
+                                        ? t("Python not found")
                                         : this.pythonPath
                                 }
                                 className="StaticPropertyValueWrap"
                             />
                             <BooleanProperty
-                                name={`Set custom path`}
+                                name={t("Set custom path")}
                                 value={settingsController.pythonUseCustomPath}
                                 onChange={action(
                                     value =>
@@ -893,7 +895,7 @@ const PythonSettings = observer(
                             />
                             {settingsController.pythonUseCustomPath && (
                                 <AbsoluteFileInputProperty
-                                    name="Custom Python path"
+                                    name={t("Custom Python path")}
                                     value={settingsController.pythonCustomPath}
                                     onChange={action(value => {
                                         settingsController.pythonCustomPath =
@@ -958,11 +960,11 @@ const TemplateSettings = observer(
         render() {
             return (
                 <tr>
-                    <td>Project Templates</td>
+                    <td>{t("Project Templates")}</td>
                     <td>
                         <PropertyList>
                             <BooleanProperty
-                                name={`Use local templates folder`}
+                                name={t("Use local templates folder")}
                                 value={settingsController.useLocalTemplates}
                                 onChange={action(
                                     value =>
@@ -974,7 +976,7 @@ const TemplateSettings = observer(
                             {settingsController.useLocalTemplates && (
                                 <>
                                     <AbsoluteDirectoryInputProperty
-                                        name="Local templates path"
+                                        name={t("Local templates path")}
                                         value={
                                             settingsController.localTemplatesPath
                                         }
@@ -984,7 +986,7 @@ const TemplateSettings = observer(
                                         })}
                                     />
                                     <tr>
-                                        <td>Repository</td>
+                                        <td>{t("Repository")}</td>
                                         <td>
                                             <a
                                                 href="#"

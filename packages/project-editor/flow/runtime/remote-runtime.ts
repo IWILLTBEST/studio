@@ -5,6 +5,7 @@ import net from "net";
 import _ from "lodash-es";
 
 import * as notification from "eez-studio-ui/notification";
+import { t } from "eez-studio-shared/i18n";
 
 import type { InstrumentObject } from "instrument/instrument-object";
 import type { ConnectionParameters } from "instrument/connection/interface";
@@ -134,7 +135,7 @@ export class RemoteRuntime extends RuntimeBase {
 
         const parts = await partsPromise;
         if (!parts) {
-            notification.error("Build error...", {
+            notification.error(t("Build error..."), {
                 autoClose: false
             });
             this.projectStore.setEditorMode();
@@ -147,7 +148,7 @@ export class RemoteRuntime extends RuntimeBase {
             return;
         }
 
-        const toastId = notification.info("Uploading app...", {
+        const toastId = notification.info(t("Uploading app..."), {
             autoClose: false
         });
 
@@ -307,7 +308,7 @@ export class RemoteRuntime extends RuntimeBase {
                 if (runningScript != "" && runningScript != `""`) {
                     connection.command(`SCR:STOP`);
                     if (notifyUser) {
-                        notification.success("Flow stopped", {
+                        notification.success(t("Flow stopped"), {
                             autoClose: 1000
                         });
                     }

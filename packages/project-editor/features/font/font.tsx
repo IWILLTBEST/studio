@@ -19,6 +19,7 @@ import {
 
 import * as notification from "eez-studio-ui/notification";
 import { Button } from "eez-studio-ui/button";
+import { t } from "eez-studio-shared/i18n";
 
 import { AbsoluteFileInput } from "project-editor/ui-components/FileInput";
 
@@ -1182,7 +1183,7 @@ const ExportFontFilePropertyGridUI = observer(
                 const bin = Buffer.from(font.embeddedFontFile!, "base64");
                 try {
                     await fs.promises.writeFile(filePath, bin);
-                    notification.info(`Font file exported.`);
+                    notification.info(t(`Font file exported.`));
                 } catch (error: any) {
                     notification.error(error.toString());
                 }

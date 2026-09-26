@@ -15,6 +15,7 @@ import type * as MousetrapModule from "mousetrap";
 import update, { Spec } from "immutability-helper";
 
 import { confirmSave } from "eez-studio-shared/util-renderer";
+import { t } from "eez-studio-shared/i18n";
 
 import * as notification from "eez-studio-ui/notification";
 
@@ -823,14 +824,16 @@ export class ProjectStore {
                 this.layoutModels.root,
                 LayoutModels.OUTPUT_TAB_ID
             );
-            notification.error("Build failed. Check Output panel for errors.");
+            notification.error(
+                t("Build failed. Check Output panel for errors.")
+            );
         } else {
             runInAction(() => {
                 this.lastSuccessfulBuildRevision = this.lastRevisionStable;
             });
             // Don't show "Build successful" if Docker build will follow (in Full Simulator mode)
             if (!this.layoutModels?.isDockerSimulatorMode) {
-                notification.info("Build successful.", { autoClose: 1000 });
+                notification.info(t("Build successful."), { autoClose: 1000 });
             }
         }
         return result;
@@ -849,7 +852,7 @@ export class ProjectStore {
     }
 
     async buildAndInstallExtensions() {
-        notification.info(`Building extensions ...`);
+        notification.info(t(`Building extensions ...`));
 
         const extensionFilePaths = await ProjectEditor.build.buildExtensions(
             this
@@ -860,7 +863,7 @@ export class ProjectStore {
                 const extension = await installExtension(extensionFilePath, {
                     notFound() {
                         notification.info(
-                            "This is not a valid extension package file.",
+                            t("This is not a valid extension package file."),
                             undefined
                         );
                     },
@@ -1609,7 +1612,7 @@ export class ProjectStore {
             }
         });
 
-        const progressToastId = notification.info("Searching...", {
+        const progressToastId = notification.info(t("Searching..."), {
             autoClose: false
         });
 

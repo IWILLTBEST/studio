@@ -39,6 +39,8 @@ import type * as ShortcutsModule from "home/shortcuts";
 
 import { Loader } from "eez-studio-ui/loader";
 
+import { t } from "eez-studio-shared/i18n";
+
 import { ProjectStore } from "project-editor/store";
 
 import { ProjectContext } from "project-editor/project/context";
@@ -90,7 +92,9 @@ export class HomeTab implements IHomeTab {
     modified: boolean = false;
 
     id = "home";
-    title = "Home";
+    get title() {
+        return t("Home");
+    }
     icon = "material:home";
     category: HomeTabCategory = "none";
 
@@ -127,7 +131,9 @@ class HistoryTab implements IHomeTab {
     modified: boolean = false;
 
     id = "history";
-    title = "History";
+    get title() {
+        return t("History");
+    }
     icon = "material:history";
     category: HomeTabCategory = "instrument";
 
@@ -224,7 +230,9 @@ class ShortcutsAndGroupsTab implements IHomeTab {
     modified: boolean = false;
 
     id = "shortcutsAndGroups";
-    title = "Shortcuts and Groups";
+    get title() {
+        return t("Shortcuts and Groups");
+    }
     icon = "material:playlist_play";
     category: HomeTabCategory = "instrument";
 
@@ -799,11 +807,13 @@ export class ProjectEditorTab implements IHomeTab {
                 return path.basename(this.filePath, ".eez-project");
             }
             return (
-                path.basename(this.filePath, ".eez-dashboard") + " dashboard"
+                path.basename(this.filePath, ".eez-dashboard") +
+                " " +
+                t("dashboard")
             );
         }
 
-        return "Untitled project";
+        return t("Untitled project");
     }
 
     get tooltipTitle() {
@@ -877,7 +887,7 @@ export class ProjectEditorTab implements IHomeTab {
                     }}
                 >
                     {this.error ? (
-                        <div className="error">{this.error}</div>
+                        <div className="error">{t(this.error)}</div>
                     ) : (
                         <Loader size={60} />
                     )}
@@ -948,7 +958,7 @@ export class ProjectEditorTab implements IHomeTab {
             this.addListeners();
         }
 
-        notification.info("Project reloaded");
+        notification.info(t("Project reloaded"));
     }
 
     loadDebugInfo(filePath: string) {

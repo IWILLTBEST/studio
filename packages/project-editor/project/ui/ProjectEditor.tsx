@@ -12,6 +12,7 @@ import { Loader } from "eez-studio-ui/loader";
 import { Button } from "eez-studio-ui/button";
 import { IExtension } from "eez-studio-shared/extensions/extension";
 import * as notification from "eez-studio-ui/notification";
+import { t, getUiLanguage } from "eez-studio-shared/i18n";
 import { FlexLayoutContainer } from "eez-studio-ui/FlexLayout";
 
 import {
@@ -353,7 +354,8 @@ const Content = observer(
                 );
 
                 renderValues.content =
-                    section.name + (numMessages > 0 ? ` (${numMessages})` : "");
+                    t(section.name) +
+                    (numMessages > 0 ? ` (${numMessages})` : "");
             } else if (
                 node.getId() == LayoutModels.SEARCH_TAB_ID ||
                 node.getId() == LayoutModels.REFERENCES_TAB_ID
@@ -369,7 +371,7 @@ const Content = observer(
                 ) : null;
 
                 renderValues.content =
-                    section.name +
+                    t(section.name) +
                     (section.messages.searchResults.length > 0
                         ? ` (${section.messages.searchResults.length})`
                         : "");
@@ -440,7 +442,7 @@ const Content = observer(
                     const menu = new Menu();
                     menu.append(
                         new MenuItem({
-                            label: "Keep Tab Open",
+                            label: t("Keep Tab Open"),
                             click: () => {
                                 runInAction(() => (editor.permanent = true));
 
@@ -503,6 +505,9 @@ const Content = observer(
             this.context.editorsStore.editors.forEach(editor => {
                 editor.permanent;
             });
+
+            // to make sure tab titles are re-rendered on UI language change
+            getUiLanguage();
 
             const checksSection = this.context.outputSectionsStore.getSection(
                 Section.CHECKS
@@ -593,7 +598,7 @@ const MissingExtensions = observer(
         }
 
         installExtension = async (extensionToInstall: IExtension) => {
-            const progressToastId = notification.info("Updating...", {
+            const progressToastId = notification.info(t("Updating..."), {
                 autoClose: false
             });
 
@@ -617,8 +622,8 @@ const MissingExtensions = observer(
                     <div className="EezStudio_ProjectEditor_MissingExtensions_Title">
                         <h6>
                             {this.context.project.missingExtensions.length > 1
-                                ? "Install missing extensions"
-                                : "Install missing extension"}
+                                ? t("Install missing extensions")
+                                : t("Install missing extension")}
                             :
                         </h6>
                     </div>
@@ -646,11 +651,11 @@ const MissingExtensions = observer(
                                                     )
                                                 }
                                             >
-                                                Install
+                                                {t("Install")}
                                             </Button>
                                         ) : (
                                             <div className="unknown-extension">
-                                                Unknown extension
+                                                {t("Unknown extension")}
                                             </div>
                                         )}
                                     </div>
@@ -666,7 +671,7 @@ const MissingExtensions = observer(
                                 this.context.missingExtensionsResolved = true;
                             })}
                         >
-                            Edit Project
+                            {t("Edit Project")}
                         </Button>
 
                         {this.installableExtensions.length >= 1 && (
@@ -675,7 +680,7 @@ const MissingExtensions = observer(
                                 size="small"
                                 onClick={this.installAll}
                             >
-                                Install All
+                                {t("Install All")}
                             </Button>
                         )}
                     </div>
