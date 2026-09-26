@@ -396,6 +396,22 @@ export async function executeBridgeTool(tool: string, args: any): Promise<any> {
             );
         }
 
+        case "open_tab": {
+            // 切 home 侧页签（settings/extensions/history/...），与 View 菜单
+            // 同一入口 openTabById；汉化验收等自动化场景用。
+            tabs.openTabById(String(args.tab ?? "settings"), true);
+            return { opened: String(args.tab ?? "settings") };
+        }
+
+        case "set_ui_language": {
+            // 与 Settings 页语言下拉的 onChange 完全同路径（onUiLanguageChange
+            // → IPC → 主进程 observable → 广播 → renderer observable 刷新）。
+            const { settingsController } = require("home/settings") as any;
+            const language = String(args.language ?? "");
+            settingsController.onUiLanguageChange(language);
+            return { uiLanguage: language };
+        }
+
         default:
             throw new Error(`未知工具: ${tool}`);
     }

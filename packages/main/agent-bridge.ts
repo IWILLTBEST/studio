@@ -60,6 +60,30 @@ export function startAgentBridge() {
                     res.end(JSON.stringify({ error: "invalid JSON body" }));
                     return;
                 }
+                // 整窗截图（含菜单栏以外的全部 UI）：汉化验收等场景需要看
+                // 属性面板/设置页，而这些不在 LVGL 页面 canvas 里，renderer
+                // 侧扩展的 screenshot 工具抓不到，主进程 capturePage 直出。
+                if (body.tool === "window_screenshot") {
+                    const homeWindow = findHomeWindow();
+                    if (!homeWindow || homeWindow.browserWindow.isDestroyed()) {
+                        res.writeHead(500, { "Content-Type": "application/json" });
+                        res.end(
+                            JSON.stringify({ ok: false, error: "home window not open" })
+                        );
+                        return;
+                    }
+                    const image =
+                        await homeWindow.browserWindow.webContents.capturePage();
+                    res.writeHead(200, { "Content-Type": "application/json" });
+                    res.end(
+                        JSON.stringify({
+                            ok: true,
+                            result: { dataUrl: image.toDataURL() }
+                        })
+                    );
+                    return;
+                }
+
                 try {
                     const result = await dispatchToRenderer(body.tool, body.args ?? {});
                     res.writeHead(200, { "Content-Type": "application/json" });
