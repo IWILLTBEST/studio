@@ -3,6 +3,7 @@ import { observable, makeObservable } from "mobx";
 import { observer } from "mobx-react";
 import * as FlexLayout from "flexlayout-react";
 
+import { t } from "eez-studio-shared/i18n";
 import { FlexLayoutContainer } from "eez-studio-ui/FlexLayout";
 import {
     registerClass,
@@ -169,20 +170,21 @@ export const GroupImplementationInfoPropertyUI = observer(
                     <div className="EezStudio_PropertyGrid_TipBox_Description">
                         <div className="EezStudio_PropertyGrid_TipBox_Header">
                             <Icon icon="material:lightbulb_outline" />
-                            <span>TIP</span>
+                            <span>{t("TIP")}</span>
                         </div>
                         <div className="EezStudio_PropertyGrid_TipBox_DescriptionText">
-                            From your code you neeed to set a destination group
-                            for a particular input device using
-                            <i> lv_indev_set_group</i>. Below is an example code
-                            that does that.
+                            {t(
+                                "From your code you neeed to set a destination group for a particular input device using"
+                            )}
+                            <i> lv_indev_set_group</i>.
+                            {t("Below is an example code that does that.")}
                         </div>
                         <div className="EezStudio_PropertyGrid_TipBox_Toolbar">
                             <div />
                             <IconAction
                                 icon="material:content_copy"
                                 iconSize={20}
-                                title="Copy to Clipboard"
+                                title={t("Copy to Clipboard")}
                                 onClick={() => {
                                     clipboard.writeText(code);
                                 }}

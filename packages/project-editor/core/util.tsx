@@ -23,8 +23,8 @@ export async function confirm(
     const result = await dialog.showMessageBox(getCurrentWindow(), {
         type: "question",
         title: t("Project Editor - EEZ Studio"),
-        message: message,
-        detail: detail,
+        message: t(message),
+        detail: detail != undefined ? t(detail) : undefined,
         noLink: true,
         buttons: [t("Yes"), t("No")],
         cancelId: 1
@@ -39,8 +39,8 @@ export function info(message: string, detail?: string) {
     return dialog.showMessageBox(getCurrentWindow(), {
         type: "info",
         title: t("Project Editor - EEZ Studio"),
-        message: message,
-        detail: detail,
+        message: t(message),
+        detail: detail != undefined ? t(detail) : undefined,
         noLink: true,
         buttons: [t("OK")],
         cancelId: 1

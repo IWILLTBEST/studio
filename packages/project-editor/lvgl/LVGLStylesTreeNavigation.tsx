@@ -11,6 +11,8 @@ import {
 } from "mobx";
 import { observer } from "mobx-react";
 
+import { t } from "eez-studio-shared/i18n";
+
 import { IconAction } from "eez-studio-ui/action";
 import { SearchInput } from "eez-studio-ui/search-input";
 
@@ -68,7 +70,7 @@ const AddButton = observer(
         render() {
             return (
                 <IconAction
-                    title="Add Style..."
+                    title={t("Add Style...")}
                     icon="material:add"
                     iconSize={16}
                     onClick={this.onAdd}
@@ -95,7 +97,7 @@ const DeleteButton = observer(
         render() {
             return (
                 <IconAction
-                    title="Delete Selected Item"
+                    title={t("Delete Selected Item")}
                     icon="material:delete"
                     iconSize={16}
                     onClick={this.onDelete}

@@ -215,7 +215,7 @@ export const GeometryProperties = observer(
                         updateObject={this.props.updateObject}
                     />
 
-                    <div title="Width">W</div>
+                    <div title={t("Width")}>W</div>
                     <Property
                         propertyInfo={
                             findPropertyByNameInClassInfo(
@@ -239,7 +239,7 @@ export const GeometryProperties = observer(
                         updateObject={this.props.updateObject}
                     />
 
-                    <div title="Height">H</div>
+                    <div title={t("Height")}>H</div>
                     <Property
                         propertyInfo={
                             findPropertyByNameInClassInfo(
@@ -923,7 +923,7 @@ export class LVGLWidget extends Widget {
                         if (widget.localStyles.hasModifications) {
                             menuItems.push(
                                 new MenuItem({
-                                    label: "Reset All Modifications",
+                                    label: t("Reset All Modifications"),
                                     click: () => {
                                         widget.localStyles.resetAllModifications();
                                     }
@@ -932,7 +932,7 @@ export class LVGLWidget extends Widget {
 
                             menuItems.push(
                                 new MenuItem({
-                                    label: "Create New Style",
+                                    label: t("Create New Style"),
                                     click: async () => {
                                         const projectStore = getProjectStore(widget);
 
@@ -1003,7 +1003,7 @@ export class LVGLWidget extends Widget {
                             if (widget.useStyle) {
                                 menuItems.push(
                                     new MenuItem({
-                                        label: "Update Style",
+                                        label: t("Update Style"),
                                         click: async () => {
                                             const projectStore = getProjectStore(widget);
 

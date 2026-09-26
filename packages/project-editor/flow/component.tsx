@@ -2663,7 +2663,7 @@ export class EventHandler extends EezObject {
                             } catch (err) {}
                         }}
                     >
-                        New Action
+                        {t("New Action")}
                     </button>
                 ),
                 visible: (values: any) => {

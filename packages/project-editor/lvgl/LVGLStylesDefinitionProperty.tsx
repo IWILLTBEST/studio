@@ -356,7 +356,7 @@ export const LVGLStylesDefinitionTree = observer(
 
             return {
                 id: "root",
-                label: "Root",
+                label: t("Root"),
                 children: parts
                     ? [
                           ...(totalModifications > 0 ? [{
