@@ -16,8 +16,7 @@ import {
     PropertyInfo,
     getProperty,
     IMessage,
-    PropertyProps,
-    findPropertyByNameInClassInfo
+    PropertyProps
 } from "project-editor/core/object";
 import {
     createObject,
@@ -80,7 +79,7 @@ import { lvglBuildPageTimeline } from "project-editor/flow/timeline";
 import type { ProjectEditorFeature } from "project-editor/store/features";
 import { PAGES_ICON } from "project-editor/ui-components/icons";
 import { ProjectContext } from "project-editor/project/context";
-import { Property } from "project-editor/ui-components/PropertyGrid/Property";
+import { GeometryFieldRow } from "project-editor/ui-components/GeometryFieldRow";
 import { EezGuiLitePage } from "project-editor/eez-gui-lite/Page";
 
 export const FLOW_FRAGMENT_PAGE_NAME = "$FlowFragment";
@@ -206,56 +205,43 @@ export const GeometryProperties = observer(
         render() {
             return (
                 <div className="EezStudio_LVGLPageGeometryProperty">
-                    <div>X</div>
-                    <Property
-                        propertyInfo={
-                            findPropertyByNameInClassInfo(
-                                Page.classInfo,
-                                "left"
-                            )!
-                        }
+                    <GeometryFieldRow
+                        label="X"
+                        propertyName="left"
+                        classInfo={Page.classInfo}
                         objects={this.props.objects}
-                        readOnly={this.props.readOnly}
                         updateObject={this.props.updateObject}
+                        readOnly={this.props.readOnly}
+                        scrub
                     />
-
-                    <div>Y</div>
-                    <Property
-                        propertyInfo={
-                            findPropertyByNameInClassInfo(
-                                Page.classInfo,
-                                "top"
-                            )!
-                        }
+                    <GeometryFieldRow
+                        label="Y"
+                        propertyName="top"
+                        classInfo={Page.classInfo}
                         objects={this.props.objects}
-                        readOnly={this.props.readOnly}
                         updateObject={this.props.updateObject}
+                        readOnly={this.props.readOnly}
+                        scrub
                     />
-
-                    <div title="Width">W</div>
-                    <Property
-                        propertyInfo={
-                            findPropertyByNameInClassInfo(
-                                Page.classInfo,
-                                "width"
-                            )!
-                        }
+                    <GeometryFieldRow
+                        label="W"
+                        title="Width"
+                        propertyName="width"
+                        classInfo={Page.classInfo}
                         objects={this.props.objects}
-                        readOnly={this.props.readOnly}
                         updateObject={this.props.updateObject}
+                        readOnly={this.props.readOnly}
+                        scrub
                     />
-
-                    <div title="Height">H</div>
-                    <Property
-                        propertyInfo={
-                            findPropertyByNameInClassInfo(
-                                Page.classInfo,
-                                "height"
-                            )!
-                        }
+                    <GeometryFieldRow
+                        label="H"
+                        title="Height"
+                        propertyName="height"
+                        classInfo={Page.classInfo}
                         objects={this.props.objects}
-                        readOnly={this.props.readOnly}
                         updateObject={this.props.updateObject}
+                        readOnly={this.props.readOnly}
+                        scrub
                     />
                 </div>
             );

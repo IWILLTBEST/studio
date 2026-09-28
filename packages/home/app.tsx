@@ -24,6 +24,7 @@ import {
 import { FlexLayoutContainer } from "eez-studio-ui/FlexLayout";
 import { layoutModels } from "eez-studio-ui/side-dock";
 import { Icon } from "eez-studio-ui/icon";
+import { CommandPalette } from "eez-studio-ui/command-palette";
 import { homeTabStore } from "home/home-tab";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -113,6 +114,7 @@ export const App = observer(
                 <>
                     {content}
                     <WebSimulators />
+                    <CommandPalette />
                 </>
             );
         }

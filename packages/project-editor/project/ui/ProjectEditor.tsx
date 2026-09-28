@@ -49,6 +49,13 @@ import {
 import { LVGLGroupsTab } from "project-editor/lvgl/groups";
 import { settingsController } from "home/settings";
 import { PageStructure } from "project-editor/features/page/PagesNavigation";
+import { ActivityBar, FloatingToolbar } from "./ActivityBar";
+import {
+    PagesWithStructureTab,
+    WidgetsWithStructureTab,
+    VariablesWithActionsTab,
+    ResourcesTab
+} from "./LeftPanelTabs";
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +113,22 @@ const Content = observer(
 
         factory = (node: FlexLayout.TabNode) => {
             var component = node.getComponent();
+
+            if (component === "pages-with-structure") {
+                return <PagesWithStructureTab />;
+            }
+
+            if (component === "widgets-with-structure") {
+                return <WidgetsWithStructureTab />;
+            }
+
+            if (component === "variables-with-actions") {
+                return <VariablesWithActionsTab />;
+            }
+
+            if (component === "resources") {
+                return <ResourcesTab />;
+            }
 
             if (component === "pages") {
                 return (
@@ -547,6 +570,7 @@ const Content = observer(
                         flexDirection: "row"
                     }}
                 >
+                    <ActivityBar />
                     <div
                         style={{
                             position: "relative",
@@ -565,6 +589,7 @@ const Content = observer(
                                 size: "small"
                             }}
                         />
+                        <FloatingToolbar />
                     </div>
                 </div>
             );
