@@ -1,6 +1,7 @@
 import React from "react";
 import { observable, computed, action, makeObservable } from "mobx";
 import { observer } from "mobx-react";
+import { hoverOutlineState } from "project-editor/flow/editor/hover-outline";
 import classNames from "classnames";
 import { webUtils } from "electron";
 
@@ -65,6 +66,7 @@ const TreeRow = observer(
         onEditItem?: (itemId: string) => void;
         renderItem?: (itemId: string) => React.ReactNode;
         selectedRun?: { start: boolean; end: boolean };
+        hoverOutline?: boolean;
     }> {
         ref = React.createRef<HTMLDivElement>();
 
@@ -151,6 +153,25 @@ const TreeRow = observer(
                     }}
                     onMouseUp={this.props.onMouseUp}
                     onClick={this.props.onClick}
+                    onMouseEnter={
+                        this.props.hoverOutline
+                            ? () =>
+                                  (hoverOutlineState.objectAdapter =
+                                      item)
+                            : undefined
+                    }
+                    onMouseLeave={
+                        this.props.hoverOutline
+                            ? () => {
+                                  if (
+                                      hoverOutlineState.objectAdapter ===
+                                      item
+                                  ) {
+                                      hoverOutlineState.objectAdapter = undefined;
+                                  }
+                              }
+                            : undefined
+                    }
                     onDoubleClick={this.props.onDoubleClick}
                     draggable={this.props.draggable}
                     onDragStart={this.props.onDragStart}
@@ -192,6 +213,7 @@ interface TreeProps {
     onEditItem?: (itemId: string) => void;
     renderItem?: (itemId: string) => React.ReactNode;
     onFilesDrop?: (files: File[], filePaths: string[]) => void;
+    hoverOutline?: boolean;
 }
 
 export const Tree = observer(
@@ -909,6 +931,7 @@ export const Tree = observer(
                                 treeAdapter={treeAdapter}
                                 item={row.item}
                                 level={row.level}
+                                hoverOutline={this.props.hoverOutline}
                                 selectedRun={selectedRun.get(row)}
                                 draggable={
                                     this.props.treeAdapter.draggable &&

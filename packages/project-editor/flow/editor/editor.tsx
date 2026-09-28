@@ -40,6 +40,7 @@ import type { Component } from "project-editor/flow/component";
 
 import { ProjectContext } from "project-editor/project/context";
 import { ProjectEditor } from "project-editor/project-editor-interface";
+import { HoverOutline } from "project-editor/flow/editor/hover-outline";
 import {
     TimelinePathEditor,
     WidgetTimelinePathEditorHandler
@@ -871,6 +872,8 @@ export const Canvas = observer(
                             mouseHandler={this.mouseHandler}
                         />
                     )}
+
+                    <HoverOutline context={this.props.flowContext} />
 
                     {this.mouseHandler &&
                         this.mouseHandler.render &&
