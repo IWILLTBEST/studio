@@ -1,5 +1,7 @@
 # IWILLTBEST Studio
 
+[中文版](README.zh-CN.md)
+
 A personal build of [EEZ Studio](https://github.com/eez-open/studio) that integrates LVGL widget editing contributions while they are going through upstream review, plus a built-in AI agent bridge for automation. It tracks `eez-open/studio` `master` and is regularly rebased/merged onto it — everything already merged upstream is taken from upstream directly.
 
 ## What this fork adds on top of upstream `master`
@@ -18,6 +20,29 @@ A personal build of [EEZ Studio](https://github.com/eez-open/studio) that integr
 
 Related example projects: [eez-open/eez-project-examples#4](https://github.com/eez-open/eez-project-examples/pull/4) (merged) and [#5](https://github.com/eez-open/eez-project-examples/pull/5) (open) — the examples replicate the official LVGL documentation examples.
 
+### Figma-style UI redesign (v0.33.0)
+
+A full pass over the editor shell and controls to feel like Figma — the object
+model and project format are untouched:
+
+- **Shell**: left activity bar (with resource sub-icons: styles/fonts/bitmaps/themes/LVGL groups moved off the right border), pages + widget-structure stacked panel, floating bottom toolbar that also stays in Run mode, command palette (`Ctrl+Shift+P`, sourced from the live application menu).
+- **Geometry fields (X/Y/W/H)**: Figma-style rows with the axis letter inside the field; hold the label and drag horizontally to scrub the value — a whole drag is one undo step. Content-sized widgets (GIF/Label/…) render the value inert (not clickable/focusable, dimmed) with a live unit dropdown to switch back to px/%.
+- **Structure tree**: selecting a parent highlights the whole subtree as a continuous rounded block; hovering a row outlines the widget on the canvas.
+- **Unified controls**: borderless raised inputs everywhere, color fields with the swatch embedded and focus blue ring, custom dropdown menus and select replacement (also inside dialogs), ghost toolbar buttons with hand-drawn tooltips.
+- Full zh-CN localization of every new string (see below).
+
+### LVGL 9.6.0 support (v0.32.0)
+
+- LVGL 9.6.0 in the version registry: style/event constant tables adapted to 9.6 (official `CHECKED`/`UNCHECKED` enums, `GESTURE_*` etc.), editor wasm runtime rebuilt for 9.6 with the `lv_gif_*` family exported.
+- C export output stays compatible with 9.5 (`IMG→IMAGE` is an upstream enum rename).
+- Verified end-to-end on ESP32-P4 hardware (dual GIF widgets playing).
+
+### Chinese (zh-CN) UI localization (v0.31.x)
+
+A complete UI dictionary (1290+ entries, zero gaps) covering the whole editor
+interface including all redesigned areas above; switch language in Settings
+without a restart.
+
 ### AI agent bridge
 
 A built-in HTTP tool server (`packages/ai-agent`, listening on `127.0.0.1:17620`) that exposes the open project for automation: object-level editing (create/update/delete widgets), project build and check, canvas screenshots, debug/run control with input injection (click/swipe), style and asset tooling. It is what we use for headless and CI verification of the widget work above.
@@ -26,7 +51,9 @@ Start it like the official app; the bridge starts automatically with the main wi
 
 ## Build
 
-Same as upstream:
+Installers for every integrated release are on the [Releases](https://github.com/IWILLTBEST/studio/releases) page (latest: [v0.33.0](https://github.com/IWILLTBEST/studio/releases/tag/v0.33.0) — Figma-style UI + LVGL 9.6.0).
+
+From source, same as upstream:
 
 ```bash
 npm install
