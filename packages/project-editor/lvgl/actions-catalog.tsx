@@ -1787,7 +1787,8 @@ registerLvglEnum(LV_ANIM_PATH_ENUM_NAME, {
     BACK_OUT: 7,
     BACK_IN_OUT: 8,
     ELASTIC_IN: 9,
-    ELASTIC_OUT: 10
+    ELASTIC_OUT: 10,
+    SPRING: 11
 });
 
 const ANIM_PROPERTIES: IActionPropertyDefinition[] = [
@@ -2172,6 +2173,16 @@ registerAction({
             name: "playback",
             type: "boolean",
             helpText: "Play the animation backwards after it finishes"
+        },
+        {
+            name: "stiffness",
+            type: "integer",
+            helpText: "Spring stiffness k (used when path is SPRING)"
+        },
+        {
+            name: "damping",
+            type: "integer",
+            helpText: "Spring damping c (used when path is SPRING)"
         }
     ],
     defaults: {
@@ -2181,9 +2192,11 @@ registerAction({
         time: 500,
         instant: false,
         relative: true,
-        path: "EASE_IN_OUT",
+        path: "SPRING",
         repeatCount: 0,
-        playback: false
+        playback: false,
+        stiffness: 170,
+        damping: 15
     },
     label: ([object, start, end, delay, time]: string[]) => (
         <>
