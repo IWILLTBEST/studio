@@ -1780,7 +1780,14 @@ registerLvglEnum(LV_ANIM_PATH_ENUM_NAME, {
     EASE_OUT: 2,
     EASE_IN_OUT: 3,
     OVERSHOOT: 4,
-    BOUNCE: 5
+    BOUNCE: 5,
+    // IWILLTBEST fork: extra easing curves (path callbacks implemented in
+    // the eez-framework lvgl component, ids 6-10)
+    BACK_IN: 6,
+    BACK_OUT: 7,
+    BACK_IN_OUT: 8,
+    ELASTIC_IN: 9,
+    ELASTIC_OUT: 10
 });
 
 const ANIM_PROPERTIES: IActionPropertyDefinition[] = [
@@ -1935,6 +1942,177 @@ registerAction({
     defaults: ANIM_DEFAULTS,
     label: animLabel,
     helpText: "Animate the zoom of the image"
+});
+
+const springLabel = (
+    [object, start, end, delay, time, stiffness, damping, velocity]: string[]
+) => (
+    <>
+        {object} spring to {end} (k={stiffness} c={damping} v0={velocity}, {delay} ms, {time} ms)
+    </>
+);
+
+registerAction({
+    // IWILLTBEST fork: parametric spring animation (physical spring easing,
+    // parameters match Figma's spring: stiffness/damping/initial velocity)
+    id: 65,
+    name: "animSpring",
+    group: "Animation",
+    properties: [
+        {
+            name: "object",
+            type: "widget",
+            helpText: "The object to animate"
+        },
+        {
+            name: "start",
+            type: "integer",
+            helpText: "The start value of the animation"
+        },
+        {
+            name: "end",
+            type: "integer",
+            helpText: "The end value of the animation"
+        },
+        {
+            name: "delay",
+            type: "integer",
+            helpText: "Delay in milliseconds before the animation starts"
+        },
+        {
+            name: "time",
+            type: "integer",
+            helpText: "Nominal duration in milliseconds (Figma reports this as the spring duration)"
+        },
+        {
+            name: "instant",
+            type: "boolean",
+            helpText:
+                "If checked apply the start value immediately, otherwise apply the start value after a delay when the animation really starts"
+        },
+        {
+            name: "repeatCount",
+            type: "integer",
+            helpText: "Number of repeats (-1 = infinite)"
+        },
+        {
+            name: "playback",
+            type: "boolean",
+            helpText: "Play the animation backwards after it finishes"
+        },
+        {
+            name: "stiffness",
+            type: "integer",
+            helpText: "Spring stiffness k (Figma spring stiffness, e.g. 169.5)"
+        },
+        {
+            name: "damping",
+            type: "integer",
+            helpText: "Spring damping c (Figma spring damping, e.g. 15)"
+        },
+        {
+            name: "velocity",
+            type: "integer",
+            helpText: "Initial velocity (Figma spring velocity, usually 0-1)"
+        }
+    ],
+    defaults: {
+        start: 0,
+        end: 100,
+        delay: 0,
+        time: 500,
+        instant: false,
+        repeatCount: 0,
+        playback: false,
+        stiffness: 170,
+        damping: 15,
+        velocity: 1
+    },
+    label: springLabel,
+    helpText:
+        "Animate the x coordinate of the object with a physical spring (underdamped step response)"
+});
+
+registerAction({
+    id: 66,
+    name: "animSpringY",
+    group: "Animation",
+    properties: [
+        {
+            name: "object",
+            type: "widget",
+            helpText: "The object to animate"
+        },
+        {
+            name: "start",
+            type: "integer",
+            helpText: "The start value of the animation"
+        },
+        {
+            name: "end",
+            type: "integer",
+            helpText: "The end value of the animation"
+        },
+        {
+            name: "delay",
+            type: "integer",
+            helpText: "Delay in milliseconds before the animation starts"
+        },
+        {
+            name: "time",
+            type: "integer",
+            helpText: "Nominal duration in milliseconds"
+        },
+        {
+            name: "instant",
+            type: "boolean",
+            helpText:
+                "If checked apply the start value immediately, otherwise apply the start value after a delay when the animation really starts"
+        },
+        {
+            name: "repeatCount",
+            type: "integer",
+            helpText: "Number of repeats (-1 = infinite)"
+        },
+        {
+            name: "playback",
+            type: "boolean",
+            helpText: "Play the animation backwards after it finishes"
+        },
+        {
+            name: "stiffness",
+            type: "integer",
+            helpText: "Spring stiffness k"
+        },
+        {
+            name: "damping",
+            type: "integer",
+            helpText: "Spring damping c"
+        },
+        {
+            name: "velocity",
+            type: "integer",
+            helpText: "Initial velocity"
+        }
+    ],
+    defaults: {
+        start: 0,
+        end: 100,
+        delay: 0,
+        time: 500,
+        instant: false,
+        repeatCount: 0,
+        playback: false,
+        stiffness: 170,
+        damping: 15,
+        velocity: 1
+    },
+    label: ([object, start, end, delay, time, stiffness, damping, velocity]: string[]) => (
+        <>
+            {object} spring Y to {end} (k={stiffness} c={damping}, {time} ms)
+        </>
+    ),
+    helpText: "Animate the y coordinate of the object with a physical spring"
 });
 
 registerAction({
