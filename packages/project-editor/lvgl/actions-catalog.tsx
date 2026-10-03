@@ -2116,6 +2116,84 @@ registerAction({
 });
 
 registerAction({
+    // IWILLTBEST fork: animate text color (0xRRGGBB ints); relative mode
+    // fades from the object's current color (tab-switch color fades)
+    id: 67,
+    name: "animTextColor",
+    group: "Animation",
+    properties: [
+        {
+            name: "object",
+            type: "widget",
+            helpText: "The object to animate"
+        },
+        {
+            name: "start",
+            type: "integer",
+            helpText: "The start color (0xRRGGBB); ignored in relative mode"
+        },
+        {
+            name: "end",
+            type: "integer",
+            helpText: "The end color (0xRRGGBB)"
+        },
+        {
+            name: "delay",
+            type: "integer",
+            helpText: "Delay in milliseconds before the animation starts"
+        },
+        {
+            name: "time",
+            type: "integer",
+            helpText: "Animation duration in milliseconds"
+        },
+        {
+            name: "instant",
+            type: "boolean",
+            helpText:
+                "If checked apply the start value immediately, otherwise apply the start value after a delay when the animation really starts"
+        },
+        {
+            name: "relative",
+            type: "boolean",
+            helpText: "Fade from the object's current color"
+        },
+        {
+            name: "path",
+            type: `enum:${LV_ANIM_PATH_ENUM_NAME}`,
+            helpText: "The animation path"
+        },
+        {
+            name: "repeatCount",
+            type: "integer",
+            helpText: "Number of repeats (-1 = infinite)"
+        },
+        {
+            name: "playback",
+            type: "boolean",
+            helpText: "Play the animation backwards after it finishes"
+        }
+    ],
+    defaults: {
+        start: 0,
+        end: 16777215,
+        delay: 0,
+        time: 500,
+        instant: false,
+        relative: true,
+        path: "EASE_IN_OUT",
+        repeatCount: 0,
+        playback: false
+    },
+    label: ([object, start, end, delay, time]: string[]) => (
+        <>
+            {object} color to #{Number(end).toString(16).toUpperCase().padStart(6, "0")} ({delay} ms, {time} ms)
+        </>
+    ),
+    helpText: "Animate the text color of the object"
+});
+
+registerAction({
     id: 46,
     name: "animImageAngle",
     group: "Animation",
